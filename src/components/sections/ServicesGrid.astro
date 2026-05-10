@@ -1,0 +1,44 @@
+---
+import ServiceCard from '../ui/ServiceCard.astro'
+import { SERVICES } from '../../data/services'
+
+interface Props {
+  lang?: 'en' | 'es'
+  limit?: number
+  showViewAll?: boolean
+}
+const { lang = 'en', limit, showViewAll = true } = Astro.props
+const displayServices = limit ? SERVICES.slice(0, limit) : SERVICES
+
+const heading = lang === 'es' ? 'Nuestros Servicios' : 'Our Services'
+const subheading = lang === 'es'
+  ? 'Medicina familiar integral para cada etapa de la vida'
+  : 'Comprehensive family medicine for every stage of life'
+const viewAllLabel = lang === 'es' ? 'Ver todos los servicios →' : 'View all services →'
+---
+
+<section class="py-16 lg:py-24 bg-neutral-50">
+  <div class="container">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="text-3xl lg:text-4xl font-display font-bold text-neutral-900 mb-4">{heading}</h2>
+      <p class="text-neutral-600 text-lg">{subheading}</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      {displayServices.map((service) => (
+        <ServiceCard service={service} lang={lang} />
+      ))}
+    </div>
+
+    {showViewAll && limit && SERVICES.length > limit && (
+      <div class="text-center mt-10">
+        <a
+          href="/services"
+          class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
+        >
+          {viewAllLabel}
+        </a>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 52" fill="none" role="img" aria-label="Health Watch Medical Clinic">
+  <!-- Shield icon -->
+  <path d="M26 2L46 9v20c0 11-20 21-20 21S6 40 6 29V9L26 2Z" fill="rgba(255,255,255,0.95)"/>
+  <!-- EKG pulse line inside shield -->
+  <polyline points="9,27 14,27 16,20 19,34 22,16 25,32 27,27 43,27" stroke="#22C55E" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Wordmark -->
+  <text x="56" y="23" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="800" font-size="18" fill="#FFFFFF" letter-spacing="-0.3">HealthWatch</text>
+  <text x="57" y="37" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="500" font-size="9.5" fill="rgba(255,255,255,0.75)" letter-spacing="2.5">MEDICAL CLINIC</text>
+</svg>

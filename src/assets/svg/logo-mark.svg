@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none" role="img" aria-label="Health Watch Medical Clinic">
+  <!-- Shield icon -->
+  <path d="M26 2L46 9v20c0 11-20 21-20 21S6 40 6 29V9L26 2Z" fill="#1A6B8A"/>
+  <!-- EKG pulse line inside shield -->
+  <polyline points="9,27 14,27 16,20 19,34 22,16 25,32 27,27 43,27" stroke="#22C55E" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

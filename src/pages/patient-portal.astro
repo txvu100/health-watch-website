@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { CLINIC } from '../data/clinic'
+---
+
+<BaseLayout
+  title="Patient Portal | Health Watch Medical Clinic"
+  description="Access your Health Watch Medical Clinic patient portal to view records, request refills, and message your provider online."
+  canonical={`${CLINIC.siteUrl}/patient-portal`}
+  noindex={true}
+>
+  <section class="bg-primary py-14">
+    <div class="container max-w-xl text-center">
+      <h1 class="text-3xl lg:text-4xl font-display font-extrabold text-white mb-3">Patient Portal</h1>
+      <p class="text-white/80 text-lg">Access your health records, request prescription refills, and message your care team.</p>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container max-w-lg text-center">
+      <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+      </div>
+
+      <h2 class="text-2xl font-display font-bold text-neutral-900 mb-4">Access Your Health Records</h2>
+      <p class="text-neutral-600 mb-8 leading-relaxed">
+        Our patient portal is powered by <strong>healow</strong>. Log in to view your visit summaries, lab results, immunization records, and communicate with your care team.
+      </p>
+
+      <a
+        href={CLINIC.patientPortalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold px-10 py-4 rounded-full transition-colors text-lg"
+      >
+        Open Patient Portal →
+      </a>
+
+      <p class="text-sm text-neutral-500 mt-6">
+        Need help accessing the portal? Call us at
+        <a href={`tel:${CLINIC.phoneE164}`} class="text-primary font-medium hover:underline">{CLINIC.phone}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

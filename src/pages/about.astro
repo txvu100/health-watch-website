@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import CallToAction from '../components/sections/CallToAction.astro'
+import { CLINIC } from '../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: CLINIC.siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'About', item: `${CLINIC.siteUrl}/about` },
+  ],
+}
+---
+
+<BaseLayout
+  title="About Us | Health Watch Medical Clinic Oklahoma City"
+  description="Learn about Health Watch Medical Clinic — a locally owned family medicine clinic in Oklahoma City, OK. Bilingual staff, walk-in friendly, accepting SoonerCare & Medicaid."
+  canonical={`${CLINIC.siteUrl}/about`}
+  schemas={[breadcrumbSchema]}
+>
+  <!-- Hero -->
+  <section class="bg-primary py-14 lg:py-20">
+    <div class="container max-w-2xl">
+      <h1 class="text-3xl lg:text-5xl font-display font-extrabold text-white leading-tight mb-4">
+        About Health Watch<br />Medical Clinic
+      </h1>
+      <p class="text-white/80 text-lg">
+        A locally owned family medicine clinic committed to fast, affordable, and compassionate care for every patient.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <h2 class="text-2xl lg:text-3xl font-display font-bold text-neutral-900 mb-6">Our Mission</h2>
+      <div class="space-y-4 text-neutral-600 leading-relaxed text-lg">
+        <p>
+          At Health Watch Medical Clinic, our mission is to provide fast, convenient, courteous, and professional family medical care with the focused attention that each patient deserves. We believe that quality healthcare should be accessible to everyone — regardless of insurance status, income, or language spoken.
+        </p>
+        <p>
+          We are an independent, locally owned clinic in Oklahoma City specializing in general and internal medicine. Our experienced providers are committed to building lasting relationships with patients and their families, delivering care that goes beyond treating symptoms to genuinely watching over your long-term health and wellness.
+        </p>
+        <p>
+          Our bilingual team — fully fluent in both English and Spanish — ensures that every patient feels understood, respected, and empowered to take charge of their health. <em>Se habla Español.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 lg:py-20 bg-neutral-50 border-y border-neutral-200">
+    <div class="container">
+      <h2 class="text-2xl lg:text-3xl font-display font-bold text-neutral-900 text-center mb-12">Our Values</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', title: 'Compassion', text: 'We treat every patient with the empathy and dignity they deserve.' },
+          { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Quality', text: 'Evidence-based medicine delivered by experienced, caring providers.' },
+          { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Accessibility', text: 'Walk-ins welcome, same-day appointments, and affordable pricing for all.' },
+          { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', title: 'Community', text: 'Rooted in Oklahoma City, serving our neighbors with pride.' },
+        ].map((v) => (
+          <div class="text-center">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={v.icon} />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-neutral-900 mb-2">{v.title}</h3>
+            <p class="text-neutral-600 text-sm leading-relaxed">{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiators -->
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <h2 class="text-2xl lg:text-3xl font-display font-bold text-neutral-900 mb-8">What Makes Us Different</h2>
+      <ul class="space-y-5">
+        {[
+          { title: 'Independent & Locally Owned', desc: 'We are not part of a large hospital system. As an independent clinic, we have the freedom to focus entirely on our patients rather than corporate metrics.' },
+          { title: 'Bilingual Care', desc: 'Our entire staff is fluent in English and Spanish. We serve a diverse Oklahoma City community and take pride in removing language barriers from healthcare.' },
+          { title: 'Minimal Wait Times', desc: 'We respect your time. Our streamlined scheduling ensures you spend more time with your provider and less time in the waiting room.' },
+          { title: 'Broad Insurance Acceptance', desc: 'We accept SoonerCare, Medicaid, Medicare, Blue Cross Blue Shield, and most private insurance plans. Self-pay patients are also welcome at competitive rates.' },
+          { title: 'Free Blood Pressure Checks', desc: 'We offer complimentary blood pressure checks to all walk-in patients — no appointment required. Hypertension is a silent killer and early detection saves lives.' },
+        ].map((item) => (
+          <li class="flex gap-5 pb-5 border-b border-neutral-100 last:border-0">
+            <div class="w-8 h-8 rounded-full bg-secondary/15 flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-4 h-4 text-secondary-dark" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-neutral-900 mb-1">{item.title}</h3>
+              <p class="text-neutral-600 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CallToAction />
+</BaseLayout>

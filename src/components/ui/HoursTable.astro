@@ -1,0 +1,19 @@
+---
+import { CLINIC } from '../../data/clinic'
+---
+
+<table class="w-full text-sm" aria-label="Clinic Hours">
+  <caption class="sr-only">Health Watch Medical Clinic hours of operation</caption>
+  <tbody>
+    {CLINIC.hours.map((row) => (
+      <tr class="border-b border-neutral-100 last:border-0">
+        <td class="py-2.5 font-medium text-neutral-700 pr-6">{row.day}</td>
+        <td class="py-2.5 text-neutral-600 text-right">
+          {row.note
+            ? <span class={row.note === 'Closed' ? 'text-neutral-400' : 'text-secondary font-medium'}>{row.note}</span>
+            : `${row.open} – ${row.close}`}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

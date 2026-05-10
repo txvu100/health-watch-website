@@ -1,0 +1,118 @@
+---
+import SpanishLayout from '../../layouts/SpanishLayout.astro'
+import FAQ from '../../components/sections/FAQ.astro'
+import CallToAction from '../../components/sections/CallToAction.astro'
+import { CLINIC } from '../../data/clinic'
+import { getService } from '../../data/services'
+
+const service = getService('immigration-medical-exam')!
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalService',
+  name: 'Examen Médico para Inmigración (I-693)',
+  description: service.shortDescriptionEs,
+  provider: { '@id': `${CLINIC.siteUrl}/#clinic` },
+  areaServed: { '@type': 'City', name: 'Oklahoma City' },
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: service.faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+}
+---
+
+<SpanishLayout
+  title="Examen Médico para Inmigración I-693 | Oklahoma City"
+  description="Cirujano civil certificado por USCIS en Oklahoma City. Examen médico I-693 para Green Card y residencia permanente. Se habla Español. Llame (405) 949-1552."
+  canonical={`${CLINIC.siteUrl}/es/examen-medico-inmigracion`}
+  enPath="/services/immigration-medical-exam"
+  schemas={[serviceSchema, faqSchema]}
+>
+  <!-- Hero -->
+  <section class="bg-primary py-14 lg:py-20">
+    <div class="container max-w-2xl">
+      <h1 class="text-3xl lg:text-5xl font-display font-extrabold text-white leading-tight mb-4">
+        Examen Médico para Inmigración (I-693)
+        <span class="block text-secondary text-xl lg:text-2xl font-semibold mt-2">en Oklahoma City, OK</span>
+      </h1>
+      <p class="text-white/80 text-lg mb-8">{service.shortDescriptionEs}</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/es/contacto" class="inline-flex items-center gap-2 bg-secondary hover:bg-secondary-dark text-white font-bold px-8 py-4 rounded-full transition-colors">Hacer una Cita</a>
+        <a href={`tel:${CLINIC.phoneE164}`} class="inline-flex items-center gap-2 border-2 border-white/60 hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-colors">Llamar {CLINIC.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <div class="space-y-5 text-neutral-600 leading-relaxed">
+        <h2 class="text-2xl font-display font-bold text-neutral-900">¿Qué es el Formulario I-693?</h2>
+        <p>El Formulario I-693 (Informe de Examen Médico de Inmigración y Registro de Vacunación) es requerido por USCIS para la mayoría de los solicitantes de ajuste de estatus (residencia permanente / Green Card). El examen debe ser realizado por un <strong>cirujano civil designado por USCIS</strong>, como Health Watch Medical Clinic.</p>
+
+        <h2 class="text-2xl font-display font-bold text-neutral-900 pt-4">¿Qué Incluye el Examen?</h2>
+        <ul class="space-y-2">
+          {[
+            'Examen físico completo de cabeza a pies',
+            'Revisión del historial de vacunación',
+            'Vacunas requeridas (según edad e historial)',
+            'Prueba de tuberculosis (TB)',
+            'Evaluación de salud mental',
+            'Detección de condiciones designadas por los CDC',
+            'Completar y sellar el Formulario I-693',
+          ].map((item) => (
+            <li class="flex gap-3 items-start">
+              <svg class="w-5 h-5 text-secondary mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 not-prose">
+          <h3 class="font-display font-bold text-amber-900 mb-2">📌 Cambio Importante USCIS 2024</h3>
+          <p class="text-amber-800 text-sm leading-relaxed">A partir de 2024, USCIS requiere que el I-693 completado se presente <strong>junto con el Formulario I-485</strong> en un sobre sellado. <strong>No abra el sobre</strong> después de que su cirujano civil lo selle. No lo lleve a su entrevista por separado.</p>
+        </div>
+
+        <h2 class="text-2xl font-display font-bold text-neutral-900 pt-4">¿Qué Debe Traer?</h2>
+        <ul class="space-y-2 text-sm">
+          {[
+            'Identificación oficial con foto (pasaporte, ID gubernamental)',
+            'Tarjeta de vacunación o historial de vacunas',
+            'Registros médicos relevantes (si aplica)',
+            'Forma de pago',
+          ].map((item) => (
+            <li class="flex gap-3 items-start">
+              <span class="text-primary font-bold mt-0.5">→</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="bg-primary/5 border border-primary/20 rounded-2xl p-6 not-prose">
+          <p class="font-semibold text-neutral-900 mb-2 flex items-center gap-2">
+            <span aria-hidden="true">🇲🇽</span> Se Habla Español
+          </p>
+          <p class="text-neutral-600 text-sm">Nuestro equipo bilingüe lo guiará paso a paso por el proceso del examen I-693. No necesita saber inglés para completar su examen de inmigración con nosotros.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14 bg-neutral-50 border-t border-neutral-200">
+    <div class="container max-w-3xl">
+      <h2 class="text-2xl font-display font-bold text-neutral-900 mb-8">Preguntas Frecuentes</h2>
+      <FAQ faqs={service.faqs} />
+    </div>
+  </section>
+
+  <CallToAction lang="es" />
+</SpanishLayout>

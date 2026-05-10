@@ -1,0 +1,123 @@
+---
+import { CLINIC } from '../../data/clinic'
+import JsonLd from './JsonLd.astro'
+
+interface Props {
+  title: string
+  description: string
+  canonical?: string
+  ogImage?: string
+  lang?: 'en' | 'es'
+  /** Extra JSON-LD schemas to inject alongside the base MedicalClinic schema */
+  schemas?: Record<string, unknown>[]
+  /** Slug of the paired /es/ page, if one exists */
+  esPath?: string
+  /** Slug of the paired English page, if on an /es/ page */
+  enPath?: string
+  noindex?: boolean
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = `${CLINIC.siteUrl}/og-default.jpg`,
+  lang = 'en',
+  schemas = [],
+  esPath,
+  enPath,
+  noindex = false,
+} = Astro.props
+
+const pageTitle = title.includes('Health Watch')
+  ? title
+  : `${title} | Health Watch Medical Clinic Oklahoma City`
+
+// Base MedicalClinic JSON-LD — injected on every page
+const clinicSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['MedicalClinic', 'LocalBusiness'],
+  '@id': `${CLINIC.siteUrl}/#clinic`,
+  name: CLINIC.name,
+  url: CLINIC.siteUrl,
+  telephone: CLINIC.phoneE164,
+  email: CLINIC.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: CLINIC.address.street,
+    addressLocality: CLINIC.address.city,
+    addressRegion: CLINIC.address.state,
+    postalCode: CLINIC.address.zip,
+    addressCountry: CLINIC.address.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: CLINIC.geo.lat,
+    longitude: CLINIC.geo.lng,
+  },
+  openingHoursSpecification: CLINIC.hoursSchema,
+  availableLanguage: CLINIC.languages,
+  paymentAccepted: CLINIC.insurance.join(', '),
+  priceRange: '$',
+  sameAs: [CLINIC.social.facebook, CLINIC.social.instagram, CLINIC.social.pinterest],
+  image: `${CLINIC.siteUrl}/og-default.jpg`,
+  hasMap: CLINIC.mapsDirectionsUrl,
+}
+
+const allSchemas = [clinicSchema, ...schemas]
+
+// Canonical: strip trailing slash except for root
+const canonicalClean = canonical.replace(/\/$/, '') || CLINIC.siteUrl
+---
+
+<!-- Primary meta -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalClean} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+{!noindex && <meta name="robots" content="index, follow" />}
+
+<!-- Geo / Local SEO -->
+<meta name="geo.region" content="US-OK" />
+<meta name="geo.placename" content="Oklahoma City, OK" />
+<meta name="geo.position" content={`${CLINIC.geo.lat};${CLINIC.geo.lng}`} />
+<meta name="ICBM" content={`${CLINIC.geo.lat}, ${CLINIC.geo.lng}`} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={CLINIC.name} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content={canonicalClean} />
+<meta property="og:locale" content={lang === 'es' ? 'es_US' : 'en_US'} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- hreflang -->
+{esPath && <link rel="alternate" hreflang="es" href={`${CLINIC.siteUrl}/es${esPath}`} />}
+{enPath && <link rel="alternate" hreflang="en" href={`${CLINIC.siteUrl}${enPath}`} />}
+{esPath && <link rel="alternate" hreflang="x-default" href={canonicalClean} />}
+{enPath && <link rel="alternate" hreflang="x-default" href={`${CLINIC.siteUrl}${enPath}`} />}
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Font preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- JSON-LD structured data -->
+{allSchemas.map((schema) => <JsonLd schema={schema} />)}
