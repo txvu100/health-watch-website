@@ -14,14 +14,20 @@ services:
       - key: PUBLIC_FORMSPREE_ID
         sync: false
     headers:
+      # ORDER MATTERS: Render applies the LAST matching rule, so the broad
+      # default goes first and the specific overrides follow it. Verified
+      # against the deployed site — with /_astro/* listed first it lost to /*
+      # and hashed assets were served must-revalidate.
+      #
+      # Default: HTML must revalidate, or content fixes never reach returning
+      # visitors.
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
       # Content-hashed build output is the only thing safe to cache immutably.
       - path: /_astro/*
         name: Cache-Control
         value: public, max-age=31536000, immutable
-      # HTML must revalidate, or content fixes never reach returning visitors.
-      - path: /*
-        name: Cache-Control
-        value: public, max-age=0, must-revalidate
       - path: /sitemap-index.xml
         name: Cache-Control
         value: public, max-age=86400
