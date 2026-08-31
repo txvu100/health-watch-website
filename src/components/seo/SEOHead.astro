@@ -7,12 +7,13 @@ interface Props {
   description: string
   canonical?: string
   ogImage?: string
+  ogImageAlt?: string
   lang?: 'en' | 'es'
   /** Extra JSON-LD schemas to inject alongside the base MedicalClinic schema */
   schemas?: Record<string, unknown>[]
-  /** Slug of the paired /es/ page, if one exists */
+  /** Path of the paired /es/ page, relative to /es (e.g. '/contacto') */
   esPath?: string
-  /** Slug of the paired English page, if on an /es/ page */
+  /** Path of the paired English page (e.g. '/contact') */
   enPath?: string
   noindex?: boolean
 }
@@ -22,6 +23,7 @@ const {
   description,
   canonical = Astro.url.href,
   ogImage = `${CLINIC.siteUrl}/og-default.jpg`,
+  ogImageAlt = `${CLINIC.name} — ${CLINIC.address.full}`,
   lang = 'en',
   schemas = [],
   esPath,
@@ -29,9 +31,41 @@ const {
   noindex = false,
 } = Astro.props
 
-const pageTitle = title.includes('Health Watch')
-  ? title
-  : `${title} | Health Watch Medical Clinic Oklahoma City`
+// Pages already naming the brand are left alone. The suffix deliberately omits
+// "Oklahoma City" — nearly every page title already carries the city, and
+// repeating it pushed titles past 90 characters, well beyond SERP truncation.
+const pageTitle = title.includes('Health Watch') ? title : `${title} | ${CLINIC.name}`
+
+// Canonical carries the trailing slash that directory output actually serves,
+// so canonical, sitemap <loc>, and internal links all name the same URL and no
+// page canonicalises to a URL that would redirect.
+const withSlash = (url: string) => (url.endsWith('/') ? url : `${url}/`)
+const canonicalClean = withSlash(canonical)
+
+// hreflang: every page in a cluster must declare the complete set *including
+// itself*, or Google treats the annotation as unconfirmed and ignores it.
+const esUrl =
+  lang === 'es'
+    ? canonicalClean
+    : esPath
+      ? withSlash(`${CLINIC.siteUrl}/es${esPath === '/' ? '' : esPath}`)
+      : undefined
+const enUrl =
+  lang === 'en'
+    ? canonicalClean
+    : enPath
+      ? withSlash(`${CLINIC.siteUrl}${enPath === '/' ? '' : enPath}`)
+      : undefined
+
+// A cluster of one carries no information — only annotate real pairs.
+const alternates =
+  enUrl && esUrl
+    ? [
+        { hreflang: 'en', href: enUrl },
+        { hreflang: 'es', href: esUrl },
+        { hreflang: 'x-default', href: enUrl },
+      ]
+    : []
 
 // Base MedicalClinic JSON-LD — injected on every page
 const clinicSchema = {
@@ -64,10 +98,17 @@ const clinicSchema = {
   hasMap: CLINIC.mapsDirectionsUrl,
 }
 
-const allSchemas = [clinicSchema, ...schemas]
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${CLINIC.siteUrl}/#website`,
+  url: CLINIC.siteUrl,
+  name: CLINIC.name,
+  inLanguage: lang === 'es' ? 'es-US' : 'en-US',
+  publisher: { '@id': `${CLINIC.siteUrl}/#clinic` },
+}
 
-// Canonical: strip trailing slash except for root
-const canonicalClean = canonical.replace(/\/$/, '') || CLINIC.siteUrl
+const allSchemas = [clinicSchema, websiteSchema, ...schemas]
 ---
 
 <!-- Primary meta -->
@@ -91,31 +132,39 @@ const canonicalClean = canonical.replace(/\/$/, '') || CLINIC.siteUrl
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={ogImageAlt} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content={canonicalClean} />
 <meta property="og:locale" content={lang === 'es' ? 'es_US' : 'en_US'} />
+{esUrl && enUrl && (
+  <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_US'} />
+)}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
 
 <!-- hreflang -->
-{esPath && <link rel="alternate" hreflang="es" href={`${CLINIC.siteUrl}/es${esPath}`} />}
-{enPath && <link rel="alternate" hreflang="en" href={`${CLINIC.siteUrl}${enPath}`} />}
-{esPath && <link rel="alternate" hreflang="x-default" href={canonicalClean} />}
-{enPath && <link rel="alternate" hreflang="x-default" href={`${CLINIC.siteUrl}${enPath}`} />}
+{alternates.map((alt) => (
+  <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+))}
 
-<!-- Favicon -->
+<!-- Icons -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#1B1B3A" />
 
 <!-- Font preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
   rel="stylesheet"
 />
 

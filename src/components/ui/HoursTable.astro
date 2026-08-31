@@ -1,19 +1,30 @@
 ---
 import { CLINIC } from '../../data/clinic'
+import { useTranslations, type Lang } from '../../data/translations'
+
+interface Props {
+  lang?: Lang
+}
+const { lang = 'en' } = Astro.props
+const t = useTranslations(lang)
 ---
 
-<table class="w-full text-sm" aria-label="Clinic Hours">
-  <caption class="sr-only">Health Watch Medical Clinic hours of operation</caption>
+<table class="w-full text-sm">
+  <caption class="sr-only">{t.hoursTable.caption}</caption>
   <tbody>
-    {CLINIC.hours.map((row) => (
-      <tr class="border-b border-neutral-100 last:border-0">
-        <td class="py-2.5 font-medium text-neutral-700 pr-6">{row.day}</td>
-        <td class="py-2.5 text-neutral-600 text-right">
-          {row.note
-            ? <span class={row.note === 'Closed' ? 'text-neutral-400' : 'text-secondary font-medium'}>{row.note}</span>
-            : `${row.open} – ${row.close}`}
-        </td>
-      </tr>
-    ))}
+    {CLINIC.hours.map((row) => {
+      const note = lang === 'es' ? row.noteEs : row.note
+      const isClosed = !row.open && !row.opens24 && note === (lang === 'es' ? 'Cerrado' : 'Closed')
+      return (
+        <tr class="border-b border-neutral-100 last:border-0">
+          <td class="py-2.5 font-medium text-neutral-700 pr-6">{lang === 'es' ? row.dayEs : row.day}</td>
+          <td class="py-2.5 text-neutral-600 text-right">
+            {note
+              ? <span class={isClosed ? 'text-neutral-400' : 'text-secondary font-medium'}>{note}</span>
+              : `${row.open} – ${row.close}`}
+          </td>
+        </tr>
+      )
+    })}
   </tbody>
 </table>

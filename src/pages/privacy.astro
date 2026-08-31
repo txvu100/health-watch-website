@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { CLINIC } from '../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${CLINIC.siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: `${CLINIC.siteUrl}/privacy/` },
+  ],
+}
+
+const updated = 'August 30, 2026'
+---
+
+<BaseLayout
+  title="Privacy Policy | Health Watch Medical Clinic"
+  description="How Health Watch Medical Clinic collects, uses, and protects information submitted through healthwatchclinic.com, and how it relates to your HIPAA rights."
+  canonical={`${CLINIC.siteUrl}/privacy/`}
+  esPath="/privacidad"
+  schemas={[breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <nav aria-label="Breadcrumb" class="text-[13px] font-bold text-[#9089B8] mb-5">
+        <a href="/" class="hover:text-primary">Home</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">Privacy Policy</span>
+      </nav>
+      <h1 class="text-[32px] lg:text-[42px] font-display font-extrabold tracking-[-1px] text-neutral-900 mb-3">Website Privacy Policy</h1>
+      <p class="text-lg leading-[1.7] font-medium text-neutral-600">Last updated {updated}</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <div class="prose prose-neutral max-w-none space-y-4 text-neutral-600 leading-relaxed">
+        <div class="bg-lavender rounded-2xl p-6 not-prose mb-8">
+          <p class="text-[#4A4F6B] text-sm leading-relaxed">
+            This page covers information collected through this website. It is <strong>not</strong> the clinic's
+            HIPAA Notice of Privacy Practices, which governs your protected health information as a patient.
+            Ask our front desk for a copy, or call <a href={`tel:${CLINIC.phoneE164}`} class="text-primary font-semibold hover:underline">{CLINIC.phone}</a>.
+          </p>
+        </div>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">What we collect</h2>
+        <p>When you use the contact form on this site, we collect the information you choose to enter: your name, phone number, and optionally your email address, the service you are interested in, your preferred language, and your message. We collect this only when you submit the form.</p>
+        <p>We do not ask for, and you should not send us, detailed medical information, insurance numbers, Social Security numbers, or payment details through this website's form. Please call us instead for anything sensitive.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">How we use it</h2>
+        <p>We use what you submit solely to respond to your enquiry — to contact you about an appointment, answer your question, or direct you to the right person at the clinic. We do not sell your information, and we do not use it for advertising.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">How form submissions are handled</h2>
+        <p>Contact form submissions are delivered to the clinic by a third-party form processing service, which transmits the message to our staff by email. That provider processes the data on our behalf and does not use it for its own purposes.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Embedded maps</h2>
+        <p>Our contact and location pages embed a Google Maps frame so you can find us. Loading that map means your browser contacts Google, which may set cookies or record your IP address under Google's own privacy policy. Nothing you type into our form is shared with Google.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Your HIPAA rights as a patient</h2>
+        <p>Information you share with us as a patient — during a visit, over the phone, or through the patient portal — is protected health information governed by HIPAA and by our Notice of Privacy Practices. That notice explains your rights to access, amend, and restrict the use of your health records. Website form submissions become part of your record only once you become a patient.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Immigration status</h2>
+        <p>We do not ask for or record immigration status, and we do not share patient information with immigration authorities. A Social Security number is not required to receive care.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Children</h2>
+        <p>This website is not directed at children, and we do not knowingly collect information from children through it. Parents and guardians submit enquiries on behalf of minor patients.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Questions or requests</h2>
+        <p>To ask about this policy, request a copy of our Notice of Privacy Practices, or ask us to delete an enquiry you submitted, contact us:</p>
+        <ul>
+          <li>Phone: <a href={`tel:${CLINIC.phoneE164}`} class="text-primary hover:underline font-medium">{CLINIC.phone}</a></li>
+          <li>Email: <a href={`mailto:${CLINIC.email}`} class="text-primary hover:underline font-medium">{CLINIC.email}</a></li>
+          <li>In person: {CLINIC.address.full}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

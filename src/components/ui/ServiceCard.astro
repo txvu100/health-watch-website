@@ -1,46 +1,46 @@
 ---
-import type { Service } from '../../data/services'
+import { serviceHref, serviceSummary, serviceTitle, type Service } from '../../data/services'
+import { useTranslations, type Lang } from '../../data/translations'
 
 interface Props {
   service: Service
-  lang?: 'en' | 'es'
+  lang?: Lang
 }
 
 const { service, lang = 'en' } = Astro.props
-const title = lang === 'es' ? service.titleEs : service.title
-const description = lang === 'es' ? service.shortDescriptionEs : service.shortDescription
+const t = useTranslations(lang)
+const title = serviceTitle(service, lang)
+const description = serviceSummary(service, lang)
+const href = serviceHref(service, lang)
 ---
 
-<article class="group bg-white rounded-2xl border border-neutral-200 hover:border-primary/30 hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col">
-  <!-- Teal top accent bar -->
-  <div class="h-1 bg-primary group-hover:bg-secondary transition-colors" aria-hidden="true"></div>
-
-  <div class="p-6 flex flex-col flex-1">
+<article class="group bg-white rounded-[20px] border border-neutral-200 hover:border-[#D9D0EE] hover:shadow-card-hover hover:-translate-y-[3px] transition-all duration-200 overflow-hidden flex flex-col shadow-card">
+  <div class="p-[26px] flex flex-col flex-1 gap-3.5">
     <!-- Icon -->
-    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
+    <div class="w-[52px] h-[52px] rounded-[15px] bg-lavender flex items-center justify-center">
       <svg
-        class="w-6 h-6 text-primary"
+        class="w-[26px] h-[26px] text-primary"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        stroke-width="1.8"
+        stroke-width="1.9"
         aria-hidden="true"
       >
         <path stroke-linecap="round" stroke-linejoin="round" d={service.icon} />
       </svg>
     </div>
 
-    <h3 class="text-lg font-display font-bold text-neutral-900 mb-2 leading-snug">{title}</h3>
-    <p class="text-neutral-600 text-sm leading-relaxed flex-1">{description}</p>
+    <h3 class="text-[17.5px] font-display font-extrabold text-neutral-900 leading-[1.25]">{title}</h3>
+    <p class="text-neutral-600 text-sm leading-[1.6] flex-1">{description}</p>
 
     <a
-      href={`/services/${service.slug}`}
-      class="mt-5 inline-flex items-center gap-1.5 text-primary font-semibold text-sm hover:text-primary-dark transition-colors group/link"
-      aria-label={`Learn more about ${title}`}
+      href={href}
+      class="inline-flex items-center gap-1.5 text-secondary font-bold text-[13.5px] hover:text-secondary-dark transition-colors group/link"
+      aria-label={t.services.learnMoreAbout(title)}
     >
-      Learn more
-      <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      {t.services.learnMore}
+      <svg class="w-[17px] h-[17px] transition-transform group-hover/link:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h13" /><path stroke-linecap="round" stroke-linejoin="round" d="M12.5 6l6 6-6 6" />
       </svg>
     </a>
   </div>

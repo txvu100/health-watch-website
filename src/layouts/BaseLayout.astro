@@ -2,6 +2,7 @@
 import SEOHead from '../components/seo/SEOHead.astro'
 import Header from '../components/layout/Header.astro'
 import Footer from '../components/layout/Footer.astro'
+import type { Lang } from '../data/translations'
 import '../styles/global.css'
 
 interface Props {
@@ -9,23 +10,24 @@ interface Props {
   description: string
   canonical?: string
   ogImage?: string
-  lang?: 'en' | 'es'
+  ogImageAlt?: string
+  lang?: Lang
   schemas?: Record<string, unknown>[]
   esPath?: string
   enPath?: string
   noindex?: boolean
 }
 
-const { lang = 'en', ...seoProps } = Astro.props
+const { lang = 'en', esPath, enPath, ...seoProps } = Astro.props
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
-    <SEOHead lang={lang} {...seoProps} />
+    <SEOHead lang={lang} esPath={esPath} enPath={enPath} {...seoProps} />
   </head>
-  <body class="bg-white text-neutral-900 antialiased">
-    <Header lang={lang} />
+  <body class="bg-neutral-50 text-neutral-900 antialiased">
+    <Header lang={lang} esPath={esPath} enPath={enPath} />
     <main id="main-content">
       <slot />
     </main>

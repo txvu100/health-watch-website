@@ -3,18 +3,45 @@ import SpanishLayout from '../../layouts/SpanishLayout.astro'
 import ServicesGrid from '../../components/sections/ServicesGrid.astro'
 import CallToAction from '../../components/sections/CallToAction.astro'
 import { CLINIC } from '../../data/clinic'
+import { SERVICES, serviceHref, serviceTitle } from '../../data/services'
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Servicios Médicos de Health Watch Medical Clinic',
+  itemListElement: SERVICES.map((service, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: serviceTitle(service, 'es'),
+    url: `${CLINIC.siteUrl}${serviceHref(service, 'es')}`,
+  })),
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${CLINIC.siteUrl}/es/` },
+    { '@type': 'ListItem', position: 2, name: 'Servicios', item: `${CLINIC.siteUrl}/es/servicios/` },
+  ],
+}
 ---
 
 <SpanishLayout
-  title="Servicios Médicos | Health Watch Medical Clinic Oklahoma City"
-  description="Servicios de medicina familiar en Oklahoma City: presión arterial, diabetes, salud de la mujer, examen médico de inmigración, salud mental, salud infantil, físicos y telemedicina. (405) 949-1552."
-  canonical={`${CLINIC.siteUrl}/es/servicios`}
+  title="Servicios Médicos | Health Watch Medical Clinic"
+  description="Servicios de medicina familiar en Oklahoma City: diabetes, presión arterial, salud de la mujer, examen de inmigración y más. En español. (405) 949-1552."
+  canonical={`${CLINIC.siteUrl}/es/servicios/`}
   enPath="/services"
+  schemas={[breadcrumbSchema, itemListSchema]}
 >
-  <section class="bg-primary py-14">
-    <div class="container max-w-2xl">
-      <h1 class="text-3xl lg:text-5xl font-display font-extrabold text-white leading-tight mb-4">Nuestros Servicios</h1>
-      <p class="text-white/80 text-lg">Medicina familiar integral para cada etapa de la vida — todo en un solo lugar en Oklahoma City.</p>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <div class="inline-flex items-center gap-2 mb-4">
+        <span class="w-[7px] h-[7px] rounded-full bg-secondary"></span>
+        <span class="text-[13px] font-extrabold tracking-[1.8px] uppercase text-[#8983B8]">Nuestros servicios</span>
+      </div>
+      <h1 class="text-[32px] sm:text-[38px] lg:text-[47px] font-display font-extrabold tracking-[-1.2px] text-neutral-900 mb-4">Atención para cada etapa de la vida familiar</h1>
+      <p class="text-lg leading-[1.7] font-medium text-neutral-600">Medicina familiar integral para cada etapa de la vida — todo en un solo lugar en Oklahoma City.</p>
     </div>
   </section>
 

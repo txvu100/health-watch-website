@@ -1,0 +1,46 @@
+---
+interface Props {
+  label?: string
+  icon?: string
+  iconSize?: number
+  minHeight?: string
+  class?: string
+  dark?: boolean
+}
+
+const {
+  label,
+  icon = 'M12 21C12 21 4 13.5 4 8.5C4 5.46 6.46 3 9.5 3C11.24 3 12.91 3.81 14 5.08C15.09 3.81 16.76 3 18.5 3C21.54 3 24 5.46 24 8.5',
+  iconSize = 30,
+  minHeight = 'min-h-[340px]',
+  class: className,
+  dark = false,
+} = Astro.props
+---
+
+<div
+  class:list={[
+    'relative overflow-hidden rounded-[26px] border flex flex-col items-center justify-center gap-4',
+    minHeight,
+    dark ? 'border-transparent' : 'border-[#E7E1F4]',
+    className,
+  ]}
+  style={dark
+    ? 'background:linear-gradient(155deg,#2F4BC7 0%,#2A2A63 100%)'
+    : 'background:linear-gradient(155deg,#EDE9F6 0%,#F8F6FD 100%)'}
+>
+  <span
+    class:list={['relative rounded-2xl flex items-center justify-center', dark ? 'bg-white/12' : 'bg-white shadow-[0_8px_20px_rgba(47,75,199,0.12)]']}
+    style={`width:${iconSize + 36}px;height:${iconSize + 36}px`}
+  >
+    <svg width={iconSize} height={iconSize} viewBox="0 0 24 24" fill="none" stroke={dark ? '#fff' : '#2F4BC7'} stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d={icon} />
+    </svg>
+  </span>
+
+  {label && (
+    <span class:list={['relative text-xs font-extrabold uppercase tracking-[1.6px]', dark ? 'text-[#B9B5DE]' : 'text-[#9089B8]']}>
+      {label}
+    </span>
+  )}
+</div>

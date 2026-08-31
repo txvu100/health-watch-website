@@ -1,106 +1,167 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CallToAction from '../components/sections/CallToAction.astro'
+import MissionBand from '../components/sections/MissionBand.astro'
+import PhotoPlaceholderPanel from '../components/ui/PhotoPlaceholderPanel.astro'
+import TeamCard from '../components/ui/TeamCard.astro'
 import { CLINIC } from '../data/clinic'
+
+// Physician node for the named provider. Google weighs author/provider identity
+// heavily for YMYL medical content, so this page is where E-E-A-T is earned.
+// TODO(clinic): add `honorificSuffix` (MD / DO / APRN / PA-C) and, ideally,
+// `alumniOf` + years of experience once the clinic confirms them.
+const providerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Physician',
+  '@id': `${CLINIC.siteUrl}/about#helen-mboh`,
+  name: 'Helen Mboh',
+  jobTitle: 'Provider, Family Medicine',
+  medicalSpecialty: 'https://schema.org/FamilyPractice',
+  worksFor: { '@id': `${CLINIC.siteUrl}/#clinic` },
+  availableLanguage: CLINIC.languages,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: CLINIC.address.street,
+    addressLocality: CLINIC.address.city,
+    addressRegion: CLINIC.address.state,
+    postalCode: CLINIC.address.zip,
+    addressCountry: CLINIC.address.country,
+  },
+}
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: CLINIC.siteUrl },
-    { '@type': 'ListItem', position: 2, name: 'About', item: `${CLINIC.siteUrl}/about` },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${CLINIC.siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'About', item: `${CLINIC.siteUrl}/about/` },
   ],
 }
+
+const heroBadges = [
+  'Independent & locally owned',
+  'Bilingual staff',
+  'Most insurance accepted',
+  'Minimal wait times',
+]
+
+const careFeatures = [
+  { icon: 'M17.4 19.6a5.4 5.4 0 00-2.8-4.7M16 5.3a3.1 3.1 0 010 5.4M3.6 19.6a5.4 5.4 0 0110.8 0M9 8a3.1 3.1 0 100 6.2A3.1 3.1 0 009 8z', title: 'Friendly, experienced providers', text: 'A care team that treats you with genuine urgency and respect.' },
+  { icon: 'M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18M3 12h18M12 21a9 9 0 100-18 9 9 0 000 18z', title: 'Bilingual staff', text: 'Comfortable, clear care in English and Spanish.' },
+  { icon: 'M12 2.6l7.3 2.9v5.4c0 4.5-3.1 7.7-7.3 8.8-4.2-1.1-7.3-4.3-7.3-8.8V5.5zM8.6 12l2.2 2.2 4.6-4.7', title: 'Affordable & transparent', text: 'Fair pricing and clear communication, every visit.' },
+  { icon: 'M13 2.5L4.6 13H11l-1 8.5L18.4 11H12z', title: 'Fast scheduling', text: 'Same-day options and minimal wait times.' },
+  { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', title: 'Clean & family-friendly', text: 'A welcoming environment for every age.' },
+  { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Same-day & walk-in options', text: 'No appointment? No problem — walk in during business hours.' },
+]
+
+const team = [
+  { name: 'Helen Mboh', role: 'Provider · Family Medicine', blurb: 'Leads patient care with a focus on prevention, chronic disease management, and unhurried, attentive visits.' },
+  { name: 'Medical Assistants', role: 'Clinical support', blurb: 'Support every visit with vitals, screenings, and hands-on care so your provider can focus on you.' },
+  { name: 'Patient Coordinators', role: 'Front desk', blurb: 'Handle scheduling, insurance questions, and check-in — often the first friendly face you see.' },
+]
 ---
 
 <BaseLayout
-  title="About Us | Health Watch Medical Clinic Oklahoma City"
-  description="Learn about Health Watch Medical Clinic — a locally owned family medicine clinic in Oklahoma City, OK. Bilingual staff, walk-in friendly, accepting SoonerCare & Medicaid."
-  canonical={`${CLINIC.siteUrl}/about`}
-  schemas={[breadcrumbSchema]}
+  title="About Us | Health Watch Medical Clinic"
+  description="A locally owned family medicine clinic in Oklahoma City, OK. Bilingual staff, walk-ins welcome, SoonerCare & Medicaid accepted. Meet our care team."
+  canonical={`${CLINIC.siteUrl}/about/`}
+  esPath="/nosotros"
+  schemas={[breadcrumbSchema, providerSchema]}
 >
   <!-- Hero -->
-  <section class="bg-primary py-14 lg:py-20">
-    <div class="container max-w-2xl">
-      <h1 class="text-3xl lg:text-5xl font-display font-extrabold text-white leading-tight mb-4">
-        About Health Watch<br />Medical Clinic
-      </h1>
-      <p class="text-white/80 text-lg">
-        A locally owned family medicine clinic committed to fast, affordable, and compassionate care for every patient.
-      </p>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container relative grid lg:grid-cols-2 gap-14 items-center py-14 lg:py-20">
+      <div class="flex flex-col gap-5">
+        <nav aria-label="Breadcrumb" class="text-[13px] font-bold text-[#9089B8]">
+          <a href="/" class="hover:text-primary">Home</a>
+          <span aria-hidden="true"> / </span>
+          <span aria-current="page">About</span>
+        </nav>
+        <div class="inline-flex items-center gap-2">
+          <span class="w-[7px] h-[7px] rounded-full bg-secondary"></span>
+          <span class="text-[13px] font-extrabold tracking-[1.8px] uppercase text-[#8983B8]">About Health Watch</span>
+        </div>
+        <h1 class="text-[32px] sm:text-[38px] lg:text-[46px] font-display font-extrabold leading-[1.08] tracking-[-1.2px] text-neutral-900">
+          Locally owned care, with the attention you deserve
+        </h1>
+        <p class="text-lg leading-[1.7] font-medium text-neutral-600 max-w-lg">
+          We're a locally owned and operated independent medical clinic in Oklahoma City, proud to help our patients stay healthy and manage chronic conditions through a patient-centered approach.
+        </p>
+        <div class="flex flex-wrap gap-2.5 mt-1">
+          {heroBadges.map((badge) => (
+            <span class="inline-flex items-center gap-2 bg-white border border-[#E7E1F4] rounded-full px-3.5 py-2 text-[13.5px] font-semibold text-[#4A4F6B] shadow-[0_2px_8px_rgba(20,30,60,0.04)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0444D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="9"></circle>
+              </svg>
+              {badge}
+            </span>
+          ))}
+        </div>
+      </div>
+      <PhotoPlaceholderPanel label="Front of the clinic" minHeight="min-h-[400px]" iconSize={28} icon="M3 21h18M5 21V7l8-4 8 4v14M9 21v-6h6v6" />
     </div>
   </section>
 
-  <!-- Mission -->
+  <!-- Who we are + sidebar -->
   <section class="py-16 lg:py-24">
-    <div class="container max-w-3xl">
-      <h2 class="text-2xl lg:text-3xl font-display font-bold text-neutral-900 mb-6">Our Mission</h2>
-      <div class="space-y-4 text-neutral-600 leading-relaxed text-lg">
-        <p>
-          At Health Watch Medical Clinic, our mission is to provide fast, convenient, courteous, and professional family medical care with the focused attention that each patient deserves. We believe that quality healthcare should be accessible to everyone — regardless of insurance status, income, or language spoken.
-        </p>
-        <p>
-          We are an independent, locally owned clinic in Oklahoma City specializing in general and internal medicine. Our experienced providers are committed to building lasting relationships with patients and their families, delivering care that goes beyond treating symptoms to genuinely watching over your long-term health and wellness.
-        </p>
-        <p>
-          Our bilingual team — fully fluent in both English and Spanish — ensures that every patient feels understood, respected, and empowered to take charge of their health. <em>Se habla Español.</em>
-        </p>
+    <div class="container grid lg:grid-cols-[1.15fr_0.85fr] gap-14">
+      <div class="flex flex-col gap-5 text-lg leading-[1.8] font-medium text-neutral-600">
+        <p>At Health Watch Medical Clinic, our mission is to provide fast, convenient, courteous, and professional family medical care with the focused attention that each patient deserves. We believe that quality healthcare should be accessible to everyone — regardless of insurance status, income, or language spoken.</p>
+        <p>We are an independent, locally owned clinic in Oklahoma City specializing in general and internal medicine. Our experienced providers are committed to building lasting relationships with patients and their families, delivering care that goes beyond treating symptoms to genuinely watching over your long-term health and wellness.</p>
+        <p>Our bilingual team — fully fluent in both English and Spanish — ensures that every patient feels understood, respected, and empowered to take charge of their health. <em>Se habla Español.</em></p>
+        <p>We accept SoonerCare, Medicaid, Medicare, Blue Cross Blue Shield, and most private insurance plans — with competitive self-pay rates for uninsured patients, and free blood pressure checks for every walk-in.</p>
+      </div>
+      <div class="flex flex-col gap-6 lg:sticky lg:top-24 self-start">
+        <PhotoPlaceholderPanel label="Care in action" dark minHeight="min-h-[220px]" iconSize={26} icon="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        <div class="bg-white border border-neutral-200 rounded-[18px] p-[22px]">
+          <p class="text-xs font-extrabold tracking-[1px] uppercase text-[#9089B8] mb-3">Insurance we accept</p>
+          <div class="flex flex-wrap gap-2">
+            {CLINIC.insurance.slice(0, 5).map((plan) => (
+              <span class="bg-lavender rounded-full px-[13px] py-[7px] text-[13px] font-bold text-primary">{plan}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Values -->
-  <section class="py-16 lg:py-20 bg-neutral-50 border-y border-neutral-200">
+  <MissionBand />
+
+  <!-- Care you can count on -->
+  <section class="py-16 lg:py-24">
     <div class="container">
-      <h2 class="text-2xl lg:text-3xl font-display font-bold text-neutral-900 text-center mb-12">Our Values</h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[
-          { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', title: 'Compassion', text: 'We treat every patient with the empathy and dignity they deserve.' },
-          { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Quality', text: 'Evidence-based medicine delivered by experienced, caring providers.' },
-          { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Accessibility', text: 'Walk-ins welcome, same-day appointments, and affordable pricing for all.' },
-          { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', title: 'Community', text: 'Rooted in Oklahoma City, serving our neighbors with pride.' },
-        ].map((v) => (
-          <div class="text-center">
-            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d={v.icon} />
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-3xl lg:text-4xl font-display font-extrabold tracking-[-0.7px] text-neutral-900">Care you can count on</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[22px]">
+        {careFeatures.map((f) => (
+          <div class="bg-white border border-neutral-200 rounded-[20px] p-[26px] shadow-card">
+            <div class="w-[50px] h-[50px] rounded-[14px] bg-lavender flex items-center justify-center mb-3.5">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d={f.icon} />
               </svg>
             </div>
-            <h3 class="font-display font-bold text-neutral-900 mb-2">{v.title}</h3>
-            <p class="text-neutral-600 text-sm leading-relaxed">{v.text}</p>
+            <h3 class="font-display font-extrabold text-neutral-900 text-[17px] mb-1.5">{f.title}</h3>
+            <p class="text-neutral-600 text-sm leading-[1.6]">{f.text}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Differentiators -->
-  <section class="py-16 lg:py-24">
-    <div class="container max-w-3xl">
-      <h2 class="text-2xl lg:text-3xl font-display font-bold text-neutral-900 mb-8">What Makes Us Different</h2>
-      <ul class="space-y-5">
-        {[
-          { title: 'Independent & Locally Owned', desc: 'We are not part of a large hospital system. As an independent clinic, we have the freedom to focus entirely on our patients rather than corporate metrics.' },
-          { title: 'Bilingual Care', desc: 'Our entire staff is fluent in English and Spanish. We serve a diverse Oklahoma City community and take pride in removing language barriers from healthcare.' },
-          { title: 'Minimal Wait Times', desc: 'We respect your time. Our streamlined scheduling ensures you spend more time with your provider and less time in the waiting room.' },
-          { title: 'Broad Insurance Acceptance', desc: 'We accept SoonerCare, Medicaid, Medicare, Blue Cross Blue Shield, and most private insurance plans. Self-pay patients are also welcome at competitive rates.' },
-          { title: 'Free Blood Pressure Checks', desc: 'We offer complimentary blood pressure checks to all walk-in patients — no appointment required. Hypertension is a silent killer and early detection saves lives.' },
-        ].map((item) => (
-          <li class="flex gap-5 pb-5 border-b border-neutral-100 last:border-0">
-            <div class="w-8 h-8 rounded-full bg-secondary/15 flex items-center justify-center shrink-0 mt-0.5">
-              <svg class="w-4 h-4 text-secondary-dark" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-display font-bold text-neutral-900 mb-1">{item.title}</h3>
-              <p class="text-neutral-600 text-sm leading-relaxed">{item.desc}</p>
-            </div>
-          </li>
+  <!-- Meet your care team -->
+  <section class="py-16 lg:py-24 bg-lavender">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-3xl lg:text-4xl font-display font-extrabold tracking-[-0.7px] text-neutral-900">Meet your care team</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {team.map((member) => (
+          <TeamCard name={member.name} role={member.role} blurb={member.blurb} />
         ))}
-      </ul>
+      </div>
     </div>
   </section>
 
-  <CallToAction />
+  <CallToAction heading="Ready to become a patient?" />
 </BaseLayout>

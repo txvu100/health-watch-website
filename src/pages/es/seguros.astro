@@ -1,0 +1,101 @@
+---
+import SpanishLayout from '../../layouts/SpanishLayout.astro'
+import CallToAction from '../../components/sections/CallToAction.astro'
+import { CLINIC } from '../../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${CLINIC.siteUrl}/es/` },
+    { '@type': 'ListItem', position: 2, name: 'Seguros', item: `${CLINIC.siteUrl}/es/seguros/` },
+  ],
+}
+
+const faqs = [
+  {
+    q: '¿Puedo recibir atención si no tengo seguro médico?',
+    a: 'Sí. Atendemos a pacientes sin seguro con tarifas de pago en efectivo accesibles. Pregunte por nuestros precios de pago propio al agendar su cita.',
+  },
+  {
+    q: '¿Necesito número de seguro social para ser atendido?',
+    a: 'No. No se requiere número de seguro social ni estatus migratorio para recibir atención médica en nuestra clínica.',
+  },
+  {
+    q: '¿Cómo sé si aceptan mi plan de seguro?',
+    a: `Llámenos al ${CLINIC.phone} y verificamos sus beneficios antes de su visita, sin costo alguno.`,
+  },
+]
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+}
+---
+
+<SpanishLayout
+  title="Seguros y Formas de Pago | Health Watch Medical Clinic"
+  description="Aceptamos SoonerCare, Medicaid, Medicare, seguros privados y pago en efectivo en Oklahoma City. Verificamos sus beneficios sin costo. Llame al (405) 949-1552."
+  canonical={`${CLINIC.siteUrl}/es/seguros/`}
+  enPath="/insurance"
+  schemas={[breadcrumbSchema, faqSchema]}
+>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <div class="inline-flex items-center gap-2 mb-4">
+        <span class="w-[7px] h-[7px] rounded-full bg-secondary"></span>
+        <span class="text-[13px] font-extrabold tracking-[1.8px] uppercase text-[#8983B8]">Seguros y pagos</span>
+      </div>
+      <h1 class="text-[32px] lg:text-[42px] font-display font-extrabold tracking-[-1px] text-neutral-900 mb-3">Seguros y Formas de Pago</h1>
+      <p class="text-lg leading-[1.7] font-medium text-neutral-600">Aceptamos la mayoría de los planes de seguro y trabajamos para que la atención médica sea accesible para todos.</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <h2 class="text-2xl font-display font-extrabold text-neutral-900 mb-6">Planes que Aceptamos</h2>
+      <div class="grid sm:grid-cols-2 gap-4 mb-10">
+        {CLINIC.insurance.map((plan) => (
+          <div class="flex items-center gap-3 bg-white border border-neutral-200 rounded-xl px-5 py-4 shadow-card">
+            <svg class="w-5 h-5 text-secondary shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-semibold text-neutral-800">{plan === 'Self-Pay / Cash' ? 'Pago propio / Efectivo' : plan}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="prose prose-neutral max-w-none space-y-4 text-neutral-600 leading-relaxed">
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">SoonerCare y Medicaid</h2>
+        <p>Somos proveedores de SoonerCare (Medicaid de Oklahoma) y Medicaid. Si usted o un familiar está inscrito en SoonerCare, sus consultas, análisis de laboratorio, vacunas y muchos otros servicios pueden estar cubiertos con poco o ningún costo para usted.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Medicare</h2>
+        <p>Aceptamos Medicare Partes A y B. Medicare cubre varios servicios preventivos, incluyendo la visita anual de bienestar, revisión de presión arterial, pruebas de diabetes y muchas vacunas.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Seguros Privados</h2>
+        <p>Participamos con la mayoría de las redes de seguros privados. Llámenos al <a href={`tel:${CLINIC.phoneE164}`} class="text-primary hover:underline font-medium">{CLINIC.phone}</a> para confirmar que aceptamos su plan antes de su visita.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Pacientes sin Seguro</h2>
+        <p>¿No tiene seguro médico? No hay problema. Ofrecemos tarifas de pago propio accesibles y estamos comprometidos con que la atención sea alcanzable para todos. Pregunte por nuestros precios al agendar su cita.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Sin Importar su Estatus Migratorio</h2>
+        <p>No se requiere número de seguro social ni estatus migratorio para recibir atención médica en nuestra clínica. Su información médica es confidencial y está protegida por la ley federal.</p>
+
+        <div class="bg-lavender rounded-2xl p-6 not-prose">
+          <p class="font-semibold text-neutral-900 mb-2">¿No está seguro si aceptamos su plan?</p>
+          <p class="text-neutral-600 text-sm mb-4">Llámenos y verificamos sus beneficios antes de su visita, sin ningún costo.</p>
+          <a href={`tel:${CLINIC.phoneE164}`} class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full transition-colors text-sm">
+            Llamar {CLINIC.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction lang="es" />
+</SpanishLayout>

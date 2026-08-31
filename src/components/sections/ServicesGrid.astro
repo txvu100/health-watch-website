@@ -1,6 +1,7 @@
 ---
 import ServiceCard from '../ui/ServiceCard.astro'
 import { SERVICES } from '../../data/services'
+import { route } from '../../data/routes'
 
 interface Props {
   lang?: 'en' | 'es'
@@ -17,14 +18,14 @@ const subheading = lang === 'es'
 const viewAllLabel = lang === 'es' ? 'Ver todos los servicios →' : 'View all services →'
 ---
 
-<section class="py-16 lg:py-24 bg-neutral-50">
+<section class="py-16 lg:py-24">
   <div class="container">
     <div class="text-center max-w-2xl mx-auto mb-12">
-      <h2 class="text-3xl lg:text-4xl font-display font-bold text-neutral-900 mb-4">{heading}</h2>
+      <h2 class="text-3xl lg:text-4xl font-display font-extrabold tracking-[-0.8px] text-neutral-900 mb-4 text-balance">{heading}</h2>
       <p class="text-neutral-600 text-lg">{subheading}</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[22px]">
       {displayServices.map((service) => (
         <ServiceCard service={service} lang={lang} />
       ))}
@@ -33,8 +34,8 @@ const viewAllLabel = lang === 'es' ? 'Ver todos los servicios →' : 'View all s
     {showViewAll && limit && SERVICES.length > limit && (
       <div class="text-center mt-10">
         <a
-          href="/services"
-          class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
+          href={route('services', lang)}
+          class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold px-8 py-3.5 rounded-full transition-colors shadow-card-hover"
         >
           {viewAllLabel}
         </a>

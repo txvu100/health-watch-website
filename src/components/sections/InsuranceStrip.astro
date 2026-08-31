@@ -1,5 +1,6 @@
 ---
 import { CLINIC } from '../../data/clinic'
+import { route } from '../../data/routes'
 
 interface Props {
   lang?: 'en' | 'es'
@@ -31,7 +32,7 @@ const subheading = lang === 'es'
     </div>
 
     <p class="text-center text-xs text-neutral-400 mt-6">
-      Not sure if we accept your plan? <a href="/contact" class="text-primary hover:underline font-medium">Call us at {CLINIC.phone}</a> — we'll verify your benefits before your visit.
+      Not sure if we accept your plan? <a href={route('contact', lang)} class="text-primary hover:underline font-medium">Call us at {CLINIC.phone}</a> — we'll verify your benefits before your visit.
     </p>
   </div>
 </section>

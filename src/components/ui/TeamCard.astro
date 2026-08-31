@@ -1,0 +1,21 @@
+---
+import PhotoPlaceholderPanel from './PhotoPlaceholderPanel.astro'
+
+interface Props {
+  name: string
+  role: string
+  blurb: string
+}
+const { name, role, blurb } = Astro.props
+
+const personIcon = 'M17.4 19.6a5.4 5.4 0 00-2.8-4.7M16 5.3a3.1 3.1 0 010 5.4M3.6 19.6a5.4 5.4 0 0110.8 0M9 8a3.1 3.1 0 100 6.2A3.1 3.1 0 009 8z'
+---
+
+<div class="bg-white border border-[#E4DEF2] rounded-[22px] p-6 shadow-card flex flex-col gap-[18px]">
+  <PhotoPlaceholderPanel icon={personIcon} iconSize={26} minHeight="h-[200px]" class="!rounded-2xl" />
+  <div>
+    <h3 class="text-[19px] font-display font-extrabold text-neutral-900">{name}</h3>
+    <p class="text-[13px] font-bold text-secondary tracking-[0.2px] mt-0.5">{role}</p>
+    <p class="text-sm leading-[1.6] text-neutral-600 mt-1.5">{blurb}</p>
+  </div>
+</div>

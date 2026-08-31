@@ -1,0 +1,28 @@
+---
+import Logo from '../ui/Logo.astro'
+
+interface Props {
+  lang?: 'en' | 'es'
+}
+const { lang = 'en' } = Astro.props
+
+const eyebrow = lang === 'es' ? 'Nuestra misión' : 'Our mission'
+const heading = lang === 'es'
+  ? 'Nuestros pacientes son la piedra angular de nuestro éxito.'
+  : 'Our patients are the cornerstone of our success.'
+const quote = lang === 'es'
+  ? '"Health Watch Medical Clinic busca brindar atención médica familiar rápida, conveniente, cortés y profesional, con la atención dedicada que cada paciente merece."'
+  : '"Health Watch Medical Clinic seeks to provide fast, convenient, courteous and professional family medical care with the focused attention that each patient deserves."'
+---
+
+<section class="relative overflow-hidden bg-navy">
+  <div class="container relative max-w-3xl py-16 lg:py-[88px] flex flex-col items-center text-center gap-[26px]">
+    <Logo size={64} withWordmark={false} />
+    <div class="inline-flex items-center gap-2">
+      <span class="w-[7px] h-[7px] rounded-full bg-secondary"></span>
+      <span class="text-[13px] font-extrabold tracking-[1.8px] uppercase text-[#A9A6D0]">{eyebrow}</span>
+    </div>
+    <h2 class="text-2xl lg:text-[30px] font-display font-extrabold tracking-[-0.4px] text-white">{heading}</h2>
+    <p class="text-xl lg:text-[26px] leading-[1.5] font-semibold tracking-[-0.3px] text-[#E7E5F5] text-balance">{quote}</p>
+  </div>
+</section>

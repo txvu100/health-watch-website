@@ -1,0 +1,23 @@
+---
+import ServiceLayout from '../../../layouts/ServiceLayout.astro'
+import { SERVICES, type Service } from '../../../data/services'
+
+export async function getStaticPaths() {
+  return SERVICES.map((service) => ({
+    params: { slug: service.slugEs },
+    props: { service },
+  }))
+}
+
+interface Props {
+  service: Service
+}
+
+const { service } = Astro.props
+---
+
+<ServiceLayout service={service} lang="es">
+  {service.descriptionEs.split('\n\n').filter(Boolean).map((para) => (
+    <p set:html={para.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+  ))}
+</ServiceLayout>

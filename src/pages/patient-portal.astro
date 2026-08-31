@@ -6,25 +6,29 @@ import { CLINIC } from '../data/clinic'
 <BaseLayout
   title="Patient Portal | Health Watch Medical Clinic"
   description="Access your Health Watch Medical Clinic patient portal to view records, request refills, and message your provider online."
-  canonical={`${CLINIC.siteUrl}/patient-portal`}
+  canonical={`${CLINIC.siteUrl}/patient-portal/`}
   noindex={true}
 >
-  <section class="bg-primary py-14">
-    <div class="container max-w-xl text-center">
-      <h1 class="text-3xl lg:text-4xl font-display font-extrabold text-white mb-3">Patient Portal</h1>
-      <p class="text-white/80 text-lg">Access your health records, request prescription refills, and message your care team.</p>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-xl text-center py-14 lg:py-20">
+      <div class="inline-flex items-center gap-2 mb-4">
+        <span class="w-[7px] h-[7px] rounded-full bg-secondary"></span>
+        <span class="text-[13px] font-extrabold tracking-[1.8px] uppercase text-[#8983B8]">Patient portal</span>
+      </div>
+      <h1 class="text-[32px] lg:text-[42px] font-display font-extrabold tracking-[-1px] text-neutral-900 mb-3">Patient Portal</h1>
+      <p class="text-lg leading-[1.7] font-medium text-neutral-600">Access your health records, request prescription refills, and message your care team.</p>
     </div>
   </section>
 
   <section class="py-20">
     <div class="container max-w-lg text-center">
-      <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-        <svg class="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <div class="w-20 h-20 rounded-2xl bg-lavender flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
         </svg>
       </div>
 
-      <h2 class="text-2xl font-display font-bold text-neutral-900 mb-4">Access Your Health Records</h2>
+      <h2 class="text-2xl font-display font-extrabold text-neutral-900 mb-4">Access Your Health Records</h2>
       <p class="text-neutral-600 mb-8 leading-relaxed">
         Our patient portal is powered by <strong>healow</strong>. Log in to view your visit summaries, lab results, immunization records, and communicate with your care team.
       </p>
@@ -33,7 +37,7 @@ import { CLINIC } from '../data/clinic'
         href={CLINIC.patientPortalUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold px-10 py-4 rounded-full transition-colors text-lg"
+        class="inline-flex items-center gap-2 bg-secondary hover:bg-secondary-dark text-white font-bold px-10 py-4 rounded-full transition-colors text-lg shadow-cta"
       >
         Open Patient Portal →
       </a>

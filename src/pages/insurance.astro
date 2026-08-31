@@ -2,26 +2,41 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CallToAction from '../components/sections/CallToAction.astro'
 import { CLINIC } from '../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${CLINIC.siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Insurance', item: `${CLINIC.siteUrl}/insurance/` },
+  ],
+}
 ---
 
 <BaseLayout
-  title="Insurance & Payment | Health Watch Medical Clinic Oklahoma City"
-  description="Health Watch Medical Clinic accepts SoonerCare, Medicaid, Medicare, private insurance, and self-pay. Oklahoma City family medicine clinic. Call (405) 949-1552 to verify your benefits."
-  canonical={`${CLINIC.siteUrl}/insurance`}
+  title="Insurance & Payment | Health Watch Medical Clinic"
+  description="We accept SoonerCare, Medicaid, Medicare, private insurance and self-pay at our Oklahoma City family clinic. Call (405) 949-1552 to verify your benefits."
+  canonical={`${CLINIC.siteUrl}/insurance/`}
+  esPath="/seguros"
+  schemas={[breadcrumbSchema]}
 >
-  <section class="bg-primary py-14">
-    <div class="container max-w-2xl">
-      <h1 class="text-3xl lg:text-4xl font-display font-extrabold text-white mb-3">Insurance & Payment</h1>
-      <p class="text-white/80 text-lg">We accept most major insurance plans and are committed to making care affordable for everyone.</p>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <div class="inline-flex items-center gap-2 mb-4">
+        <span class="w-[7px] h-[7px] rounded-full bg-secondary"></span>
+        <span class="text-[13px] font-extrabold tracking-[1.8px] uppercase text-[#8983B8]">Insurance & payment</span>
+      </div>
+      <h1 class="text-[32px] lg:text-[42px] font-display font-extrabold tracking-[-1px] text-neutral-900 mb-3">Insurance & Payment</h1>
+      <p class="text-lg leading-[1.7] font-medium text-neutral-600">We accept most major insurance plans and are committed to making care affordable for everyone.</p>
     </div>
   </section>
 
   <section class="py-16 lg:py-24">
     <div class="container max-w-3xl">
-      <h2 class="text-2xl font-display font-bold text-neutral-900 mb-6">Plans We Accept</h2>
+      <h2 class="text-2xl font-display font-extrabold text-neutral-900 mb-6">Plans We Accept</h2>
       <div class="grid sm:grid-cols-2 gap-4 mb-10">
         {CLINIC.insurance.map((plan) => (
-          <div class="flex items-center gap-3 bg-neutral-50 border border-neutral-200 rounded-xl px-5 py-4">
+          <div class="flex items-center gap-3 bg-white border border-neutral-200 rounded-xl px-5 py-4 shadow-card">
             <svg class="w-5 h-5 text-secondary shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
             </svg>
@@ -31,19 +46,19 @@ import { CLINIC } from '../data/clinic'
       </div>
 
       <div class="prose prose-neutral max-w-none space-y-4 text-neutral-600 leading-relaxed">
-        <h2 class="text-xl font-display font-bold text-neutral-900">SoonerCare & Medicaid</h2>
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">SoonerCare & Medicaid</h2>
         <p>We are a proud SoonerCare (Oklahoma Medicaid) and Medicaid provider. If you or a family member is enrolled in SoonerCare, your visits, lab work, vaccines, and many other services may be covered at little to no cost to you.</p>
 
-        <h2 class="text-xl font-display font-bold text-neutral-900">Medicare</h2>
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Medicare</h2>
         <p>We accept Medicare Parts A and B. Medicare covers a range of preventive services including annual wellness visits, blood pressure screening, diabetes screenings, and many vaccines.</p>
 
-        <h2 class="text-xl font-display font-bold text-neutral-900">Private Insurance</h2>
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Private Insurance</h2>
         <p>We participate with most major private insurance networks. Call us at <a href={`tel:${CLINIC.phoneE164}`} class="text-primary hover:underline font-medium">{CLINIC.phone}</a> to verify your specific plan is accepted before your visit.</p>
 
-        <h2 class="text-xl font-display font-bold text-neutral-900">Self-Pay / Uninsured Patients</h2>
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Self-Pay / Uninsured Patients</h2>
         <p>No insurance? No problem. We offer competitive self-pay rates and are committed to making care affordable. Ask about our self-pay pricing when scheduling your appointment.</p>
 
-        <div class="bg-primary/5 border border-primary/20 rounded-2xl p-6 not-prose">
+        <div class="bg-lavender rounded-2xl p-6 not-prose">
           <p class="font-semibold text-neutral-900 mb-2">Not sure if we accept your plan?</p>
           <p class="text-neutral-600 text-sm mb-4">Call us and we'll verify your insurance benefits before your visit — at no charge.</p>
           <a href={`tel:${CLINIC.phoneE164}`} class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full transition-colors text-sm">

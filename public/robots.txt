@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /patient-portal
 
-Sitemap: https://healthwatchclinic.com/sitemap.xml
+Sitemap: https://healthwatchclinic.com/sitemap-index.xml

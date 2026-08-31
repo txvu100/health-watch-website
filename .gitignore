@@ -4,3 +4,6 @@ node_modules/
 .env.production
 .DS_Store
 *.log
+
+# Claude Code local overrides (launch.json is intentionally tracked)
+.claude/settings.local.json
