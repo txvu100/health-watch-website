@@ -88,9 +88,7 @@ export const CLINIC = {
 
   languages: ['English', 'Spanish'],
 
-  // TODO(clinic): replace with the clinic's actual healow/eCW practice portal URL.
-  // healow.com is the vendor's marketing homepage — patients cannot log in there.
-  patientPortalUrl: 'https://healow.com',
+  patientPortalUrl: 'https://mycw28.eclinicalweb.com/portal2846/jsp/100mp/login_otp.jsp',
 
   siteUrl: 'https://healthwatchclinic.com',
 }
