@@ -8,11 +8,6 @@ services:
       # Pinned so `npm ci` resolves the same way it does locally.
       - key: NODE_VERSION
         value: 22.11.0
-      # sync: false = Render prompts for this at Blueprint creation and keeps the
-      # value out of git. Until it is set the contact form renders its phone-only
-      # fallback instead of posting enquiries into the void.
-      - key: PUBLIC_FORMSPREE_ID
-        sync: false
     headers:
       # ORDER MATTERS: Render applies the LAST matching rule, so the broad
       # default goes first and the specific overrides follow it. Verified
