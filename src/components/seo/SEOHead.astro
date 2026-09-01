@@ -160,13 +160,5 @@ const allSchemas = [clinicSchema, websiteSchema, ...schemas]
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="theme-color" content="#1B1B3A" />
 
-<!-- Font preconnect -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-  rel="stylesheet"
-/>
-
 <!-- JSON-LD structured data -->
 {allSchemas.map((schema) => <JsonLd schema={schema} />)}
