@@ -69,9 +69,10 @@ export const CLINIC = {
   hoursSchema: HOURS_SCHEMA,
 
   social: {
-    facebook: 'https://www.facebook.com/share/15vMoYSaSB/',
-    instagram: 'https://www.instagram.com/healthwatchmedicalclinic_okc',
-    pinterest: 'https://www.pinterest.com/healthwatchclinic/',
+    facebook: 'https://www.facebook.com/profile.php?id=61589071013542',
+    // Canonicalised: the supplied URL carried fbclid/app_id tracking params
+    // from a share action, not a stable link — those expire and add nothing.
+    instagram: 'https://www.instagram.com/healthwatchclinic/',
   },
 
   insurance: [
