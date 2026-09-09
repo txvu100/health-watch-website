@@ -45,6 +45,9 @@ export interface Service {
   /** Optional service-specific replacement for the shared clinic benefits. */
   whyPoints?: string[]
   whyPointsEs?: string[]
+  /** Optional localized replacement for the shared clinic-benefits heading. */
+  whyHeading?: string
+  whyHeadingEs?: string
   faqs: ServiceFAQ[]
   faqsEs: ServiceFAQ[]
   relatedSlugs: string[]
@@ -301,24 +304,26 @@ Nuestros servicios para la diabetes pueden incluir:`,
   {
     slug: 'womens-primary-health',
     slugEs: 'salud-primaria-mujer',
-    title: "Women's Health & Primary Care",
-    titleEs: 'Salud de la Mujer y Atención Primaria',
+    title: 'Women’s Primary Care',
+    titleEs: 'Atención Primaria para la Mujer',
     shortDescription:
-      "Preventive and primary care services for women, including wellness examinations, contraceptive counseling, and age-appropriate screenings.",
+      'Personalized primary and preventive healthcare for women, including well-woman visits, cervical cancer screening, family planning, and contraceptive management.',
     shortDescriptionEs:
-      'Servicios preventivos y de atención primaria para la mujer, incluidos exámenes de bienestar, orientación anticonceptiva y pruebas de detección apropiadas para la edad.',
-    description: `Health Watch Medical Clinic offers comprehensive primary healthcare services tailored specifically to the needs of women in Oklahoma City. Our experienced providers are committed to helping women of all ages maintain optimal health through preventive care, early detection, and compassionate treatment.
+      'Atención primaria y preventiva personalizada para la mujer, incluidas las visitas de bienestar, la detección del cáncer cervical, la planificación familiar y el manejo de anticonceptivos.',
+    description: `Health Watch Medical Clinic provides compassionate primary and preventive healthcare for women in Oklahoma City. Our providers address each patient’s individual health needs through preventive care, appropriate screenings, medication management, and treatment of common health concerns.
 
-Our women's health services include annual wellness exams, cervical cancer screenings when due, contraceptive counseling, and age-appropriate preventive screenings.
+Our women’s health services include well-woman visits, cervical cancer screening when due, family-planning counseling, and contraceptive management. Depending on your medical history and preferences, we may prescribe birth control pills, patches, vaginal rings, or injections. Referrals are available for contraceptive methods or procedures not performed at our clinic, including IUD insertion or removal.
 
-We also screen for common women's health concerns such as osteoporosis, thyroid disorders, anemia, and hormonal imbalances. Spanish-speaking staff are available to help patients communicate during their visit.`,
-    descriptionEs: `En Health Watch Medical Clinic ofrecemos atención primaria integral pensada específicamente para las necesidades de la mujer en Oklahoma City. Nuestras proveedoras acompañan a mujeres de todas las edades con cuidado preventivo, detección temprana y trato respetuoso.
+We also evaluate and manage common concerns such as menstrual changes, anemia, thyroid disorders, menopause-related symptoms, osteoporosis risk, high blood pressure, diabetes, and other chronic health conditions. Recommended testing and screening are based on your age, symptoms, medical history, and individual risk factors.
 
-Nuestros servicios incluyen el **examen anual de la mujer**, detección de cáncer cervical cuando corresponde, orientación anticonceptiva y pruebas preventivas apropiadas para la edad.
+Our bilingual English- and Spanish-speaking team is committed to helping every patient feel respected, comfortable, and fully informed.`,
+    descriptionEs: `Health Watch Medical Clinic ofrece atención primaria y preventiva compasiva para la mujer en Oklahoma City. Nuestras proveedoras abordan las necesidades de salud individuales de cada paciente mediante atención preventiva, pruebas de detección adecuadas, manejo de medicamentos y tratamiento de problemas de salud comunes.
 
-También hacemos pruebas para detectar condiciones frecuentes como osteoporosis, problemas de tiroides, anemia y desequilibrios hormonales.
+Nuestros servicios de salud para la mujer incluyen visitas de bienestar, detección de cáncer cervical cuando corresponde, orientación sobre planificación familiar y manejo de anticonceptivos. Según sus antecedentes médicos y preferencias, podemos recetar pastillas anticonceptivas, parches, anillos vaginales o inyecciones. Hay referencias disponibles para métodos anticonceptivos o procedimientos que no se realizan en nuestra clínica, incluida la colocación o extracción del DIU.
 
-Hay personal que habla español disponible para ayudarle a comunicarse durante su visita.`,
+También evaluamos y manejamos problemas comunes como cambios menstruales, anemia, trastornos de la tiroides, síntomas relacionados con la menopausia, riesgo de osteoporosis, presión arterial alta, diabetes y otras condiciones de salud crónicas. Las pruebas y detecciones recomendadas se basan en su edad, síntomas, antecedentes médicos y factores de riesgo individuales.
+
+Nuestro equipo bilingüe que habla inglés y español se compromete a ayudar a cada paciente a sentirse respetada, cómoda y plenamente informada.`,
     metaDescription:
       "Women's health and primary care in Oklahoma City, OK. Wellness examinations, contraceptive counseling, and preventive screenings. (405) 949-1552.",
     metaDescriptionEs:
@@ -326,42 +331,42 @@ Hay personal que habla español disponible para ayudarle a comunicarse durante s
     heroKeyword: "women's health clinic Oklahoma City",
     heroKeywordEs: 'clínica de salud para la mujer Oklahoma City',
     icon: ICONS.user,
-    highlights: ['Well-woman exams & Pap smears', 'Contraceptive management', 'Preventive health screenings'],
-    highlightsEs: ['Examen anual de la mujer y Papanicolaou', 'Manejo de métodos anticonceptivos', 'Exámenes preventivos de salud'],
+    highlights: ['Well-woman visits and cervical cancer screening', 'Birth control counseling and management', 'Preventive screenings based on age and individual risk'],
+    highlightsEs: ['Visitas de bienestar y detección del cáncer cervical', 'Orientación y manejo de métodos anticonceptivos', 'Pruebas preventivas según la edad y el riesgo individual'],
     faqs: [
       {
-        q: 'What is included in a well-woman exam?',
-        a: 'A well-woman exam includes a physical exam, blood pressure check, breast exam, pelvic exam, Pap smear (if due), and a review of any health concerns or medications. Depending on your age and risk factors, additional screenings may be recommended.',
+        q: 'What is included in a well-woman visit?',
+        a: 'A well-woman visit generally includes a review of your medical history, medications, menstrual and reproductive health, blood pressure, and recommended preventive screenings. A breast examination, pelvic examination, Pap test, laboratory testing, or other services may be performed when appropriate based on your age, symptoms, medical history, and current guidelines.',
       },
       {
         q: 'Do you prescribe birth control?',
-        a: 'Yes. We prescribe and manage a range of contraceptive options including birth control pills, patches, rings, injections, and IUD insertion referrals.',
+        a: 'Yes. We provide contraceptive counseling and prescribe several birth control options, including pills, patches, vaginal rings, and injections when medically appropriate. If you are interested in IUD insertion or removal, or another procedure that we do not perform, we can provide a referral.',
       },
       {
-        q: 'How often should I have a Pap smear?',
-        a: "Current guidelines recommend a Pap smear every 3 years for women aged 21–65, or every 5 years if combined with an HPV test. Your provider will advise based on your individual history.",
+        q: 'How often do I need cervical cancer screening?',
+        a: 'The recommended screening schedule depends on your age, previous results, medical history, and the type of test used. For many patients, Pap testing is performed every three years. Beginning at age 30, HPV testing alone or combined Pap and HPV testing may allow screening every five years. Some patients need a different schedule, including those with previous abnormal results, certain immune conditions, or a history of cervical precancer or cancer. Your provider will determine the appropriate schedule for you.',
       },
       {
         q: "Do you have Spanish-speaking staff for women's health visits?",
-        a: 'Spanish-speaking staff are available to help patients communicate during their visit.',
+        a: 'Yes. Spanish-speaking staff are available to help patients understand their care and communicate comfortably during their visits.',
       },
     ],
     faqsEs: [
       {
-        q: '¿Qué incluye el examen anual de la mujer?',
-        a: 'Incluye examen físico, revisión de presión arterial, examen de senos, examen pélvico, Papanicolaou (si le toca) y una revisión de sus preocupaciones de salud y medicamentos. Según su edad y factores de riesgo, podemos recomendar pruebas adicionales.',
+        q: '¿Qué incluye una visita de bienestar para la mujer?',
+        a: 'Una visita de bienestar para la mujer generalmente incluye la revisión de sus antecedentes médicos, medicamentos, salud menstrual y reproductiva, presión arterial y pruebas preventivas recomendadas. Se pueden realizar un examen de los senos, examen pélvico, prueba de Papanicolaou, análisis de laboratorio u otros servicios cuando sea apropiado según su edad, síntomas, antecedentes médicos y las guías actuales.',
       },
       {
         q: '¿Recetan métodos anticonceptivos?',
-        a: 'Sí. Recetamos y damos seguimiento a varias opciones: pastillas, parches, anillos, inyecciones y referencias para la colocación del DIU.',
+        a: 'Sí. Ofrecemos orientación anticonceptiva y recetamos varias opciones, incluidas pastillas, parches, anillos vaginales e inyecciones cuando son médicamente apropiadas. Si le interesa la colocación o extracción de un DIU, u otro procedimiento que no realizamos, podemos proporcionarle una referencia.',
       },
       {
-        q: '¿Cada cuánto debo hacerme el Papanicolaou?',
-        a: 'Las guías actuales recomiendan el Papanicolaou cada 3 años para mujeres de 21 a 65 años, o cada 5 años si se combina con la prueba del VPH. Su proveedora le indicará según su historial.',
+        q: '¿Con qué frecuencia necesito la detección del cáncer cervical?',
+        a: 'El calendario de detección recomendado depende de su edad, resultados previos, antecedentes médicos y el tipo de prueba utilizada. Para muchas pacientes, la prueba de Papanicolaou se realiza cada tres años. A partir de los 30 años, la prueba del VPH por sí sola o la prueba combinada de Papanicolaou y VPH puede permitir la detección cada cinco años. Algunas pacientes necesitan un calendario diferente, incluidas aquellas con resultados anormales previos, ciertas afecciones inmunitarias o antecedentes de precáncer o cáncer cervical. Su proveedor determinará el calendario adecuado para usted.',
       },
       {
         q: '¿Puedo recibir la consulta en español?',
-        a: 'Hay personal que habla español disponible para ayudarle a comunicarse durante su visita.',
+        a: 'Sí. Hay personal que habla español disponible para ayudarle a entender su atención y comunicarse cómodamente durante sus visitas.',
       },
       {
         q: '¿Necesito seguro médico para el examen anual?',
@@ -554,21 +559,23 @@ Comuníquese con la clínica antes de su visita si sus registros de vacunación 
     title: 'Mental Health Screening',
     titleEs: 'Evaluación de Salud Mental',
     shortDescription:
-      'Screening for depression, anxiety, and other behavioral health concerns, with referrals when additional evaluation or treatment is needed.',
+      'Screening and initial treatment for depression, anxiety, and other common mental health concerns, with referrals to specialists when appropriate.',
     shortDescriptionEs:
-      'Detección de depresión, ansiedad y otros problemas de salud conductual, con referencias cuando se necesite evaluación o tratamiento adicional.',
-    description: `Mental health is an important part of overall health. At Health Watch Medical Clinic in Oklahoma City, we screen for depression, anxiety, and other behavioral health concerns and provide referrals when additional evaluation or treatment is needed.
+      'Detección y tratamiento inicial de la depresión, la ansiedad y otros problemas comunes de salud mental, con referencias a especialistas cuando sea apropiado.',
+    description: `Mental well-being is an important part of overall health. At Health Watch Medical Clinic in Oklahoma City, we incorporate mental health screening and initial treatment into primary care, helping patients receive support as early as possible.
 
-Our providers use screening tools such as the PHQ-9 and GAD-7. If screening identifies a concern, we can help connect you with appropriate additional evaluation or treatment.
+Our providers evaluate patients for depression, anxiety, and other common mental health concerns. We may use screening questionnaires such as the PHQ-9 as part of the evaluation. Because a screening result alone does not establish a diagnosis, positive results are reviewed through further clinical assessment.
 
-We understand that seeking mental health care can feel difficult. Spanish-speaking staff are available to help patients communicate during their visit.`,
-    descriptionEs: `La salud mental es una parte importante de la salud general. En Health Watch Medical Clinic detectamos depresión, ansiedad y otros problemas de salud conductual, y ofrecemos referencias cuando se necesite evaluación o tratamiento adicional.
+When treatment is appropriate in the primary care setting, we work with each patient to develop an individualized care plan. Depending on the patient's needs, this may include education, lifestyle recommendations, medication management, close follow-up, or referral to a licensed counselor, psychologist, psychiatrist, or another qualified mental health professional.
 
-Nuestros proveedores usan herramientas de detección como el PHQ-9 y el GAD-7. Si la detección identifica una preocupación, podemos ayudarle a conectarse con evaluación o tratamiento adicional apropiado.
+We understand that discussing emotional health can be difficult. Our compassionate, bilingual team provides respectful, nonjudgmental care and encourages patients to speak openly about changes in mood, anxiety, sleep, stress, or daily functioning.`,
+    descriptionEs: `El bienestar mental es una parte importante de la salud general. En Health Watch Medical Clinic de Oklahoma City incorporamos la detección y el tratamiento inicial de salud mental a la atención primaria para ayudar a los pacientes a recibir apoyo lo antes posible.
 
-Entendemos que pedir ayuda para la salud mental puede ser difícil. Hay personal que habla español disponible para ayudarle a comunicarse durante su visita.
+Nuestros proveedores evalúan a los pacientes por depresión, ansiedad y otros problemas comunes de salud mental. Podemos usar cuestionarios de detección como el PHQ-9 como parte de la evaluación. Debido a que un resultado de detección por sí solo no establece un diagnóstico, los resultados positivos se revisan mediante una evaluación clínica adicional.
 
-**Si está en crisis,** llame al **988** (Línea de Prevención del Suicidio y Crisis, disponible en español) o acuda a la sala de emergencias más cercana. Nuestra clínica atiende situaciones que no son de emergencia.`,
+Cuando el tratamiento es apropiado en el entorno de atención primaria, trabajamos con cada paciente para desarrollar un plan de atención individualizado. Según las necesidades del paciente, este puede incluir educación, recomendaciones de estilo de vida, manejo de medicamentos, seguimiento cercano o referencia a un consejero con licencia, psicólogo, psiquiatra u otro profesional de salud mental calificado.
+
+Entendemos que hablar sobre la salud emocional puede ser difícil. Nuestro equipo compasivo y bilingüe ofrece una atención respetuosa y sin prejuicios, y anima a los pacientes a hablar abiertamente sobre cambios en el estado de ánimo, la ansiedad, el sueño, el estrés o el funcionamiento diario.`,
     metaDescription:
       'Mental health screening in Oklahoma City, OK. Screening for depression and anxiety with referrals when needed. (405) 949-1552.',
     metaDescriptionEs:
@@ -576,46 +583,60 @@ Entendemos que pedir ayuda para la salud mental puede ser difícil. Hay personal
     heroKeyword: 'mental health screening Oklahoma City',
     heroKeywordEs: 'salud mental en español Oklahoma City',
     icon: ICONS.brain,
-    highlights: ['Depression & anxiety screening', 'Behavioral-health concern screening', 'Referrals when additional care is needed'],
-    highlightsEs: ['Detección de depresión y ansiedad', 'Detección de problemas de salud conductual', 'Referencias cuando se necesita atención adicional'],
+    highlights: [
+      'Depression and anxiety screening',
+      'Individualized treatment and follow-up',
+      'Medication management when clinically appropriate',
+      'Referrals for counseling or psychiatric care when needed',
+    ],
+    highlightsEs: [
+      'Detección de depresión y ansiedad',
+      'Tratamiento y seguimiento individualizados',
+      'Manejo de medicamentos cuando sea clínicamente apropiado',
+      'Referencias para consejería o atención psiquiátrica cuando sea necesario',
+    ],
     faqs: [
       {
-        q: 'Do you provide mental health treatment?',
-        a: 'We screen for depression, anxiety, and other behavioral health concerns and provide referrals when additional evaluation or treatment is needed.',
+        q: 'Do you evaluate and treat depression and anxiety?',
+        a: 'Yes. We provide screening, clinical evaluation, and initial treatment for common mental health concerns such as depression and anxiety. Patients who need psychotherapy, psychiatric evaluation, complex medication management, or a higher level of care may be referred to an appropriate mental health specialist.',
       },
       {
-        q: 'Is mental health screening covered by SoonerCare?',
-        a: 'Coverage varies by plan. Call to confirm whether the clinic participates with your specific plan and contact your insurer to confirm coverage.',
+        q: 'Are mental health services covered by insurance?',
+        a: 'Mental health screening and related services may be covered by SoonerCare, Medicare, and private insurance plans. Coverage, copayments, referral requirements, and other benefits vary by plan. Please contact your insurance company or our clinic to verify your coverage before your visit.',
       },
       {
         q: 'Do I need a referral to see a mental health specialist?',
-        a: 'Depending on your insurance plan, a referral from a primary care provider may be required to see a psychiatrist or licensed counselor. We can provide those referrals.',
+        a: 'Referral requirements depend on the specialist and your insurance plan. If a referral is required or clinically appropriate, our healthcare team can help coordinate it.',
       },
       {
-        q: 'What if I am in crisis?',
-        a: 'If you are in a mental health crisis, please call 988 (Suicide & Crisis Lifeline) or go to your nearest emergency room. Our clinic handles non-emergency mental health concerns.',
+        q: 'What should I do if I am in crisis?',
+        a: 'If you are experiencing emotional distress or a mental health crisis, call or text 988 to reach the Suicide & Crisis Lifeline. Spanish support is available by calling 988 and pressing 2 or texting AYUDA to 988. If there is immediate danger, a suicide attempt, a serious threat of harm, or an urgent medical emergency, call 911 or go to the nearest emergency department. Our clinic does not provide emergency or crisis services.',
+        source: {
+          label: '988 Lifeline guidance',
+          href: 'https://988lifeline.org/get-help/',
+        },
       },
     ],
     faqsEs: [
       {
-        q: '¿Ofrecen tratamiento de salud mental?',
-        a: 'Detectamos depresión, ansiedad y otros problemas de salud conductual, y ofrecemos referencias cuando se necesite evaluación o tratamiento adicional.',
+        q: '¿Evalúan y tratan la depresión y la ansiedad?',
+        a: 'Sí. Ofrecemos detección, evaluación clínica y tratamiento inicial para problemas comunes de salud mental, como la depresión y la ansiedad. Los pacientes que necesiten psicoterapia, evaluación psiquiátrica, manejo complejo de medicamentos o un nivel de atención más alto pueden ser referidos a un especialista adecuado en salud mental.',
       },
       {
-        q: '¿SoonerCare cubre la evaluación de salud mental?',
-        a: 'La cobertura varía según el plan. Llame para confirmar si la clínica participa con su plan específico y contacte a su aseguradora para confirmar la cobertura.',
+        q: '¿Los servicios de salud mental están cubiertos por el seguro?',
+        a: 'La detección de salud mental y los servicios relacionados pueden estar cubiertos por SoonerCare, Medicare y planes de seguro privado. La cobertura, los copagos, los requisitos de referencia y otros beneficios varían según el plan. Comuníquese con su compañía de seguros o con nuestra clínica para verificar su cobertura antes de su visita.',
       },
       {
-        q: '¿Necesito un referido para ver a un especialista?',
-        a: 'Depende de su plan de seguro. Algunos requieren un referido de su médico de cabecera para ver a un psiquiatra o consejero con licencia. Nosotros podemos darle ese referido.',
+        q: '¿Necesito una referencia para ver a un especialista en salud mental?',
+        a: 'Los requisitos de referencia dependen del especialista y de su plan de seguro. Si se requiere una referencia o si es clínicamente apropiada, nuestro equipo de atención médica puede ayudar a coordinarla.',
       },
       {
-        q: '¿Qué hago si estoy en crisis?',
-        a: 'Si está en una crisis de salud mental, llame al 988 (Línea de Prevención del Suicidio y Crisis), que atiende en español, o vaya a la sala de emergencias más cercana. Nuestra clínica atiende situaciones que no son de emergencia.',
-      },
-      {
-        q: '¿Es confidencial mi consulta de salud mental?',
-        a: 'Sí. Su información médica es confidencial y está protegida por la ley federal (HIPAA). Lo que hable con su proveedor no se comparte con su familia, su empleador ni con ninguna autoridad migratoria.',
+        q: '¿Qué debo hacer si estoy en crisis?',
+        a: 'Si está experimentando angustia emocional o una crisis de salud mental, llame o envíe un mensaje de texto al 988 para comunicarse con la Línea de Prevención del Suicidio y Crisis. El apoyo en español está disponible al llamar al 988 y presionar 2 o al enviar AYUDA al 988. Si hay peligro inmediato, un intento de suicidio, una amenaza seria de daño o una emergencia médica urgente, llame al 911 o vaya a la sala de emergencias más cercana. Nuestra clínica no brinda servicios de emergencia ni de crisis.',
+        source: {
+          label: 'Guía de 988 Lifeline',
+          href: 'https://988lifeline.org/get-help/',
+        },
       },
     ],
     relatedSlugs: ['womens-primary-health', 'blood-pressure-management', 'annual-sports-physicals'],
@@ -626,21 +647,27 @@ Entendemos que pedir ayuda para la salud mental puede ser difícil. Hay personal
     title: 'Child Health Exams & Immunizations',
     titleEs: 'Exámenes Infantiles e Inmunizaciones',
     shortDescription:
-      'Well-child checkups, developmental screenings, and age-appropriate immunizations, subject to availability.',
+      'Preventive checkups, developmental screenings, school and sports physicals, and age-appropriate immunizations for infants, children, and teenagers.',
     shortDescriptionEs:
-      'Revisiones pediátricas, evaluaciones del desarrollo e inmunizaciones apropiadas para la edad, sujetas a disponibilidad.',
-    description: `Keeping your child healthy starts with regular well-child visits. At Health Watch Medical Clinic, we provide pediatric care for infants, children, and teenagers in Oklahoma City, including well-child exams, developmental milestone screenings, and review of the CDC recommended immunization schedule.
+      'Revisiones preventivas, evaluaciones del desarrollo, exámenes físicos escolares y deportivos e inmunizaciones apropiadas para la edad para bebés, niños y adolescentes.',
+    description: `Keeping your child healthy begins with regular preventive care. At Health Watch Medical Clinic, we care for infants, children, and teenagers in Oklahoma City. Our services include well-child examinations, growth and developmental monitoring, school and sports physicals, and age-appropriate immunizations.
 
-Our well-child visits include a head-to-toe physical exam, height and weight tracking, blood pressure screening, vision and hearing checks, and age-appropriate developmental screenings. We also discuss nutrition, safety, behavioral concerns, and answer your questions as a parent.
+During a well-child visit, our healthcare providers evaluate your child’s growth, development, physical health, and emotional well-being. Depending on your child’s age and individual needs, the visit may include vision, hearing, blood pressure, developmental, behavioral, or other recommended screenings.
 
-Vaccines are one way to protect your child's health. Age-appropriate immunizations are subject to availability, and we can review your child's vaccination history.`,
-    descriptionEs: `La salud de su hijo empieza con las revisiones periódicas. En Health Watch Medical Clinic ofrecemos atención pediátrica completa para bebés, niños y adolescentes en Oklahoma City: exámenes de niño sano, evaluaciones del desarrollo e inmunizaciones según el calendario recomendado por los CDC.
+We also discuss nutrition, sleep, physical activity, school performance, safety, and any concerns you or your child may have.
 
-Cada visita de niño sano incluye examen físico de cabeza a pies, control de estatura y peso, revisión de presión arterial, pruebas de visión y audición, y evaluaciones del desarrollo según la edad. También hablamos de alimentación, seguridad y comportamiento, y respondemos sus preguntas como padre o madre.
+Vaccination helps protect children from serious and preventable illnesses. We can review your child’s immunization record, identify vaccines that may be due, and develop a routine or catch-up vaccination plan based on current recommendations and your child’s individual needs.
 
-Las vacunas son una forma de proteger la salud de su hijo. Las inmunizaciones apropiadas para la edad están sujetas a disponibilidad, y podemos revisar su historial de vacunación.
+**Please call before your visit to confirm vaccine availability and any records you should bring.**`,
+    descriptionEs: `Mantener saludable a su hijo comienza con la atención preventiva regular. En Health Watch Medical Clinic atendemos a bebés, niños y adolescentes en Oklahoma City. Nuestros servicios incluyen exámenes de niño sano, seguimiento del crecimiento y desarrollo, exámenes físicos escolares y deportivos, e inmunizaciones apropiadas para la edad.
 
-Los requisitos de vacunación de la escuela pueden cambiar. Podemos revisar el registro de su hijo y hablar sobre las vacunas que pueden estar disponibles. La cobertura y la responsabilidad del paciente varían según el plan.`,
+Durante una visita de niño sano, nuestros proveedores de atención médica evalúan el crecimiento, desarrollo, salud física y bienestar emocional de su hijo. Según la edad y las necesidades individuales de su hijo, la visita puede incluir pruebas de visión, audición, presión arterial, desarrollo, comportamiento u otras pruebas recomendadas.
+
+También hablamos sobre nutrición, sueño, actividad física, desempeño escolar, seguridad y cualquier inquietud que usted o su hijo puedan tener.
+
+La vacunación ayuda a proteger a los niños de enfermedades graves y prevenibles. Podemos revisar el registro de inmunización de su hijo, identificar las vacunas que pueden corresponder y desarrollar un plan de vacunación rutinario o de recuperación basado en las recomendaciones actuales y las necesidades individuales de su hijo.
+
+**Llame antes de su visita para confirmar la disponibilidad de vacunas y los registros que debe traer.**`,
     metaDescription:
       'Child health exams & immunizations in Oklahoma City, OK. Well-child checkups and vaccines for kids of all ages. SoonerCare accepted. (405) 949-1552.',
     metaDescriptionEs:
@@ -648,42 +675,74 @@ Los requisitos de vacunación de la escuela pueden cambiar. Podemos revisar el r
     heroKeyword: 'child health exam immunizations Oklahoma City',
     heroKeywordEs: 'pediatra y vacunas para niños Oklahoma City',
     icon: ICONS.child,
-    highlights: ['Well-child visits & developmental screenings', 'School & sports physicals', 'Immunizations subject to availability'],
-    highlightsEs: ['Visitas de niño sano y evaluación del desarrollo', 'Exámenes físicos para la escuela y el deporte', 'Inmunizaciones sujetas a disponibilidad'],
+    highlights: ['Well-child visits and developmental screenings', 'School and sports physicals', 'Routine and catch-up immunizations'],
+    highlightsEs: ['Visitas de niño sano y evaluaciones del desarrollo', 'Exámenes físicos escolares y deportivos', 'Inmunizaciones rutinarias y de recuperación'],
+    whyHeading: 'Why Choose Health Watch?',
+    whyHeadingEs: '¿Por Qué Elegir Health Watch?',
+    whyPoints: [
+      'Same-day appointments may be available',
+      'Walk-in availability for selected services',
+      'Bilingual staff — se habla español',
+      'SoonerCare and many private insurance plans accepted',
+      'Locally owned and independently operated in Oklahoma City',
+    ],
+    whyPointsEs: [
+      'Es posible que haya citas disponibles el mismo día',
+      'Disponibilidad sin cita para servicios seleccionados',
+      'Personal bilingüe — se habla español',
+      'Aceptamos SoonerCare y muchos planes de seguro privados',
+      'Propiedad local y operación independiente en Oklahoma City',
+    ],
     faqs: [
       {
         q: 'How often does my child need a well-child visit?',
-        a: 'The AAP recommends well-child visits at birth, 2–4 days, 1 month, 2 months, 4 months, 6 months, 9 months, 12 months, 15 months, 18 months, 24 months, 30 months, then yearly from ages 3 through 21.',
+        a: 'Well-child visits are frequent during infancy and early childhood and are generally recommended annually beginning at age 3. Your healthcare provider may recommend additional visits based on your child’s medical or developmental needs. The schedule follows the American Academy of Pediatrics’ preventive-care recommendations.',
+        source: {
+          label: 'AAP Preventive Care Schedule',
+          href: 'https://www.aap.org/periodicityschedule',
+        },
       },
       {
         q: 'Do you accept SoonerCare for children\'s visits?',
-        a: 'SoonerCare coverage for eligible children depends on the service and plan. Call to confirm participation and contact your insurer to confirm coverage.',
+        a: 'Yes. We accept SoonerCare for covered services provided to eligible children. Coverage and benefits can vary, so please contact our office or your health plan before the visit if you have questions.',
       },
       {
-        q: 'Do you offer sports physicals for school athletics?',
-        a: 'We provide pre-participation sports physicals for school athletic programs. Same-day appointments may be available; call to confirm.',
+        q: 'Do you provide school and sports physicals?',
+        a: 'Yes. We provide school and pre-participation sports physicals. Please bring any required forms, your child’s medication list, immunization record, and relevant medical history. Same-day appointments may be available.',
       },
       {
         q: 'What vaccines does my child need for school?',
-        a: 'School vaccination requirements can change. Confirm current requirements with your school or the appropriate state resource; we can review your child\'s records and discuss vaccines that may be available.',
+        a: 'Oklahoma’s immunization requirements depend on the child’s age and grade. Required vaccines may include DTaP or Tdap, polio, MMR, hepatitis A, hepatitis B, and varicella. We can review your child’s record and help determine which required or recommended vaccines may be due. Vaccine availability should be confirmed before the appointment.',
+        source: {
+          label: 'Oklahoma State Department of Health',
+          href: 'https://oklahoma.gov/health/immunizations.html',
+        },
       },
     ],
     faqsEs: [
       {
         q: '¿Cada cuánto necesita mi hijo una visita de niño sano?',
-        a: 'La Academia Americana de Pediatría recomienda visitas al nacer, a los 2–4 días, y al 1, 2, 4, 6, 9, 12, 15, 18, 24 y 30 meses; después, una vez al año desde los 3 hasta los 21 años.',
+        a: 'Las visitas de niño sano son frecuentes durante la infancia y generalmente se recomiendan anualmente a partir de los 3 años. Su proveedor de atención médica puede recomendar visitas adicionales según las necesidades médicas o del desarrollo de su hijo. El calendario sigue las recomendaciones de atención preventiva de la Academia Americana de Pediatría.',
+        source: {
+          label: 'Calendario de atención preventiva de la AAP',
+          href: 'https://www.aap.org/periodicityschedule',
+        },
       },
       {
         q: '¿Aceptan SoonerCare para las visitas de niños?',
-        a: 'La cobertura de SoonerCare para niños elegibles depende del servicio y del plan. Llame para confirmar participación y contacte a su aseguradora para confirmar cobertura.',
+        a: 'Sí. Aceptamos SoonerCare para los servicios cubiertos proporcionados a niños elegibles. La cobertura y los beneficios pueden variar, así que comuníquese con nuestra oficina o su plan de salud antes de la visita si tiene preguntas.',
       },
       {
         q: '¿Hacen exámenes físicos para deportes escolares?',
-        a: 'Realizamos exámenes físicos previos a la participación para programas deportivos escolares. Es posible que haya citas el mismo día; llame para confirmar.',
+        a: 'Sí. Realizamos exámenes físicos escolares y previos a la participación deportiva. Traiga los formularios requeridos, la lista de medicamentos de su hijo, el registro de inmunización y los antecedentes médicos relevantes. Es posible que haya citas el mismo día.',
       },
       {
         q: '¿Qué vacunas necesita mi hijo para la escuela?',
-        a: 'Los requisitos de vacunación escolar pueden cambiar. Confirme los requisitos vigentes con la escuela o el recurso estatal correspondiente; podemos revisar el registro de su hijo y hablar sobre las vacunas que pueden estar disponibles.',
+        a: 'Los requisitos de inmunización de Oklahoma dependen de la edad y el grado del niño. Las vacunas requeridas pueden incluir DTaP o Tdap, polio, MMR, hepatitis A, hepatitis B y varicela. Podemos revisar el registro de su hijo y ayudar a determinar qué vacunas requeridas o recomendadas pueden corresponder. Debe confirmar la disponibilidad de vacunas antes de la cita.',
+        source: {
+          label: 'Departamento de Salud del Estado de Oklahoma',
+          href: 'https://oklahoma.gov/health/immunizations.html',
+        },
       },
       {
         q: '¿Necesito seguro o número de seguro social para llevar a mi hijo?',
@@ -778,66 +837,82 @@ Los resultados individuales varían. Las recomendaciones de tratamiento para el 
     title: 'Annual & Sports Physicals',
     titleEs: 'Exámenes Físicos Anuales y Deportivos',
     shortDescription:
-      'Annual wellness exams and pre-participation sports physicals for school, work, and insurance requirements.',
+      'Preventive health exams and pre-participation sports physicals for adults, children, and student-athletes.',
     shortDescriptionEs:
-      'Exámenes anuales de bienestar y físicos pre-deportivos para escuela, trabajo y requisitos de seguros.',
-    description: `An annual physical is the foundation of preventive healthcare. Regular wellness exams allow your provider to track changes in your health over time, catch conditions early when they are most treatable, and maintain an up-to-date health record.
+      'Exámenes preventivos de salud y exámenes físicos deportivos previos a la participación para adultos, niños y estudiantes-atletas.',
+    description: `An annual preventive visit is an important part of maintaining your health. Regular checkups allow your healthcare provider to review changes in your health, identify potential concerns early, and recommend appropriate screenings and preventive care.
 
-At Health Watch Medical Clinic in Oklahoma City, we provide comprehensive annual physicals for adults and school-age children, including full physical exams, vital signs, blood pressure screening, laboratory work, and personalized health counseling.
+At Health Watch Medical Clinic in Oklahoma City, we provide preventive physical exams for adults and school-age children. Depending on the patient’s age, health history, and individual needs, the visit may include a review of medical and family history, medications, vital signs, a physical examination, preventive screenings, and personalized health counseling. Laboratory testing may be ordered when clinically appropriate.
 
-We also perform pre-participation sports physicals (PPE) required for school athletic programs and recreational sports leagues. These exams evaluate cardiovascular fitness, musculoskeletal health, and any conditions that may affect safe participation in sports.
+We also provide pre-participation sports physicals for student-athletes and others who need medical clearance for athletic activities. These evaluations include a review of the patient’s medical and family history and an examination focused on identifying conditions that could affect safe sports participation.
 
-Same-day appointments may be available for appropriate physicals. Walk-ins are welcome during regular business hours; call to confirm availability.`,
-    descriptionEs: `El examen físico anual es la base del cuidado preventivo. Las revisiones periódicas permiten a su proveedor seguir los cambios en su salud con el tiempo, detectar condiciones a tiempo —cuando son más fáciles de tratar— y mantener su expediente médico al día.
+Please bring all required school or athletic forms, a current medication list, and relevant medical records to your appointment. Same-day and walk-in visits are frequently available.`,
+    descriptionEs: `Una visita preventiva anual es una parte importante de mantener su salud. Las revisiones periódicas permiten a su proveedor de atención médica revisar cambios en su salud, identificar posibles preocupaciones a tiempo y recomendar pruebas de detección y atención preventiva apropiadas.
 
-En Health Watch Medical Clinic realizamos exámenes físicos anuales completos para adultos y niños en edad escolar en Oklahoma City: examen físico integral, signos vitales, revisión de presión arterial, análisis de laboratorio y orientación de salud personalizada.
+En Health Watch Medical Clinic de Oklahoma City, brindamos exámenes físicos preventivos a adultos y niños en edad escolar. Según la edad, historial de salud y necesidades individuales del paciente, la visita puede incluir una revisión de antecedentes médicos y familiares, medicamentos, signos vitales, un examen físico, pruebas preventivas y orientación de salud personalizada. Se pueden solicitar análisis de laboratorio cuando sean clínicamente apropiados.
 
-También hacemos los **exámenes físicos previos a la participación deportiva** que exigen los programas escolares y las ligas recreativas. Estos exámenes evalúan la condición cardiovascular, la salud musculoesquelética y cualquier condición que pueda afectar la participación segura en el deporte.
+También ofrecemos exámenes físicos previos a la participación deportiva para estudiantes-atletas y otras personas que necesitan autorización médica para actividades deportivas. Estas evaluaciones incluyen una revisión de los antecedentes médicos y familiares del paciente y un examen enfocado en identificar condiciones que podrían afectar la participación segura en los deportes.
 
-Es posible que haya citas el mismo día para exámenes apropiados. Los pacientes sin cita son bienvenidos durante el horario regular; llame para confirmar disponibilidad.`,
+Traiga todos los formularios escolares o deportivos requeridos, una lista actual de medicamentos y los registros médicos relevantes a su cita. Las citas el mismo día y las visitas sin cita están disponibles con frecuencia.`,
     metaDescription:
-      'Annual & sports physicals in Oklahoma City, OK. School, work and wellness exams. Walk-ins welcome, SoonerCare accepted. Call (405) 949-1552.',
+      'Preventive health exams and sports physicals in Oklahoma City for adults, children, and student-athletes. Same-day and walk-in availability. Call (405) 949-1552.',
     metaDescriptionEs:
-      'Exámenes físicos anuales y deportivos en Oklahoma City, OK. Físicos para la escuela y el trabajo, sin cita previa. Aceptamos SoonerCare. (405) 949-1552.',
-    heroKeyword: 'sports physical Oklahoma City same-day',
-    heroKeywordEs: 'examen físico deportivo Oklahoma City sin cita',
+      'Exámenes preventivos y físicos deportivos en Oklahoma City para adultos, niños y estudiantes-atletas. Disponibilidad el mismo día y sin cita. Llame al (405) 949-1552.',
+    heroKeyword: 'annual and sports physicals Oklahoma City',
+    heroKeywordEs: 'exámenes físicos anuales y deportivos Oklahoma City',
     icon: ICONS.clipboard,
-    highlights: ['Full annual wellness exams', 'Pre-participation sports physicals', 'Same-day & walk-in availability'],
-    highlightsEs: ['Examen anual de bienestar completo', 'Examen físico previo a la participación deportiva', 'Disponibilidad el mismo día y sin cita'],
+    highlights: ['Comprehensive preventive health exams', 'Pre-participation sports physicals', 'Same-day and walk-in availability'],
+    highlightsEs: ['Exámenes preventivos de salud integrales', 'Exámenes físicos deportivos previos a la participación', 'Disponibilidad el mismo día y sin cita'],
     faqs: [
       {
         q: 'Do you offer same-day sports physicals?',
-        a: 'Same-day appointments may be available for sports physicals. Walk-ins are welcome during regular business hours; call to confirm availability.',
+        a: 'Yes. Same-day appointments are frequently available, and walk-ins are welcome. Calling ahead is recommended to confirm availability.',
       },
       {
-        q: 'What does an annual physical include?',
-        a: 'A comprehensive annual physical includes a head-to-toe physical exam, vital signs, blood pressure, height and weight, discussion of current medications and health concerns, and ordering lab work if indicated.',
+        q: 'What does an annual preventive exam include?',
+        a: 'The visit generally includes a review of your medical history, family history, medications, current health concerns, vital signs, and an age-appropriate physical examination. Your provider may also recommend preventive screenings, vaccinations, counseling, or laboratory testing based on your individual needs.',
       },
       {
-        q: 'Are sports physicals required for Oklahoma school sports?',
-        a: 'Yes. Oklahoma high school and middle school athletic associations require a pre-participation physical evaluation (PPE) before students may participate in organized sports.',
+        q: 'Is an annual physical the same as a Medicare Annual Wellness Visit?',
+        a: 'No. A Medicare Annual Wellness Visit focuses on health-risk assessment, preventive planning, and recommended screenings. It is not the same as a routine comprehensive physical exam. Please contact our office or your insurance plan to confirm coverage and possible out-of-pocket costs.',
       },
       {
-        q: 'Do you perform DOT/CDL physicals?',
-        a: 'Please call our office at (405) 949-1552 to inquire about DOT/CDL physicals and other specialized occupational physicals.',
+        q: 'Are sports physicals required for Oklahoma school athletics?',
+        a: 'Students participating in OSSAA-governed school athletics generally need a current pre-participation physical evaluation before participation. Requirements and accepted forms may vary by school or athletic program, so families should confirm the requirements with the student’s school or athletic department.',
+        source: {
+          label: 'OSSAA Pre-Participation Physical Evaluation Form',
+          href: 'https://ossaaillustrated.com/2026/04/13/pre-participation-physical-evaluation-form-and-parental-consent/',
+        },
+      },
+      {
+        q: 'What should I bring to a sports physical?',
+        a: 'Bring the required school or athletic form, completed health-history information, a list of medications, and any relevant medical or specialist records. A parent or legal guardian may need to accompany a minor or complete required consent forms.',
       },
     ],
     faqsEs: [
       {
         q: '¿Hacen exámenes deportivos el mismo día?',
-        a: 'Es posible que haya citas el mismo día para exámenes físicos deportivos. Los pacientes sin cita son bienvenidos durante el horario regular; llame para confirmar disponibilidad.',
+        a: 'Sí. Con frecuencia hay citas el mismo día y se aceptan visitas sin cita. Se recomienda llamar antes para confirmar la disponibilidad.',
       },
       {
-        q: '¿Qué incluye un examen físico anual?',
-        a: 'Incluye un examen físico de cabeza a pies, signos vitales, presión arterial, estatura y peso, una revisión de sus medicamentos y preocupaciones de salud, y análisis de laboratorio si están indicados.',
+        q: '¿Qué incluye un examen preventivo anual?',
+        a: 'La visita generalmente incluye una revisión de sus antecedentes médicos y familiares, medicamentos, preocupaciones de salud actuales, signos vitales y un examen físico apropiado para su edad. Su proveedor también puede recomendar pruebas preventivas, vacunas, orientación o análisis de laboratorio según sus necesidades individuales.',
       },
       {
-        q: '¿Se requiere el examen físico para los deportes escolares en Oklahoma?',
-        a: 'Sí. Las asociaciones atléticas de secundaria y preparatoria de Oklahoma exigen un examen físico previo a la participación antes de que el estudiante pueda entrar a un deporte organizado.',
+        q: '¿Es un examen físico anual lo mismo que una Visita Anual de Bienestar de Medicare?',
+        a: 'No. Una Visita Anual de Bienestar de Medicare se enfoca en la evaluación de riesgos para la salud, la planificación preventiva y las pruebas recomendadas. No es lo mismo que un examen físico integral de rutina. Comuníquese con nuestra oficina o su plan de seguro para confirmar la cobertura y los posibles costos de su bolsillo.',
       },
       {
-        q: '¿Hacen exámenes físicos DOT/CDL para licencia comercial?',
-        a: 'Llámenos al (405) 949-1552 para preguntar por los exámenes DOT/CDL y otros exámenes ocupacionales especializados.',
+        q: '¿Se requieren exámenes físicos para los deportes escolares de Oklahoma?',
+        a: 'Los estudiantes que participan en deportes escolares regidos por OSSAA generalmente necesitan una evaluación física previa a la participación vigente antes de participar. Los requisitos y formularios aceptados pueden variar según la escuela o el programa deportivo, por lo que las familias deben confirmar los requisitos con la escuela o el departamento deportivo del estudiante.',
+        source: {
+          label: 'Formulario de evaluación física previa a la participación de OSSAA',
+          href: 'https://ossaaillustrated.com/2026/04/13/pre-participation-physical-evaluation-form-and-parental-consent/',
+        },
+      },
+      {
+        q: '¿Qué debo llevar a un examen físico deportivo?',
+        a: 'Traiga el formulario escolar o deportivo requerido, la información del historial de salud completada, una lista de medicamentos y cualquier registro médico o de especialistas relevante. Es posible que un padre, madre o tutor legal deba acompañar a un menor o completar los formularios de consentimiento requeridos.',
       },
     ],
     relatedSlugs: ['blood-pressure-management', 'child-health-exams-immunizations', 'vaccines-immunizations'],
@@ -845,35 +920,35 @@ Es posible que haya citas el mismo día para exámenes apropiados. Los pacientes
   {
     slug: 'vaccines-immunizations',
     slugEs: 'vacunas-inmunizaciones',
-    title: 'Vaccines & Immunizations',
-    titleEs: 'Vacunas e Inmunizaciones',
+    title: 'Adult Vaccines & Immunizations',
+    titleEs: 'Vacunas e Inmunizaciones para Adultos',
     shortDescription:
-      'Adult and childhood immunization services; vaccine type and availability should be confirmed before your visit.',
+      'Stay protected with routine, seasonal, and age-appropriate adult immunizations personalized to your health needs.',
     shortDescriptionEs:
-      'Servicios de inmunización para adultos y niños; confirme el tipo de vacuna y la disponibilidad antes de su visita.',
-    description: `Vaccines are an important part of preventive care. Health Watch Medical Clinic can review immunization records and discuss vaccines that may be appropriate for children and adults.
+      'Manténgase protegido con inmunizaciones para adultos rutinarias, estacionales y apropiadas para la edad, personalizadas según sus necesidades de salud.',
+    description: `Vaccination remains an important part of preventive healthcare throughout adulthood. At Health Watch Medical Clinic, we review your medical history, age, previous vaccinations, and individual risk factors to determine which immunizations may be appropriate for you.
 
-Vaccine type, supply, age eligibility, and clinical appropriateness vary. Call before your visit to confirm availability, including for seasonal, travel, or school-related needs.
+Your vaccine needs may change based on your health conditions, pregnancy status, occupation, travel plans, and previous vaccination history. Our providers can identify missing or overdue vaccines and develop a personalized immunization plan based on current recommendations.
 
-The clinic can review the CDC-recommended schedule with you. School and travel requirements can change, so confirm current requirements with the school, destination authority, or appropriate public-health resource.
+Whether you need a seasonal flu shot, a routine booster, or an age- or risk-based vaccine, our team is here to help you stay up to date.
 
-Coverage and patient responsibility vary by plan. Contact your insurer to confirm coverage.`,
-    descriptionEs: `Las vacunas son una parte importante del cuidado preventivo. Health Watch Medical Clinic puede revisar los registros de inmunización y hablar sobre las vacunas que pueden ser apropiadas para niños y adultos.
+**Vaccine availability and insurance coverage vary. Please call before visiting to confirm availability and coverage.**`,
+    descriptionEs: `La vacunación sigue siendo una parte importante de la atención preventiva durante toda la edad adulta. En Health Watch Medical Clinic revisamos sus antecedentes médicos, edad, vacunas anteriores y factores de riesgo individuales para determinar qué inmunizaciones pueden ser apropiadas para usted.
 
-El tipo de vacuna, el suministro, la elegibilidad por edad y la conveniencia clínica varían. Llame antes de su visita para confirmar la disponibilidad, incluso para necesidades estacionales, de viaje o escolares.
+Sus necesidades de vacunación pueden cambiar según sus condiciones de salud, estado de embarazo, ocupación, planes de viaje e historial de vacunación anterior. Nuestros proveedores pueden identificar vacunas faltantes o atrasadas y desarrollar un plan de inmunización personalizado basado en las recomendaciones actuales.
 
-La clínica puede revisar con usted el calendario recomendado por los CDC. Los requisitos escolares y de viaje pueden cambiar; confirme los requisitos vigentes con la escuela, la autoridad del destino o el recurso de salud pública correspondiente.
+Ya sea que necesite una vacuna estacional contra la influenza, un refuerzo de rutina o una vacuna según su edad o factores de riesgo, nuestro equipo está aquí para ayudarle a mantenerse al día.
 
-La cobertura y la responsabilidad del paciente varían según el plan. Contacte a su aseguradora para confirmar la cobertura.`,
+**La disponibilidad de vacunas y la cobertura de seguro varían. Llame antes de su visita para confirmar la disponibilidad y la cobertura.**`,
     metaDescription:
-      'Adult and child immunization services in Oklahoma City. Call to confirm vaccine type, availability, and coverage. (405) 949-1552.',
+      'Adult vaccines and immunizations in Oklahoma City. Routine, seasonal, and catch-up vaccinations with personalized record review. Call (405) 949-1552.',
     metaDescriptionEs:
-      'Servicios de inmunización para adultos y niños en Oklahoma City. Llame para confirmar el tipo de vacuna, disponibilidad y cobertura. (405) 949-1552.',
-    heroKeyword: 'immunizations Oklahoma City adults children',
-    heroKeywordEs: 'vacunas Oklahoma City adultos y niños',
+      'Vacunas e inmunizaciones para adultos en Oklahoma City. Vacunas rutinarias, estacionales y de recuperación con revisión personalizada de registros. Llame al (405) 949-1552.',
+    heroKeyword: 'adult immunizations Oklahoma City',
+    heroKeywordEs: 'vacunas para adultos Oklahoma City',
     icon: ICONS.beaker,
-    highlights: ['Adult & childhood immunization services', 'Record review and vaccine discussion', 'Availability confirmed before your visit'],
-    highlightsEs: ['Servicios de inmunización para adultos y niños', 'Revisión de registros y conversación sobre vacunas', 'Disponibilidad confirmada antes de su visita'],
+    highlights: ['Routine and seasonal vaccinations', 'Catch-up immunizations', 'Personalized vaccine-record review'],
+    highlightsEs: ['Vacunas rutinarias y estacionales', 'Inmunizaciones de recuperación', 'Revisión personalizada del registro de vacunación'],
     faqs: [
       {
         q: 'Do you offer flu shots?',
@@ -888,8 +963,8 @@ La cobertura y la responsabilidad del paciente varían según el plan. Contacte 
         a: 'The vaccines appropriate for an adult depend on age, health history, travel plans, and current public-health guidance. A provider can review your records and discuss appropriate options.',
       },
       {
-        q: 'What vaccines are required for Oklahoma schools?',
-        a: 'School immunization requirements can change. Confirm current requirements with your school or the appropriate state resource before your visit.',
+        q: 'Can you review my vaccine record?',
+        a: 'Yes. We can review your available immunization record, identify vaccines that may be missing or overdue, and discuss appropriate options based on your age, health history, and individual risk factors. Please bring any vaccination records you have.',
       },
     ],
     faqsEs: [
@@ -906,8 +981,8 @@ La cobertura y la responsabilidad del paciente varían según el plan. Contacte 
         a: 'Las vacunas apropiadas para un adulto dependen de su edad, historial de salud, planes de viaje y la guía de salud pública vigente. Un proveedor puede revisar sus registros y hablar sobre opciones apropiadas.',
       },
       {
-        q: '¿Qué vacunas exigen las escuelas de Oklahoma?',
-        a: 'Los requisitos de inmunización escolar pueden cambiar. Confirme los requisitos vigentes con la escuela o el recurso estatal correspondiente antes de su visita.',
+        q: '¿Pueden revisar mi registro de vacunación?',
+        a: 'Sí. Podemos revisar el registro de inmunización que tenga disponible, identificar las vacunas que pueden faltar o estar atrasadas y hablar sobre opciones apropiadas según su edad, historial de salud y factores de riesgo individuales. Traiga los registros de vacunación que tenga.',
       },
       {
         q: '¿Necesito traer mi tarjeta de vacunas?',

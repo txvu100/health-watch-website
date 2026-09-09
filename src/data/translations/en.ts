@@ -7,6 +7,7 @@ export const en = {
     telemedicine: 'Telemedicine',
     contact: 'Contact',
     patientPortal: 'Patient Portal',
+    patientPortalSignIn: 'Patient Portal – Sign In',
     bookAppointment: 'Request an Appointment',
     toggleMenu: 'Toggle navigation menu',
     closeMenu: 'Close menu',

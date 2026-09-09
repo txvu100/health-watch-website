@@ -116,6 +116,8 @@ for (const file of allFiles) {
 
 const home = await readFile(path.join(outputDir, 'index.html'), 'utf8')
 const spanishHome = await readFile(path.join(outputDir, 'es/index.html'), 'utf8')
+requireLinkDestination(home, 'Patient Portal – Sign In', '/patient-portal/', path.join(outputDir, 'index.html'))
+requireLinkDestination(spanishHome, 'Portal del Paciente – Iniciar sesión', '/patient-portal/', path.join(outputDir, 'es/index.html'))
 for (const [html, expected] of [
   [home, ['Request an Appointment', 'href="/contact/"', 'Submitting this request does not confirm your appointment.']],
   [spanishHome, ['Solicitar una cita', 'href="/es/contacto/"', 'Enviar una solicitud no confirma su cita.']],
@@ -192,6 +194,160 @@ for (const { page, required, prohibited } of diabetesPages) {
   } else {
     requireLinkDestination(html, 'Book this service', '/contact/', file)
   }
+}
+
+const childHealthPages = [
+  {
+    page: 'services/child-health-exams-immunizations/index.html',
+    required: [
+      'Preventive checkups, developmental screenings, school and sports physicals, and age-appropriate immunizations',
+      'Depending on your child’s age and individual needs',
+      'Please call before your visit to confirm vaccine availability and any records you should bring.',
+      'Why Choose Health Watch?',
+      'Walk-in availability for selected services',
+      'Bilingual staff — se habla español',
+      'Do you provide school and sports physicals?',
+      'Oklahoma’s immunization requirements depend on the child’s age and grade.',
+      'DTaP or Tdap, polio, MMR, hepatitis A, hepatitis B, and varicella.',
+    ],
+    prohibited: [
+      /meningococ/i,
+      /head-to-toe physical exam/i,
+      /blood pressure screening, vision and hearing checks/i,
+      /Walk-ins welcome during regular business hours/i,
+      /all recommended childhood immunizations/i,
+    ],
+    sources: [
+      ['AAP Preventive Care Schedule', 'https://www.aap.org/periodicityschedule'],
+      ['Oklahoma State Department of Health', 'https://oklahoma.gov/health/immunizations.html'],
+    ],
+  },
+  {
+    page: 'es/servicios/examenes-infantiles-inmunizaciones/index.html',
+    required: [
+      'Revisiones preventivas, evaluaciones del desarrollo, exámenes físicos escolares y deportivos e inmunizaciones apropiadas para la edad',
+      'Según la edad y las necesidades individuales de su hijo',
+      'Llame antes de su visita para confirmar la disponibilidad de vacunas y los registros que debe traer.',
+      '¿Por Qué Elegir Health Watch?',
+      'Disponibilidad sin cita para servicios seleccionados',
+      'Personal bilingüe — se habla español',
+      '¿Hacen exámenes físicos para deportes escolares?',
+      'Los requisitos de inmunización de Oklahoma dependen de la edad y el grado del niño.',
+      'DTaP o Tdap, polio, MMR, hepatitis A, hepatitis B y varicela.',
+    ],
+    prohibited: [
+      /meningococ/i,
+      /examen físico de cabeza a pies/i,
+      /revisión de presión arterial, pruebas de visión y audición/i,
+      /se aceptan visitas sin cita para muchos servicios/i,
+      /todas las inmunizaciones infantiles recomendadas/i,
+    ],
+    sources: [
+      ['Calendario de atención preventiva de la AAP', 'https://www.aap.org/periodicityschedule'],
+      ['Departamento de Salud del Estado de Oklahoma', 'https://oklahoma.gov/health/immunizations.html'],
+    ],
+  },
+]
+
+for (const { page, required, prohibited, sources } of childHealthPages) {
+  const file = path.join(outputDir, page)
+  const html = await readFile(file, 'utf8')
+  for (const expected of required) requireText(html, expected, file)
+  for (const unexpected of prohibited) rejectText(html, unexpected, file)
+  for (const [label, href] of sources) requireLinkDestination(html, label, href, file)
+}
+
+const adultVaccinePages = [
+  {
+    page: 'services/vaccines-immunizations/index.html',
+    required: [
+      'Adult Vaccines & Immunizations',
+      'Stay protected with routine, seasonal, and age-appropriate adult immunizations personalized to your health needs.',
+      'Routine and seasonal vaccinations',
+      'Catch-up immunizations',
+      'Personalized vaccine-record review',
+      'Vaccine availability and insurance coverage vary. Please call before visiting to confirm availability and coverage.',
+      'Can you review my vaccine record?',
+    ],
+    prohibited: [
+      /Adult and childhood immunization services/i,
+      /seasonal, travel, or school-related needs/i,
+      /What vaccines are required for Oklahoma schools\?/i,
+    ],
+  },
+  {
+    page: 'es/servicios/vacunas-inmunizaciones/index.html',
+    required: [
+      'Vacunas e Inmunizaciones para Adultos',
+      'Manténgase protegido con inmunizaciones para adultos rutinarias, estacionales y apropiadas para la edad, personalizadas según sus necesidades de salud.',
+      'Vacunas rutinarias y estacionales',
+      'Inmunizaciones de recuperación',
+      'Revisión personalizada del registro de vacunación',
+      'La disponibilidad de vacunas y la cobertura de seguro varían. Llame antes de su visita para confirmar la disponibilidad y la cobertura.',
+      '¿Pueden revisar mi registro de vacunación?',
+    ],
+    prohibited: [
+      /Servicios de inmunización para adultos y niños/i,
+      /necesidades estacionales, de viaje o escolares/i,
+      /¿Qué vacunas exigen las escuelas de Oklahoma\?/i,
+    ],
+  },
+]
+
+for (const { page, required, prohibited } of adultVaccinePages) {
+  const file = path.join(outputDir, page)
+  const html = await readFile(file, 'utf8')
+  for (const expected of required) requireText(html, expected, file)
+  for (const unexpected of prohibited) rejectText(html, unexpected, file)
+}
+
+const annualPhysicalPages = [
+  {
+    page: 'services/annual-sports-physicals/index.html',
+    required: [
+      'Preventive health exams and pre-participation sports physicals for adults, children, and student-athletes.',
+      'Comprehensive preventive health exams',
+      'Pre-participation sports physicals',
+      'Same-day and walk-in availability',
+      'Same-day and walk-in visits are frequently available.',
+      'What does an annual preventive exam include?',
+      'Is an annual physical the same as a Medicare Annual Wellness Visit?',
+      'What should I bring to a sports physical?',
+    ],
+    prohibited: [
+      /An annual physical is the foundation of preventive healthcare/i,
+      /cardiovascular fitness, musculoskeletal health/i,
+      /Do you perform DOT\/CDL physicals\?/i,
+    ],
+    source: ['OSSAA Pre-Participation Physical Evaluation Form', 'https://ossaaillustrated.com/2026/04/13/pre-participation-physical-evaluation-form-and-parental-consent/'],
+  },
+  {
+    page: 'es/servicios/examenes-fisicos-deportivos/index.html',
+    required: [
+      'Exámenes preventivos de salud y exámenes físicos deportivos previos a la participación para adultos, niños y estudiantes-atletas.',
+      'Exámenes preventivos de salud integrales',
+      'Exámenes físicos deportivos previos a la participación',
+      'Disponibilidad el mismo día y sin cita',
+      'Las citas el mismo día y las visitas sin cita están disponibles con frecuencia.',
+      '¿Qué incluye un examen preventivo anual?',
+      '¿Es un examen físico anual lo mismo que una Visita Anual de Bienestar de Medicare?',
+      '¿Qué debo llevar a un examen físico deportivo?',
+    ],
+    prohibited: [
+      /El examen físico anual es la base del cuidado preventivo/i,
+      /la condición cardiovascular, la salud musculoesquelética/i,
+      /¿Hacen exámenes físicos DOT\/CDL para licencia comercial\?/i,
+    ],
+    source: ['Formulario de evaluación física previa a la participación de OSSAA', 'https://ossaaillustrated.com/2026/04/13/pre-participation-physical-evaluation-form-and-parental-consent/'],
+  },
+]
+
+for (const { page, required, prohibited, source } of annualPhysicalPages) {
+  const file = path.join(outputDir, page)
+  const html = await readFile(file, 'utf8')
+  for (const expected of required) requireText(html, expected, file)
+  for (const unexpected of prohibited) rejectText(html, unexpected, file)
+  requireLinkDestination(html, source[0], source[1], file)
 }
 
 const immigrationPages = [

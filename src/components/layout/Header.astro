@@ -39,11 +39,11 @@ const homeHref = route('home', lang)
       <div class="flex items-center gap-4 h-16 lg:h-[70px]">
 
         <a href={homeHref} class="shrink-0" aria-label={CLINIC.name}>
-          <Logo size={40} />
+          <Logo size={40} withWordmark={false} />
         </a>
 
         <!-- Desktop nav -->
-        <nav class="hidden lg:flex items-center justify-end gap-5 flex-1" aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
+        <nav class="hidden xl:flex items-center justify-end gap-5 flex-1" aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
           {navItems.map((item) => {
             const active =
               currentPath === item.href || (item.href !== homeHref && currentPath.startsWith(item.href))
@@ -63,23 +63,45 @@ const homeHref = route('home', lang)
           })}
         </nav>
 
-        <div class="flex items-center gap-3 ml-auto lg:ml-0">
+        <div class="flex items-center gap-3 ml-auto xl:ml-0">
           <a
-            href={route('contact', lang)}
-            class="hidden lg:inline-flex items-center gap-2 bg-secondary hover:bg-secondary-dark text-white font-bold text-sm px-[22px] py-[11px] rounded-full shadow-cta transition-colors shrink-0"
+            href="/patient-portal/"
+            class="hidden xl:inline-flex min-h-12 items-center gap-2 rounded-full bg-primary px-5 py-3 text-base font-bold text-white shadow-card-hover transition-colors hover:bg-primary-dark shrink-0"
           >
-            {t.nav.bookAppointment}
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="8" r="3.5"></circle>
+              <path d="M5 20a7 7 0 0 1 14 0"></path>
+            </svg>
+            {t.nav.patientPortalSignIn}
           </a>
-
           <a
             href={route('contact', lang)}
-            class="lg:hidden inline-flex items-center rounded-full bg-secondary px-3.5 py-2 text-xs font-bold text-white shadow-cta transition-colors hover:bg-secondary-dark"
+            class="hidden xl:inline-flex min-h-12 items-center gap-2 bg-secondary hover:bg-secondary-dark text-white font-bold text-base px-[22px] py-[11px] rounded-full shadow-cta transition-colors shrink-0"
           >
             {t.nav.bookAppointment}
           </a>
 
           <MobileMenu client:load lang={lang} />
         </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 border-t border-neutral-100 pb-3 pt-2 xl:hidden">
+        <a
+          href="/patient-portal/"
+          class="inline-flex min-h-12 min-w-0 items-center justify-center gap-1.5 rounded-xl bg-primary px-2 py-2 text-center text-sm font-bold leading-tight text-white shadow-card-hover transition-colors hover:bg-primary-dark"
+        >
+          <svg width="17" height="17" class="shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="8" r="3.5"></circle>
+            <path d="M5 20a7 7 0 0 1 14 0"></path>
+          </svg>
+          <span>{t.nav.patientPortalSignIn}</span>
+        </a>
+        <a
+          href={route('contact', lang)}
+          class="inline-flex min-h-12 min-w-0 items-center justify-center rounded-xl bg-secondary px-2 py-2 text-center text-[11px] font-bold leading-tight text-white shadow-cta transition-colors hover:bg-secondary-dark sm:text-xs"
+        >
+          <span>{t.nav.bookAppointment}</span>
+        </a>
       </div>
     </div>
   </div>

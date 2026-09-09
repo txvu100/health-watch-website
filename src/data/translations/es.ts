@@ -9,6 +9,7 @@ export const es: Translations = {
     telemedicine: 'Telemedicina',
     contact: 'Contacto',
     patientPortal: 'Portal del Paciente',
+    patientPortalSignIn: 'Portal del Paciente – Iniciar sesión',
     bookAppointment: 'Solicitar una cita',
     toggleMenu: 'Abrir menú de navegación',
     closeMenu: 'Cerrar menú',

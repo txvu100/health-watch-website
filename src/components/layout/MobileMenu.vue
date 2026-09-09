@@ -8,10 +8,7 @@ const props = withDefaults(defineProps<{ lang?: Lang }>(), { lang: 'en' })
 const t = computed(() => useTranslations(props.lang))
 const currentPath = typeof window === 'undefined' ? '' : window.location.pathname
 
-const navItems = computed(() => [
-  ...NAV_KEYS.map((key) => ({ label: t.value.nav[key], href: route(key, props.lang) })),
-  { label: t.value.nav.patientPortal, href: '/patient-portal/' },
-])
+const navItems = computed(() => NAV_KEYS.map((key) => ({ label: t.value.nav[key], href: route(key, props.lang) })))
 
 const isOpen = ref(false)
 const drawer = ref<HTMLElement | null>(null)
@@ -71,7 +68,7 @@ onBeforeUnmount(() => {
       :aria-expanded="isOpen"
       aria-controls="mobile-nav"
       :aria-label="t.nav.toggleMenu"
-      class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-md focus-visible:outline-2 focus-visible:outline-primary"
+      class="xl:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-md focus-visible:outline-2 focus-visible:outline-primary"
     >
       <span
         class="block w-6 h-0.5 bg-primary transition-all duration-200"
@@ -92,7 +89,7 @@ onBeforeUnmount(() => {
       <div
         v-if="isOpen"
         @click="close"
-        class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+        class="fixed inset-0 bg-black/50 z-40 xl:hidden"
         aria-hidden="true"
       />
     </Transition>
@@ -103,7 +100,7 @@ onBeforeUnmount(() => {
         v-if="isOpen"
         ref="drawer"
         id="mobile-nav"
-        class="fixed top-0 right-0 bottom-0 w-72 bg-white z-50 lg:hidden shadow-2xl flex flex-col"
+        class="fixed top-0 right-0 bottom-0 w-72 bg-white z-50 xl:hidden shadow-2xl flex flex-col"
       >
         <div class="flex items-center justify-between p-5 bg-navy">
           <span class="text-white font-display font-extrabold text-lg tracking-[-0.4px]">Health Watch</span>
@@ -138,6 +135,17 @@ onBeforeUnmount(() => {
             class="block w-full text-center bg-secondary hover:bg-secondary-dark text-white font-bold py-3 rounded-full shadow-cta transition-colors"
           >
             {{ t.nav.bookAppointment }}
+          </a>
+          <a
+            href="/patient-portal/"
+            @click="close"
+            class="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-base font-bold text-white shadow-card-hover transition-colors hover:bg-primary-dark"
+          >
+            <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="8" r="3.5" />
+              <path d="M5 20a7 7 0 0 1 14 0" />
+            </svg>
+            {{ t.nav.patientPortalSignIn }}
           </a>
           <a
             :href="`tel:${CLINIC.phoneE164}`"

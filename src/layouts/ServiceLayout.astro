@@ -22,6 +22,7 @@ const summary = lang === 'es' ? service.shortDescriptionEs : service.shortDescri
 const metaDescription = lang === 'es' ? service.metaDescriptionEs : service.metaDescription
 const faqs = lang === 'es' ? service.faqsEs : service.faqs
 const whyPoints = lang === 'es' ? service.whyPointsEs ?? t.why.points : service.whyPoints ?? t.why.points
+const whyHeading = lang === 'es' ? service.whyHeadingEs ?? t.why.heading : service.whyHeading ?? t.why.heading
 const seoTitle =
   lang === 'es'
     ? service.seoTitleEs ?? `${title} en Oklahoma City | Health Watch Medical Clinic`
@@ -118,7 +119,7 @@ const schemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : 
 
         <!-- Why Choose Us callout -->
         <div class="mt-10 rounded-2xl bg-lavender p-6 lg:p-8">
-          <h2 class="text-xl font-display font-extrabold text-neutral-900 mb-3">{t.why.heading}</h2>
+          <h2 class="text-xl font-display font-extrabold text-neutral-900 mb-3">{whyHeading}</h2>
           <ul class="space-y-2 text-neutral-600">
             {whyPoints.map((item) => (
               <li class="flex items-start gap-3">
