@@ -14,6 +14,8 @@ interface Props {
 }
 
 const { service } = Astro.props
+const serviceItems = service.serviceItems ?? []
+const serviceItemsHeading = service.serviceItemsHeading
 ---
 
 <ServiceLayout service={service}>
@@ -21,4 +23,12 @@ const { service } = Astro.props
   {service.description.split('\n\n').filter(Boolean).map((para) => (
     <p set:html={para.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
   ))}
+  {serviceItems.length > 0 && (
+    <>
+      {serviceItemsHeading && <h2 class="text-xl font-display font-extrabold text-neutral-900 pt-2">{serviceItemsHeading}</h2>}
+      <ul class="list-disc space-y-2 pl-6 marker:text-secondary">
+        {serviceItems.map((item) => <li>{item}</li>)}
+      </ul>
+    </>
+  )}
 </ServiceLayout>
