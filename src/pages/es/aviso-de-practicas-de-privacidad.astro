@@ -1,0 +1,37 @@
+---
+import SpanishLayout from '../../layouts/SpanishLayout.astro'
+import { CLINIC } from '../../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${CLINIC.siteUrl}/es/` },
+    { '@type': 'ListItem', position: 2, name: 'Aviso de Prácticas de Privacidad', item: `${CLINIC.siteUrl}/es/aviso-de-practicas-de-privacidad/` },
+  ],
+}
+---
+
+<SpanishLayout
+  title="Aviso de Prácticas de Privacidad | Health Watch Medical Clinic"
+  description="Solicite el Aviso de Prácticas de Privacidad aprobado por la clínica de Health Watch Medical Clinic."
+  canonical={`${CLINIC.siteUrl}/es/aviso-de-practicas-de-privacidad/`}
+  enPath="/notice-of-privacy-practices"
+  schemas={[breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <nav aria-label="Ruta de navegación" class="mb-5 text-[13px] font-bold text-[#9089B8]"><a href="/es/" class="hover:text-primary">Inicio</a><span aria-hidden="true"> / </span><span aria-current="page">Aviso de Prácticas de Privacidad</span></nav>
+      <h1 class="mb-3 text-[32px] font-display font-extrabold tracking-[-1px] text-neutral-900 lg:text-[42px]">Aviso de Prácticas de Privacidad</h1>
+      <p class="text-lg font-medium leading-[1.7] text-neutral-600">Cómo obtener el aviso de HIPAA aprobado por la clínica</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl prose prose-neutral max-w-none space-y-5 text-neutral-600 leading-relaxed text-[16px]">
+      <p>El Aviso de Prácticas de Privacidad aprobado por la clínica está disponible a solicitud.</p>
+      <p>Para solicitar el aviso actual aprobado por la clínica, llame al <a href={`tel:${CLINIC.phoneE164}`} class="font-semibold text-primary hover:underline">{CLINIC.phone}</a> o pídalo en recepción durante su visita. Hay una copia disponible sin costo.</p>
+      <div class="not-prose rounded-2xl bg-lavender p-6"><p class="text-sm leading-relaxed text-neutral-700">Esta página indica cómo solicitar el aviso oficial; no es el Aviso de Prácticas de Privacidad formal de la clínica. Para conocer cómo se maneja la información del sitio web, consulte la <a href="/es/privacidad/" class="font-semibold text-primary hover:underline">Política de Privacidad del Sitio Web</a>.</p></div>
+    </div>
+  </section>
+</SpanishLayout>

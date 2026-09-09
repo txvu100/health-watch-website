@@ -1,0 +1,50 @@
+---
+import SpanishLayout from '../../layouts/SpanishLayout.astro'
+import { CLINIC } from '../../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${CLINIC.siteUrl}/es/` },
+    { '@type': 'ListItem', position: 2, name: 'No Discriminación', item: `${CLINIC.siteUrl}/es/no-discriminacion/` },
+  ],
+}
+---
+
+<SpanishLayout
+  title="No Discriminación | Health Watch Medical Clinic"
+  description="Declaración de no discriminación de Health Watch Medical Clinic."
+  canonical={`${CLINIC.siteUrl}/es/no-discriminacion/`}
+  enPath="/nondiscrimination"
+  schemas={[breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <nav aria-label="Ruta de navegación" class="mb-5 text-[13px] font-bold text-[#9089B8]">
+        <a href="/es/" class="hover:text-primary">Inicio</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">No Discriminación</span>
+      </nav>
+      <h1 class="mb-3 text-[32px] font-display font-extrabold tracking-[-1px] text-neutral-900 lg:text-[42px]">Declaración de No Discriminación</h1>
+      <p class="text-lg font-medium leading-[1.7] text-neutral-600">Atención respetuosa para cada paciente</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <div class="prose prose-neutral max-w-none space-y-4 text-neutral-600 leading-relaxed">
+        <!-- Se requiere revisión de la clínica y asesores legales antes de una publicación de producción. -->
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Nuestro compromiso</h2>
+        <p>Health Watch Medical Clinic no excluye a las personas de participar en sus servicios ni las trata de manera diferente por motivos de raza, color, nacionalidad, edad, discapacidad o sexo, incluido el embarazo, la orientación sexual, la identidad de género y las características sexuales.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Apoyo para la comunicación</h2>
+        <p>Queremos que los pacientes puedan comunicarse eficazmente con nuestra clínica. Comuníquese con nosotros antes o durante su visita para hablar sobre asistencia de idioma o adaptaciones razonables para la comunicación.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Preguntas o inquietudes</h2>
+        <p>Para hacer preguntas sobre esta declaración o solicitar el aviso formal vigente de la clínica, llame al <a href={`tel:${CLINIC.phoneE164}`} class="font-medium text-primary hover:underline">{CLINIC.phone}</a>, escriba a <a href={`mailto:${CLINIC.email}`} class="font-medium text-primary hover:underline">{CLINIC.email}</a> o visítenos en {CLINIC.address.full}.</p>
+      </div>
+    </div>
+  </section>
+</SpanishLayout>

@@ -40,18 +40,18 @@ const breadcrumbSchema = {
 
 const heroBadges = [
   'Independent & locally owned',
-  'Bilingual staff',
-  'Most insurance accepted',
-  'Minimal wait times',
+  'Spanish-speaking staff available',
+  'Many insurance plans accepted',
+  'Availability and wait times vary',
 ]
 
 const careFeatures = [
   { icon: 'M17.4 19.6a5.4 5.4 0 00-2.8-4.7M16 5.3a3.1 3.1 0 010 5.4M3.6 19.6a5.4 5.4 0 0110.8 0M9 8a3.1 3.1 0 100 6.2A3.1 3.1 0 009 8z', title: 'Friendly, experienced providers', text: 'A care team that treats you with genuine urgency and respect.' },
-  { icon: 'M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18M3 12h18M12 21a9 9 0 100-18 9 9 0 000 18z', title: 'Bilingual staff', text: 'Comfortable, clear care in English and Spanish.' },
+  { icon: 'M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18M3 12h18M12 21a9 9 0 100-18 9 9 0 000 18z', title: 'Spanish-speaking staff available', text: 'Spanish-speaking staff are available to help patients communicate during their visit.' },
   { icon: 'M12 2.6l7.3 2.9v5.4c0 4.5-3.1 7.7-7.3 8.8-4.2-1.1-7.3-4.3-7.3-8.8V5.5zM8.6 12l2.2 2.2 4.6-4.7', title: 'Affordable & transparent', text: 'Fair pricing and clear communication, every visit.' },
-  { icon: 'M13 2.5L4.6 13H11l-1 8.5L18.4 11H12z', title: 'Fast scheduling', text: 'Same-day options and minimal wait times.' },
+  { icon: 'M13 2.5L4.6 13H11l-1 8.5L18.4 11H12z', title: 'Scheduling options', text: 'Same-day appointments may be available; call to confirm.' },
   { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', title: 'Clean & family-friendly', text: 'A welcoming environment for every age.' },
-  { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Same-day & walk-in options', text: 'No appointment? No problem — walk in during business hours.' },
+  { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Same-day & walk-in options', text: 'Walk-ins are welcome during regular business hours. Same-day appointments may be available; call to confirm.' },
 ]
 
 const team = [
@@ -63,7 +63,7 @@ const team = [
 
 <BaseLayout
   title="About Us | Health Watch Medical Clinic"
-  description="A locally owned family medicine clinic in Oklahoma City, OK. Bilingual staff, walk-ins welcome, SoonerCare & Medicaid accepted. Meet our care team."
+  description="A locally owned family medicine clinic in Oklahoma City, OK. Spanish-speaking staff are available; walk-ins are welcome during regular business hours."
   canonical={`${CLINIC.siteUrl}/about/`}
   esPath="/nosotros"
   schemas={[breadcrumbSchema, providerSchema]}
@@ -79,7 +79,7 @@ const team = [
         </nav>
         <div class="inline-flex items-center gap-2">
           <span class="w-[7px] h-[7px] rounded-full bg-secondary"></span>
-          <span class="text-[13px] font-extrabold tracking-[1.8px] uppercase text-[#8983B8]">About Health Watch</span>
+          <span class="text-[13px] font-extrabold tracking-[1.8px] uppercase text-[#8983B8]">About Health Watch Medical Clinic</span>
         </div>
         <h1 class="text-[32px] sm:text-[38px] lg:text-[46px] font-display font-extrabold leading-[1.08] tracking-[-1.2px] text-neutral-900">
           Locally owned care, with the attention you deserve
@@ -90,7 +90,7 @@ const team = [
         <div class="flex flex-wrap gap-2.5 mt-1">
           {heroBadges.map((badge) => (
             <span class="inline-flex items-center gap-2 bg-white border border-[#E7E1F4] rounded-full px-3.5 py-2 text-[13.5px] font-semibold text-[#4A4F6B] shadow-[0_2px_8px_rgba(20,30,60,0.04)]">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0444D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0444D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                 <path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="9"></circle>
               </svg>
               {badge}
@@ -106,20 +106,16 @@ const team = [
   <section class="py-16 lg:py-24">
     <div class="container grid lg:grid-cols-[1.15fr_0.85fr] gap-14">
       <div class="flex flex-col gap-5 text-lg leading-[1.8] font-medium text-neutral-600">
-        <p>At Health Watch Medical Clinic, our mission is to provide fast, convenient, courteous, and professional family medical care with the focused attention that each patient deserves. We believe that quality healthcare should be accessible to everyone — regardless of insurance status, income, or language spoken.</p>
+        <p>At Health Watch Medical Clinic, our mission is to provide convenient, courteous, and professional family medical care while giving every patient the individual attention they deserve.</p>
         <p>We are an independent, locally owned clinic in Oklahoma City specializing in general and internal medicine. Our experienced providers are committed to building lasting relationships with patients and their families, delivering care that goes beyond treating symptoms to genuinely watching over your long-term health and wellness.</p>
-        <p>Our bilingual team — fully fluent in both English and Spanish — ensures that every patient feels understood, respected, and empowered to take charge of their health. <em>Se habla Español.</em></p>
-        <p>We accept SoonerCare, Medicaid, Medicare, Blue Cross Blue Shield, and most private insurance plans — with competitive self-pay rates for uninsured patients, and free blood pressure checks for every walk-in.</p>
+        <p>Spanish-speaking staff are available to help patients communicate during their visit. <em>Se habla español.</em></p>
+        <p>We participate with SoonerCare and Medicare, accept many commercial plans, and welcome self-pay patients. Call to confirm whether we participate with your specific plan; coverage and patient responsibility vary by plan.</p>
       </div>
       <div class="flex flex-col gap-6 lg:sticky lg:top-24 self-start">
         <PhotoPlaceholderPanel label="Care in action" dark minHeight="min-h-[220px]" iconSize={26} icon="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         <div class="bg-white border border-neutral-200 rounded-[18px] p-[22px]">
-          <p class="text-xs font-extrabold tracking-[1px] uppercase text-[#9089B8] mb-3">Insurance we accept</p>
-          <div class="flex flex-wrap gap-2">
-            {CLINIC.insurance.slice(0, 5).map((plan) => (
-              <span class="bg-lavender rounded-full px-[13px] py-[7px] text-[13px] font-bold text-primary">{plan}</span>
-            ))}
-          </div>
+          <p class="text-xs font-extrabold tracking-[1px] uppercase text-[#9089B8] mb-3">Coverage options</p>
+          <p class="text-[15px] leading-relaxed text-neutral-600">SoonerCare, Medicare, many commercial plans, and self-pay. Call to confirm participation and coverage.</p>
         </div>
       </div>
     </div>
@@ -137,7 +133,7 @@ const team = [
         {careFeatures.map((f) => (
           <div class="bg-white border border-neutral-200 rounded-[20px] p-[26px] shadow-card">
             <div class="w-[50px] h-[50px] rounded-[14px] bg-lavender flex items-center justify-center mb-3.5">
-              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                 <path d={f.icon} />
               </svg>
             </div>

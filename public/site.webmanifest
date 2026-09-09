@@ -1,6 +1,6 @@
 {
   "name": "Health Watch Medical Clinic",
-  "short_name": "Health Watch",
+  "short_name": "Health Watch Medical Clinic",
   "description": "Family medical clinic in Oklahoma City. Walk-ins welcome, se habla español.",
   "start_url": "/",
   "display": "standalone",

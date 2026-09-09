@@ -1,38 +1,48 @@
 ---
 import { CLINIC } from '../../data/clinic'
-import { route } from '../../data/routes'
 
 interface Props {
   lang?: 'en' | 'es'
 }
 const { lang = 'en' } = Astro.props
 
-const heading = lang === 'es' ? 'Seguros que Aceptamos' : 'Insurance We Accept'
-const subheading = lang === 'es'
-  ? 'Trabajamos con la mayoría de los planes. Pacientes de pago en efectivo también bienvenidos.'
-  : 'We work with most major plans. Self-pay and uninsured patients always welcome.'
+const content = lang === 'es'
+  ? {
+      heading: 'Seguros y Formas de Pago',
+      subheading: 'Participamos con SoonerCare y Medicare, aceptamos muchos planes comerciales y pacientes de pago propio.',
+      options: ['SoonerCare', 'Medicare', 'Muchos planes comerciales', 'Pago propio'],
+      prompt: 'Llame para confirmar si participamos con su plan específico. La cobertura y la responsabilidad del paciente varían según el plan.',
+      call: 'Llame al',
+    }
+  : {
+      heading: 'Insurance & Payment',
+      subheading: 'We participate with SoonerCare and Medicare, accept many commercial plans, and welcome self-pay patients.',
+      options: ['SoonerCare', 'Medicare', 'Many commercial plans', 'Self-pay'],
+      prompt: 'Call to confirm whether we participate with your specific insurance plan. Coverage and patient responsibility vary by plan.',
+      call: 'Call',
+    }
 ---
 
 <section class="py-12 border-y border-neutral-200">
   <div class="container">
     <div class="text-center mb-8">
-      <h2 class="text-xl font-display font-bold text-neutral-900 mb-2">{heading}</h2>
-      <p class="text-neutral-500 text-sm">{subheading}</p>
+      <h2 class="text-xl font-display font-bold text-neutral-900 mb-2">{content.heading}</h2>
+      <p class="text-neutral-600 text-[16px]">{content.subheading}</p>
     </div>
 
     <div class="flex flex-wrap justify-center gap-3">
-      {CLINIC.insurance.map((plan) => (
+      {content.options.map((option) => (
         <span class="inline-flex items-center gap-2 bg-neutral-50 border border-neutral-200 text-neutral-700 font-medium text-sm px-5 py-2.5 rounded-full">
-          <svg class="w-4 h-4 text-secondary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+          <svg class="w-4 h-4 text-secondary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
           </svg>
-          {plan}
+          {option}
         </span>
       ))}
     </div>
 
-    <p class="text-center text-xs text-neutral-400 mt-6">
-      Not sure if we accept your plan? <a href={route('contact', lang)} class="text-primary hover:underline font-medium">Call us at {CLINIC.phone}</a> — we'll verify your benefits before your visit.
+    <p class="text-center text-sm text-neutral-600 mt-6">
+      {content.prompt} <a href={`tel:${CLINIC.phoneE164}`} class="text-primary hover:underline font-medium">{content.call} {CLINIC.phone}</a>.
     </p>
   </div>
 </section>

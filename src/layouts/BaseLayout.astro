@@ -32,5 +32,8 @@ const { lang = 'en', esPath, enPath, ...seoProps } = Astro.props
       <slot />
     </main>
     <Footer lang={lang} />
+    <script is:inline>
+      document.querySelectorAll('svg[aria-hidden="true"]').forEach((icon) => icon.setAttribute('focusable', 'false'))
+    </script>
   </body>
 </html>

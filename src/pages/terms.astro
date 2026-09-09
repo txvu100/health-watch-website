@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { CLINIC } from '../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${CLINIC.siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Website Terms', item: `${CLINIC.siteUrl}/terms/` },
+  ],
+}
+---
+
+<BaseLayout
+  title="Website Terms | Health Watch Medical Clinic"
+  description="Website terms for Health Watch Medical Clinic in Oklahoma City."
+  canonical={`${CLINIC.siteUrl}/terms/`}
+  esPath="/terminos"
+  schemas={[breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-5 text-[13px] font-bold text-[#9089B8]">
+        <a href="/" class="hover:text-primary">Home</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">Website Terms</span>
+      </nav>
+      <h1 class="mb-3 text-[32px] font-display font-extrabold tracking-[-1px] text-neutral-900 lg:text-[42px]">Website Terms</h1>
+      <p class="text-lg font-medium leading-[1.7] text-neutral-600">Terms for using healthwatchclinic.com</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <div class="prose prose-neutral max-w-none space-y-4 text-neutral-600 leading-relaxed">
+        <!-- Clinic/legal review is required before a production release. -->
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Informational use only</h2>
+        <p>This website provides general information about Health Watch Medical Clinic and its services. It does not provide medical advice, diagnosis, treatment, or a substitute for care from a qualified healthcare professional.</p>
+        <p>Using this website, calling the clinic, or sending an email does not create a patient-provider relationship or confirm an appointment. Appointment availability and treatment recommendations are confirmed by the clinic after the appropriate scheduling and clinical steps.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Emergencies</h2>
+        <p>This website is not monitored for medical emergencies. If you are experiencing a medical emergency, call 911 or go to the nearest emergency department.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Website content and links</h2>
+        <p>We work to keep website information current, but services, hours, insurance participation, and other information may change. Please contact the clinic to confirm information that is important to your care.</p>
+        <p>This website links to third-party services, including the patient portal, maps, and social-media pages. Those services have their own terms and privacy practices. Health Watch Medical Clinic does not control their content or availability.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Contact us</h2>
+        <p>Questions about these website terms can be directed to Health Watch Medical Clinic at <a href={`tel:${CLINIC.phoneE164}`} class="font-medium text-primary hover:underline">{CLINIC.phone}</a> or <a href={`mailto:${CLINIC.email}`} class="font-medium text-primary hover:underline">{CLINIC.email}</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

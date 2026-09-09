@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { CLINIC } from '../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${CLINIC.siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Notice of Privacy Practices', item: `${CLINIC.siteUrl}/notice-of-privacy-practices/` },
+  ],
+}
+---
+
+<BaseLayout
+  title="Notice of Privacy Practices | Health Watch Medical Clinic"
+  description="Request the clinic-approved HIPAA Notice of Privacy Practices from Health Watch Medical Clinic."
+  canonical={`${CLINIC.siteUrl}/notice-of-privacy-practices/`}
+  esPath="/aviso-de-practicas-de-privacidad"
+  schemas={[breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-5 text-[13px] font-bold text-[#9089B8]"><a href="/" class="hover:text-primary">Home</a><span aria-hidden="true"> / </span><span aria-current="page">Notice of Privacy Practices</span></nav>
+      <h1 class="mb-3 text-[32px] font-display font-extrabold tracking-[-1px] text-neutral-900 lg:text-[42px]">Notice of Privacy Practices</h1>
+      <p class="text-lg font-medium leading-[1.7] text-neutral-600">How to obtain the clinic-approved HIPAA notice</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl prose prose-neutral max-w-none space-y-5 text-neutral-600 leading-relaxed text-[16px]">
+      <p>The clinic-approved Notice of Privacy Practices is available on request.</p>
+      <p>To request the current clinic-approved notice, please call <a href={`tel:${CLINIC.phoneE164}`} class="font-semibold text-primary hover:underline">{CLINIC.phone}</a> or ask the front desk during your visit. A copy is available at no charge.</p>
+      <div class="not-prose rounded-2xl bg-lavender p-6"><p class="text-sm leading-relaxed text-neutral-700">This page is a request path for the official notice; it is not itself the clinic’s formal HIPAA Notice of Privacy Practices. For website information handling, read the <a href="/privacy/" class="font-semibold text-primary hover:underline">Website Privacy Policy</a>.</p></div>
+    </div>
+  </section>
+</BaseLayout>

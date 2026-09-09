@@ -6,6 +6,7 @@ import { useTranslations, type Lang } from '../../data/translations'
 
 const props = withDefaults(defineProps<{ lang?: Lang }>(), { lang: 'en' })
 const t = computed(() => useTranslations(props.lang))
+const currentPath = typeof window === 'undefined' ? '' : window.location.pathname
 
 const navItems = computed(() => [
   ...NAV_KEYS.map((key) => ({ label: t.value.nav[key], href: route(key, props.lang) })),
@@ -105,13 +106,13 @@ onBeforeUnmount(() => {
         class="fixed top-0 right-0 bottom-0 w-72 bg-white z-50 lg:hidden shadow-2xl flex flex-col"
       >
         <div class="flex items-center justify-between p-5 bg-navy">
-          <span class="text-white font-display font-extrabold text-lg tracking-[-0.4px]"><span class="text-white">Health</span><span class="text-secondary">Watch</span></span>
+          <span class="text-white font-display font-extrabold text-lg tracking-[-0.4px]">Health Watch</span>
           <button
             @click="close"
             :aria-label="t.nav.closeMenu"
             class="text-white/80 hover:text-white transition-colors"
           >
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -121,6 +122,7 @@ onBeforeUnmount(() => {
           <li v-for="item in navItems" :key="item.href">
             <a
               :href="item.href"
+              :aria-current="item.href === currentPath ? 'page' : undefined"
               @click="close"
               class="flex items-center px-6 py-3.5 text-neutral-600 hover:text-primary hover:bg-neutral-50 font-semibold transition-colors border-b border-neutral-100"
             >
@@ -141,7 +143,7 @@ onBeforeUnmount(() => {
             :href="`tel:${CLINIC.phoneE164}`"
             class="block w-full text-center border-2 border-neutral-200 text-primary hover:bg-lavender font-bold py-3 rounded-full transition-colors"
           >
-            {{ CLINIC.phone }}
+            {{ t.nav.callUs }} {{ CLINIC.phone }}
           </a>
           <p class="text-center text-sm text-primary font-bold">Se habla español</p>
         </div>

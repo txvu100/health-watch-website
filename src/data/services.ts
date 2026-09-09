@@ -1,6 +1,19 @@
 export interface ServiceFAQ {
   q: string
   a: string
+  source?: {
+    label: string
+    href: string
+  }
+}
+
+export interface ServiceAppointmentCta {
+  label: string
+  labelEs: string
+  helper: string
+  helperEs: string
+  confirmationNotice: string
+  confirmationNoticeEs: string
 }
 
 export interface Service {
@@ -15,14 +28,28 @@ export interface Service {
   descriptionEs: string
   metaDescription: string
   metaDescriptionEs: string
+  /** Optional page-title override for a service with a distinct search intent. */
+  seoTitle?: string
+  seoTitleEs?: string
   heroKeyword: string
   heroKeywordEs: string
   icon: string
   highlights: string[]
   highlightsEs: string[]
+  /** Optional checklist displayed after the service overview. */
+  serviceItems?: string[]
+  serviceItemsEs?: string[]
+  /** Optional localized heading displayed before the service checklist. */
+  serviceItemsHeading?: string
+  serviceItemsHeadingEs?: string
+  /** Optional service-specific replacement for the shared clinic benefits. */
+  whyPoints?: string[]
+  whyPointsEs?: string[]
   faqs: ServiceFAQ[]
   faqsEs: ServiceFAQ[]
   relatedSlugs: string[]
+  /** Optional service-specific booking copy. The shared layout owns the secure destination. */
+  appointmentCta?: ServiceAppointmentCta
   /**
    * Per-language absolute URL to canonicalise to instead of this service's own
    * page, used where a standalone landing page covers the same ground (see
@@ -63,70 +90,86 @@ export const SERVICES: Service[] = [
     title: 'Blood Pressure Management',
     titleEs: 'Manejo de la Presión Arterial',
     shortDescription:
-      'Monitor and control hypertension with personalized treatment plans. Free blood pressure checks always available.',
+      'Hypertension evaluation, monitoring, medication management, and lifestyle guidance. Call to confirm availability and visit requirements for free blood-pressure checks.',
     shortDescriptionEs:
-      'Monitoreo y control de la hipertensión con planes personalizados. Revisión de presión arterial siempre disponible.',
-    description: `High blood pressure — also called hypertension — is one of the leading risk factors for heart disease, stroke, and kidney damage. Often called the "silent killer," it rarely causes symptoms until serious damage has already occurred. At Health Watch Medical Clinic, we provide comprehensive blood pressure management for patients of all ages in Oklahoma City.
+      'Evaluación, monitoreo y manejo de la hipertensión con orientación personalizada. Llame para confirmar la disponibilidad y los requisitos de las revisiones de presión arterial sin costo.',
+    description: `High blood pressure — also called hypertension — is one of the leading risk factors for heart disease, stroke, and kidney damage. Often called the "silent killer," it rarely causes symptoms until serious damage has already occurred. At Health Watch Medical Clinic, we provide blood pressure evaluation and management for adults and age-appropriate evaluation for children and adolescents in Oklahoma City.
 
-Our approach begins with a thorough evaluation to identify the root causes of your high blood pressure, including lifestyle factors, diet, stress, and underlying conditions. We offer free blood pressure checks to all patients without requiring an appointment — just walk in.
+Our approach begins with a thorough evaluation of factors that may contribute to high blood pressure, including medical history, medications, diet, physical activity, stress, and underlying health conditions. Call to confirm availability and visit requirements for free blood-pressure checks.
 
-If medication is needed, our providers work with you to find the right prescription and monitor your response over time. We also offer guidance on lifestyle modifications, including dietary changes and physical activity, that can significantly lower your blood pressure naturally.`,
-    descriptionEs: `La presión arterial alta —también llamada hipertensión— es uno de los principales factores de riesgo de enfermedades del corazón, derrame cerebral y daño renal. Se le conoce como el "asesino silencioso" porque rara vez causa síntomas hasta que el daño ya está hecho. En Health Watch Medical Clinic atendemos a pacientes de todas las edades en Oklahoma City para controlar la presión arterial.
+If medication is needed, our providers work with you to find the right prescription and monitor your response over time. We also provide guidance on nutrition, physical activity, weight management, sodium reduction, and other lifestyle changes that can help lower blood pressure and support your treatment plan.`,
+    descriptionEs: `La presión arterial alta —también llamada hipertensión— es uno de los principales factores de riesgo de enfermedades del corazón, derrame cerebral y daño renal. Se le conoce como el "asesino silencioso" porque rara vez causa síntomas hasta que el daño ya está hecho. En Health Watch Medical Clinic ofrecemos evaluación y manejo de la presión arterial para adultos y una evaluación apropiada para la edad de niños y adolescentes en Oklahoma City.
 
-Comenzamos con una evaluación completa para identificar la causa de su presión alta: alimentación, estrés, peso, actividad física y otras condiciones de salud. Ofrecemos **revisiones de presión arterial sin costo** a todos nuestros pacientes, y no necesita cita — puede llegar directamente durante nuestro horario de atención.
+Nuestro enfoque comienza con una evaluación completa de los factores que pueden contribuir a la presión arterial alta, incluidos los antecedentes médicos, los medicamentos, la alimentación, la actividad física, el estrés y las condiciones de salud subyacentes. Llame para confirmar la disponibilidad y los requisitos de la visita para las revisiones de presión arterial sin costo.
 
-Si necesita medicamento, su proveedor trabajará con usted para encontrar el tratamiento adecuado y dar seguimiento a su respuesta con el tiempo. También le orientamos sobre cambios en la dieta y la actividad física que pueden bajar su presión de forma natural.
+Si necesita medicamento, su proveedor trabajará con usted para encontrar el tratamiento adecuado y dar seguimiento a su respuesta con el tiempo. También ofrecemos orientación sobre nutrición, actividad física, control de peso, reducción de sodio y otros cambios de estilo de vida que pueden ayudar a bajar la presión arterial y apoyar su plan de tratamiento.
 
-Aceptamos SoonerCare, Medicaid, Medicare, seguros privados y pacientes que pagan en efectivo. Todo nuestro personal es bilingüe.`,
+Participamos con SoonerCare y Medicare, aceptamos muchos planes comerciales y atendemos a pacientes de pago propio. Hay personal que habla español disponible.`,
     metaDescription:
-      'Blood pressure & hypertension care in Oklahoma City, OK. Free BP checks, walk-ins welcome. SoonerCare & Medicaid accepted. Call (405) 949-1552.',
+      'Blood pressure and hypertension care in Oklahoma City, OK. Call to ask about free blood-pressure checks and coverage. (405) 949-1552.',
     metaDescriptionEs:
-      'Control de presión arterial e hipertensión en Oklahoma City, OK. Revisión de presión sin costo. Sin cita previa. Aceptamos SoonerCare. Llame (405) 949-1552.',
+      'Control de presión arterial e hipertensión en Oklahoma City, OK. Llame para preguntar sobre revisiones de presión arterial y cobertura. (405) 949-1552.',
     heroKeyword: 'blood pressure management Oklahoma City',
     heroKeywordEs: 'control de presión arterial Oklahoma City',
     icon: ICONS.heart,
-    highlights: ['Free blood pressure checks — no appointment needed', 'Personalized treatment & medication management', 'Lifestyle and diet guidance'],
-    highlightsEs: ['Revisión de presión arterial sin costo y sin cita', 'Tratamiento y manejo de medicamentos personalizado', 'Orientación sobre alimentación y estilo de vida'],
+    highlights: ['Call to confirm free blood-pressure check availability and visit requirements', 'Personalized treatment & medication management', 'Lifestyle and diet guidance'],
+    highlightsEs: ['Llame para confirmar la disponibilidad y los requisitos de las revisiones de presión sin costo', 'Tratamiento y manejo de medicamentos personalizado', 'Orientación sobre alimentación y estilo de vida'],
     faqs: [
       {
         q: 'Do you offer free blood pressure checks?',
-        a: 'Yes! We offer complimentary blood pressure checks to all walk-in patients. No appointment needed — just come in during business hours.',
+        a: 'Call to confirm availability of free blood-pressure checks and whether an appointment, registration, insurance, or established-patient status is required before you visit.',
       },
       {
         q: 'What is considered high blood pressure?',
-        a: 'Blood pressure is considered high (hypertension) when it consistently reads 130/80 mmHg or higher. Normal blood pressure is below 120/80 mmHg.',
+        a: 'For adults, normal blood pressure is below 120/80 mmHg. Blood pressure consistently measuring 130/80 mmHg or higher may indicate hypertension. Diagnosis is based on multiple properly obtained readings and may include home blood pressure monitoring.',
       },
       {
         q: 'Do I need insurance to be seen for blood pressure management?',
-        a: 'No. We accept SoonerCare, Medicaid, Medicare, private insurance, and self-pay patients. We work hard to make care affordable for everyone.',
+        a: 'Self-pay patients are welcome. We participate with SoonerCare and Medicare and accept many commercial plans; call to confirm whether we participate with your specific plan.',
       },
       {
         q: 'How often should I check my blood pressure?',
-        a: 'If you have been diagnosed with hypertension, we typically recommend monitoring at least monthly and during every clinic visit. Your provider will advise based on your specific situation.',
+        a: 'Monitoring frequency depends on your blood pressure readings and treatment plan. Your provider may recommend checking at home more frequently when hypertension is newly diagnosed or medications are being adjusted. Bring a record of your readings to each appointment.',
+      },
+      {
+        q: 'When is high blood pressure an emergency?',
+        a: 'If your blood pressure is higher than 180/120 mmHg, wait at least one minute and check it again. If it remains very high, contact a healthcare professional immediately. Call 911 if it is accompanied by chest pain, shortness of breath, weakness, numbness, vision changes, difficulty speaking, or other concerning symptoms.',
       },
     ],
     faqsEs: [
       {
         q: '¿Ofrecen revisión de presión arterial sin costo?',
-        a: '¡Sí! Ofrecemos revisión de presión arterial gratuita a todos los pacientes que llegan sin cita. No necesita hacer cita — solo venga durante nuestro horario de atención.',
+        a: 'Llame para confirmar la disponibilidad de revisiones de presión arterial sin costo y si se requiere cita, registro, seguro médico o ser paciente establecido antes de su visita.',
       },
       {
         q: '¿Qué se considera presión arterial alta?',
-        a: 'La presión arterial se considera alta (hipertensión) cuando marca constantemente 130/80 mmHg o más. La presión normal está por debajo de 120/80 mmHg.',
+        a: 'Para los adultos, la presión arterial normal está por debajo de 120/80 mmHg. Una presión arterial que se mantiene en 130/80 mmHg o más puede indicar hipertensión. El diagnóstico se basa en múltiples mediciones obtenidas correctamente y puede incluir el monitoreo de la presión arterial en casa.',
       },
       {
         q: '¿Necesito seguro médico para que me atiendan?',
-        a: 'No. Aceptamos SoonerCare, Medicaid, Medicare, seguros privados y pacientes que pagan en efectivo. Trabajamos para que la atención sea accesible para todos.',
+        a: 'Atendemos a pacientes de pago propio. Participamos con SoonerCare y Medicare y aceptamos muchos planes comerciales; llame para confirmar si participamos con su plan específico.',
       },
       {
         q: '¿Con qué frecuencia debo revisar mi presión arterial?',
-        a: 'Si le diagnosticaron hipertensión, generalmente recomendamos revisarla al menos una vez al mes y en cada visita a la clínica. Su proveedor le indicará según su caso.',
+        a: 'La frecuencia de monitoreo depende de sus lecturas de presión arterial y de su plan de tratamiento. Su proveedor puede recomendar que se la revise en casa con mayor frecuencia cuando la hipertensión se diagnostica recientemente o se están ajustando medicamentos. Lleve un registro de sus lecturas a cada cita.',
+      },
+      {
+        q: '¿Cuándo es una emergencia la presión arterial alta?',
+        a: 'Si su presión arterial es superior a 180/120 mmHg, espere al menos un minuto y vuelva a medirla. Si sigue muy alta, comuníquese de inmediato con un profesional de la salud. Llame al 911 si tiene dolor en el pecho, falta de aire, debilidad, entumecimiento, cambios en la visión, dificultad para hablar u otros síntomas preocupantes.',
       },
       {
         q: '¿Atienden en español?',
-        a: 'Sí. Todo nuestro personal es bilingüe. Puede recibir su consulta completamente en español, sin necesidad de traer un intérprete.',
+        a: 'Sí. Hay personal que habla español disponible para ayudarle a comunicarse durante su visita.',
       },
     ],
+    appointmentCta: {
+      label: 'Schedule a Blood Pressure Visit',
+      labelEs: 'Programe una visita para la presión arterial',
+      helper: 'Tell our staff you are requesting a blood pressure visit.',
+      helperEs: 'Dígale a nuestro personal que desea solicitar una visita para la presión arterial.',
+      confirmationNotice: 'Submitting this request does not confirm your appointment. Our staff will contact you to finalize scheduling.',
+      confirmationNoticeEs: 'Enviar una solicitud no confirma su cita. Nuestro personal se comunicará con usted para finalizar la programación.',
+    },
     relatedSlugs: ['diabetes-management', 'annual-sports-physicals', 'weight-loss-metabolic-services'],
   },
   {
@@ -135,95 +178,149 @@ Aceptamos SoonerCare, Medicaid, Medicare, seguros privados y pacientes que pagan
     title: 'Diabetes Management',
     titleEs: 'Manejo de la Diabetes',
     shortDescription:
-      'Ongoing care for Type 1 and Type 2 diabetes including A1C testing, glucose monitoring, and medication management.',
+      'Personalized diabetes care with A1C testing, blood sugar monitoring, medication management, and practical lifestyle support.',
     shortDescriptionEs:
-      'Atención continua para diabetes Tipo 1 y Tipo 2: pruebas de A1C, monitoreo de glucosa y manejo de medicamentos.',
-    description: `Diabetes is one of the most prevalent chronic conditions in Oklahoma, affecting nearly 12% of adults in the state. Left unmanaged, it can lead to serious complications including heart disease, vision loss, kidney disease, and nerve damage. At Health Watch Medical Clinic, we provide comprehensive diabetes management for both Type 1 and Type 2 diabetes.
+      'Atención personalizada para adultos con diabetes tipo 2, con pruebas de A1C, monitoreo de azúcar en la sangre, manejo de medicamentos y apoyo práctico para el estilo de vida.',
+    description: `Diabetes is a chronic condition that can affect many parts of the body. Without appropriate treatment and monitoring, it can increase the risk of heart disease, kidney disease, vision problems, nerve damage, and other serious complications.
 
-Our diabetes care includes regular monitoring of blood glucose and A1C levels, medication management or adjustment, and guidance on nutrition and lifestyle changes. We use a patient-centered approach, working closely with you to set achievable goals and build habits that support long-term blood sugar control.
+At Health Watch Medical Clinic, we provide personalized diabetes care for adults with Type 2 diabetes. We work with each patient to develop realistic treatment goals based on their health, medications, lifestyle, and risk of complications.
 
-We also offer referrals to endocrinologists, dietitians, and diabetes educators when specialized support is needed.`,
-    descriptionEs: `La diabetes es una de las condiciones crónicas más comunes en Oklahoma y afecta a casi el 12% de los adultos del estado. Sin control, puede causar complicaciones graves como enfermedades del corazón, pérdida de la vista, daño renal y daño en los nervios. En Health Watch Medical Clinic ofrecemos atención integral para la diabetes Tipo 1 y Tipo 2.
+Our diabetes services may include:`,
+    descriptionEs: `La diabetes es una condición crónica que puede afectar muchas partes del cuerpo. Sin el tratamiento y monitoreo adecuados, puede aumentar el riesgo de enfermedad cardíaca, enfermedad renal, problemas de visión, daño a los nervios y otras complicaciones graves.
 
-Nuestro cuidado incluye monitoreo regular de la glucosa y del nivel de **A1C**, manejo y ajuste de medicamentos, y orientación sobre alimentación y cambios de hábitos. Trabajamos con usted para fijar metas realistas y construir rutinas que mantengan su azúcar bajo control a largo plazo.
+En Health Watch Medical Clinic brindamos atención personalizada para adultos con diabetes tipo 2. Trabajamos con cada paciente para establecer metas realistas de tratamiento según su salud, medicamentos, estilo de vida y riesgo de complicaciones.
 
-Cuando se necesita apoyo especializado, lo referimos con endocrinólogos, nutricionistas y educadores en diabetes.
-
-La diabetes afecta de manera desproporcionada a la comunidad hispana. Si tiene antecedentes familiares, sobrepeso o síntomas como sed constante, orinar con frecuencia o cansancio, venga a hacerse una prueba — no necesita cita.`,
+Nuestros servicios para la diabetes pueden incluir:`,
     metaDescription:
-      'Diabetes clinic in Oklahoma City, OK. A1C testing, glucose monitoring and Type 1 & 2 care. Medicaid & SoonerCare accepted. Call (405) 949-1552.',
+      'Type 2 diabetes care in Oklahoma City with A1C testing, blood sugar monitoring, medication management, and lifestyle support. Call (405) 949-1552.',
     metaDescriptionEs:
-      'Clínica de diabetes en Oklahoma City, OK. Prueba de A1C, control de glucosa y atención Tipo 1 y 2. Aceptamos Medicaid y SoonerCare. Llame (405) 949-1552.',
+      'Atención para diabetes tipo 2 en Oklahoma City: prueba de A1C, monitoreo de glucosa, manejo de medicamentos y apoyo para el estilo de vida. Llame al (405) 949-1552.',
     heroKeyword: 'diabetes management clinic Oklahoma City',
     heroKeywordEs: 'clínica de diabetes Oklahoma City',
     icon: ICONS.chartBar,
-    highlights: ['A1C testing & glucose monitoring', 'Type 1 & Type 2 diabetes care', 'Medication & lifestyle support'],
-    highlightsEs: ['Prueba de A1C y monitoreo de glucosa', 'Atención para diabetes Tipo 1 y Tipo 2', 'Apoyo con medicamentos y estilo de vida'],
+    highlights: ['A1C testing and blood sugar monitoring', 'Type 2 diabetes management', 'Medication and lifestyle support'],
+    highlightsEs: ['Prueba de A1C y monitoreo de azúcar en la sangre', 'Manejo de la diabetes tipo 2', 'Apoyo con medicamentos y estilo de vida'],
+    serviceItems: [
+      'A1C and blood glucose monitoring',
+      'Review and adjustment of diabetes medications',
+      'Nutrition, physical activity, and weight-management counseling',
+      'Blood pressure and cholesterol management',
+      'Kidney-function and urine protein testing',
+      'Diabetic foot examinations',
+      'Referrals for diabetic eye examinations',
+      'Referrals to endocrinologists, dietitians, and diabetes educators when needed',
+    ],
+    serviceItemsEs: [
+      'Monitoreo de A1C y glucosa en la sangre',
+      'Revisión y ajuste de medicamentos para la diabetes',
+      'Orientación sobre nutrición, actividad física y control de peso',
+      'Manejo de la presión arterial y el colesterol',
+      'Pruebas de función renal y proteína en la orina',
+      'Exámenes de los pies relacionados con la diabetes',
+      'Referencias para exámenes de la vista relacionados con la diabetes',
+      'Referencias a endocrinólogos, nutricionistas y educadores en diabetes cuando se necesiten',
+    ],
+    whyPoints: [
+      'Same-day appointments may be available',
+      'Walk-ins welcome for many services',
+      'Bilingual staff — se habla español',
+      'SoonerCare, Medicare, Medicaid, and many private insurance plans accepted',
+      'Self-pay options available',
+      'Locally owned and independently operated in Oklahoma City',
+    ],
+    whyPointsEs: [
+      'Es posible que haya citas disponibles el mismo día',
+      'Se aceptan visitas sin cita para muchos servicios',
+      'Personal bilingüe — se habla español',
+      'Aceptamos SoonerCare, Medicare, Medicaid y muchos planes de seguro privados',
+      'Opciones de pago propio disponibles',
+      'Propiedad local y operación independiente en Oklahoma City',
+    ],
     faqs: [
       {
         q: 'What is an A1C test?',
-        a: 'An A1C test measures your average blood sugar level over the past 2–3 months. It is the gold standard for monitoring diabetes management. An A1C below 7% is generally the target for most diabetic patients.',
+        a: 'An A1C test estimates your average blood sugar level over the previous two to three months. It helps your healthcare provider determine how well your diabetes treatment plan is working.',
+        source: {
+          label: 'American Diabetes Association',
+          href: 'https://diabetes.org/about-diabetes/a1c',
+        },
       },
       {
-        q: 'Do you help with both Type 1 and Type 2 diabetes?',
-        a: 'Yes. We provide ongoing care for patients with Type 1 and Type 2 diabetes, including insulin management, oral medication adjustments, and lifestyle counseling.',
+        q: 'What should my A1C level be?',
+        a: 'For many adults with diabetes, an A1C goal of approximately 7% or lower may be recommended. However, the appropriate goal depends on your age, overall health, medications, risk of low blood sugar, and other individual factors. Your provider will help establish a goal that is appropriate for you.',
       },
       {
-        q: 'How often should I see a doctor if I have diabetes?',
-        a: 'Most patients with well-controlled diabetes should see their provider at least every 3–6 months. If your diabetes is newly diagnosed or poorly controlled, more frequent visits may be needed.',
+        q: 'How often should I have a diabetes follow-up visit?',
+        a: 'Many patients with stable diabetes are seen every three to six months. More frequent visits may be recommended if you are newly diagnosed, your blood sugar is not controlled, your medication has changed, or you are experiencing symptoms.',
       },
       {
-        q: 'Do you accept Medicaid for diabetes care?',
-        a: 'Yes. We accept Medicaid, SoonerCare, Medicare, and private insurance, as well as self-pay patients.',
+        q: 'Do you prescribe diabetes medications?',
+        a: 'Yes. After evaluating your health history, examination findings, and laboratory results, your provider can prescribe or adjust appropriate diabetes medications. Treatment recommendations are individualized for each patient.',
+      },
+      {
+        q: 'Do you accept insurance for diabetes care?',
+        a: 'We accept SoonerCare, Medicare, Medicaid, and many private insurance plans. Self-pay appointments are also available. Please contact the clinic to confirm coverage under your specific plan.',
       },
     ],
     faqsEs: [
       {
         q: '¿Qué es la prueba de A1C?',
-        a: 'La prueba de A1C mide su nivel promedio de azúcar en la sangre durante los últimos 2 a 3 meses. Es la referencia principal para vigilar el control de la diabetes. Para la mayoría de los pacientes la meta es mantenerla por debajo del 7%.',
+        a: 'La prueba de A1C estima su nivel promedio de azúcar en la sangre durante los últimos dos a tres meses. Ayuda a su proveedor de atención médica a determinar qué tan bien está funcionando su plan de tratamiento de la diabetes.',
+        source: {
+          label: 'American Diabetes Association',
+          href: 'https://diabetes.org/about-diabetes/a1c',
+        },
       },
       {
-        q: '¿Atienden diabetes Tipo 1 y Tipo 2?',
-        a: 'Sí. Damos atención continua a pacientes con diabetes Tipo 1 y Tipo 2, incluyendo manejo de insulina, ajuste de medicamentos orales y orientación sobre alimentación y actividad física.',
+        q: '¿Cuál debe ser mi nivel de A1C?',
+        a: 'Para muchos adultos con diabetes, se puede recomendar una meta de A1C de aproximadamente 7% o menos. Sin embargo, la meta adecuada depende de su edad, salud general, medicamentos, riesgo de azúcar baja y otros factores individuales. Su proveedor le ayudará a establecer una meta adecuada para usted.',
       },
       {
-        q: '¿Cada cuánto debo ver al médico si tengo diabetes?',
-        a: 'La mayoría de los pacientes con diabetes bien controlada deben consultar cada 3 a 6 meses. Si su diagnóstico es reciente o su azúcar no está controlada, es posible que necesite visitas más seguidas.',
+        q: '¿Con qué frecuencia debo tener una cita de seguimiento para la diabetes?',
+        a: 'Muchos pacientes con diabetes estable reciben atención cada tres a seis meses. Es posible que se recomienden visitas más frecuentes si su diagnóstico es reciente, su azúcar no está controlada, su medicamento ha cambiado o está presentando síntomas.',
       },
       {
-        q: '¿Aceptan Medicaid para la atención de diabetes?',
-        a: 'Sí. Aceptamos Medicaid, SoonerCare, Medicare y seguros privados, así como pacientes que pagan en efectivo.',
+        q: '¿Recetan medicamentos para la diabetes?',
+        a: 'Sí. Después de evaluar sus antecedentes de salud, los resultados del examen y los resultados de laboratorio, su proveedor puede recetar o ajustar los medicamentos apropiados para la diabetes. Las recomendaciones de tratamiento se individualizan para cada paciente.',
       },
       {
-        q: '¿Cuáles son los síntomas de la diabetes?',
-        a: 'Los síntomas más comunes son sed constante, orinar con frecuencia, cansancio, visión borrosa, heridas que tardan en sanar y pérdida de peso sin explicación. Si tiene alguno de estos síntomas, venga a hacerse una prueba.',
+        q: '¿Aceptan seguro para la atención de diabetes?',
+        a: 'Aceptamos SoonerCare, Medicare, Medicaid y muchos planes de seguro privados. También hay citas de pago propio disponibles. Comuníquese con la clínica para confirmar la cobertura de su plan específico.',
       },
     ],
+    appointmentCta: {
+      label: 'Book this service',
+      labelEs: 'Programe este servicio',
+      helper: 'Diabetes follow-up visits are typically scheduled and may include laboratory work. Same-day appointments may be available; call to confirm availability and visit requirements.',
+      helperEs: 'Las citas de seguimiento para la diabetes generalmente se programan y pueden incluir análisis de laboratorio. Es posible que haya citas disponibles el mismo día; llame para confirmar la disponibilidad y los requisitos de la visita.',
+      confirmationNotice: 'Submitting this request does not confirm your appointment. Our staff will contact you to finalize scheduling.',
+      confirmationNoticeEs: 'Enviar una solicitud no confirma su cita. Nuestro personal se comunicará con usted para finalizar la programación.',
+    },
     relatedSlugs: ['blood-pressure-management', 'weight-loss-metabolic-services', 'annual-sports-physicals'],
   },
   {
     slug: 'womens-primary-health',
     slugEs: 'salud-primaria-mujer',
-    title: "Women's Primary Health Care",
-    titleEs: 'Salud Primaria de la Mujer',
+    title: "Women's Health & Primary Care",
+    titleEs: 'Salud de la Mujer y Atención Primaria',
     shortDescription:
-      "Comprehensive women's healthcare including well-woman exams, family planning, contraceptive management, and preventive screenings.",
+      "Preventive and primary care services for women, including wellness examinations, contraceptive counseling, and age-appropriate screenings.",
     shortDescriptionEs:
-      'Atención integral para la mujer: exámenes anuales, planificación familiar, anticonceptivos y exámenes preventivos.',
+      'Servicios preventivos y de atención primaria para la mujer, incluidos exámenes de bienestar, orientación anticonceptiva y pruebas de detección apropiadas para la edad.',
     description: `Health Watch Medical Clinic offers comprehensive primary healthcare services tailored specifically to the needs of women in Oklahoma City. Our experienced providers are committed to helping women of all ages maintain optimal health through preventive care, early detection, and compassionate treatment.
 
-Our women's health services include annual well-woman exams, cervical cancer screenings (Pap smears), family planning consultations, and contraceptive management. We offer prescriptions and monitoring for birth control pills, patches, rings, injections, and IUDs.
+Our women's health services include annual wellness exams, cervical cancer screenings when due, contraceptive counseling, and age-appropriate preventive screenings.
 
-We also screen for common women's health concerns such as osteoporosis, thyroid disorders, anemia, and hormonal imbalances. Bilingual staff (English/Spanish) ensures that every patient feels comfortable and understood.`,
+We also screen for common women's health concerns such as osteoporosis, thyroid disorders, anemia, and hormonal imbalances. Spanish-speaking staff are available to help patients communicate during their visit.`,
     descriptionEs: `En Health Watch Medical Clinic ofrecemos atención primaria integral pensada específicamente para las necesidades de la mujer en Oklahoma City. Nuestras proveedoras acompañan a mujeres de todas las edades con cuidado preventivo, detección temprana y trato respetuoso.
 
-Nuestros servicios incluyen el **examen anual de la mujer**, detección de cáncer cervical (prueba de Papanicolaou), consultas de planificación familiar y manejo de anticonceptivos. Recetamos y damos seguimiento a pastillas anticonceptivas, parches, anillos, inyecciones y referencias para la colocación del DIU.
+Nuestros servicios incluyen el **examen anual de la mujer**, detección de cáncer cervical cuando corresponde, orientación anticonceptiva y pruebas preventivas apropiadas para la edad.
 
 También hacemos pruebas para detectar condiciones frecuentes como osteoporosis, problemas de tiroides, anemia y desequilibrios hormonales.
 
-Todo nuestro personal es bilingüe. Sabemos que hablar de salud íntima es más fácil en su propio idioma, y queremos que se sienta cómoda y bien informada en cada visita.`,
+Hay personal que habla español disponible para ayudarle a comunicarse durante su visita.`,
     metaDescription:
-      "Women's health clinic in Oklahoma City, OK. Well-woman exams, Pap smears, family planning & contraceptive management. SoonerCare accepted. (405) 949-1552.",
+      "Women's health and primary care in Oklahoma City, OK. Wellness examinations, contraceptive counseling, and preventive screenings. (405) 949-1552.",
     metaDescriptionEs:
       'Clínica de salud para la mujer en Oklahoma City, OK. Examen anual, Papanicolaou, planificación familiar y anticonceptivos. Se habla español. (405) 949-1552.',
     heroKeyword: "women's health clinic Oklahoma City",
@@ -246,7 +343,7 @@ Todo nuestro personal es bilingüe. Sabemos que hablar de salud íntima es más 
       },
       {
         q: "Do you have Spanish-speaking staff for women's health visits?",
-        a: 'Yes. Our clinic is fully bilingual — we have Spanish-speaking staff available to ensure you feel comfortable and fully informed during your visit.',
+        a: 'Spanish-speaking staff are available to help patients communicate during their visit.',
       },
     ],
     faqsEs: [
@@ -264,11 +361,11 @@ Todo nuestro personal es bilingüe. Sabemos que hablar de salud íntima es más 
       },
       {
         q: '¿Puedo recibir la consulta en español?',
-        a: 'Sí. Nuestra clínica es completamente bilingüe. Contamos con personal que habla español para que se sienta cómoda y entienda toda la información de su visita.',
+        a: 'Hay personal que habla español disponible para ayudarle a comunicarse durante su visita.',
       },
       {
         q: '¿Necesito seguro médico para el examen anual?',
-        a: 'No. Aceptamos SoonerCare, Medicaid, Medicare y seguros privados, y también atendemos a pacientes que pagan en efectivo.',
+        a: 'Atendemos a pacientes de pago propio. Participamos con SoonerCare y Medicare y aceptamos muchos planes comerciales; llame para confirmar si participamos con su plan específico.',
       },
     ],
     relatedSlugs: ['mental-health-screening', 'annual-sports-physicals', 'vaccines-immunizations'],
@@ -276,85 +373,177 @@ Todo nuestro personal es bilingüe. Sabemos que hablar de salud íntima es más 
   {
     slug: 'immigration-medical-exam',
     slugEs: 'examen-medico-inmigracion',
-    title: 'Immigration Medical Exam (I-693)',
-    titleEs: 'Examen Médico para Inmigración (I-693)',
+    title: 'Immigration Medical Exam (Form I-693)',
+    titleEs: 'Examen Médico de Inmigración (Formulario I-693)',
     shortDescription:
-      'USCIS-certified civil surgeon exams for Green Card and permanent residency applicants. Form I-693 completed quickly and accurately.',
+      'Immigration medical examinations performed by a USCIS-designated civil surgeon for applicants seeking adjustment of status to lawful permanent residence.',
     shortDescriptionEs:
-      'Exámenes médicos certificados por USCIS para solicitantes de Green Card. Formulario I-693 completado con precisión.',
-    description: `Health Watch Medical Clinic is a USCIS-designated civil surgeon clinic in Oklahoma City, authorized to perform the required immigration medical examination for U.S. permanent residency (Green Card) and citizenship applicants.
+      'Exámenes médicos de inmigración realizados por un cirujano civil designado por USCIS para solicitantes de ajuste de estatus a residencia permanente legal.',
+    description: `Health Watch Medical Clinic provides USCIS immigration medical examinations in Oklahoma City. Our USCIS-designated civil surgeon completes Form I-693 for applicants who are required to undergo a medical examination as part of the adjustment-of-status process.
 
-The immigration medical exam uses Form I-693 (Report of Immigration Medical Examination and Vaccination Record), which is required for most adjustment of status applications filed with Form I-485. As of 2024, USCIS requires that the completed I-693 be submitted together with the I-485 in a sealed envelope rather than brought to the interview.
+The examination includes a review of your medical and vaccination history, a physical examination, tuberculosis (TB) screening, required laboratory testing, and the required evaluation of your physical and mental health history and medical conditions identified in the CDC Technical Instructions for Civil Surgeons.
 
-Our exam includes a complete physical examination, review of vaccination records, required immunizations, tuberculosis (TB) screening, and mental health screening. We screen for all conditions designated by the CDC, and complete the paperwork accurately and promptly. We have bilingual (English/Spanish) staff to guide you through every step.
+Vaccination requirements depend on your age, documented vaccination history, evidence of immunity, medical contraindications, and the time of year. You may not need every vaccine listed by the CDC. Please bring all available written vaccination records so we can determine which vaccinations, if any, are still required. The CDC requires at least one dose of each applicable age-appropriate vaccine when an applicant is not already up to date, unless an appropriate waiver reason applies.
 
-**What to bring:** Government-issued photo ID, vaccination records, any prior medical records relevant to your health history, and payment.`,
-    descriptionEs: `Health Watch Medical Clinic es una clínica con **cirujano civil designado por USCIS** en Oklahoma City, autorizada para realizar el examen médico de inmigración requerido para la residencia permanente (Green Card) y la ciudadanía estadounidense.
+Once the examination and all required follow-up items are complete, the civil surgeon will provide your completed Form I-693 in a sealed envelope for submission to USCIS. Do not open the sealed envelope. You will also receive a copy for your records.
 
-El Formulario I-693 (Informe de Examen Médico de Inmigración y Registro de Vacunación) es requerido por USCIS para la mayoría de las solicitudes de ajuste de estatus que se presentan con el Formulario I-485. El examen debe ser realizado por un cirujano civil designado por USCIS — no cualquier médico puede completarlo.
+Insurance coverage varies. Immigration medical examinations are generally self-pay. Laboratory testing, vaccinations, and imaging may involve additional charges.
 
-**Qué incluye el examen:** examen físico completo de cabeza a pies, revisión de su historial de vacunación, las vacunas requeridas según su edad e historial, prueba de tuberculosis (TB), evaluación de salud mental, detección de las condiciones designadas por los CDC, y el llenado y sellado del Formulario I-693.
+Contact the clinic before your visit if your vaccination records are in a language other than English, as a reliable English translation may be required.`,
+    descriptionEs: `Health Watch Medical Clinic realiza exámenes médicos de inmigración de USCIS en Oklahoma City. Nuestro cirujano civil designado por USCIS completa el Formulario I-693 para los solicitantes que deben someterse a un examen médico como parte del proceso de ajuste de estatus.
 
-**Cambio importante de USCIS (2024):** ahora se requiere que el I-693 completado se presente **junto con el Formulario I-485**, en un sobre sellado. No abra el sobre después de que su cirujano civil lo selle, y no lo lleve por separado a su entrevista.
+El examen incluye la revisión de sus antecedentes médicos y de vacunación, un examen físico, pruebas de tuberculosis (TB), análisis de laboratorio requeridos y la evaluación requerida de sus antecedentes de salud física y mental, así como de las condiciones médicas identificadas en las Instrucciones Técnicas de los CDC para Cirujanos Civiles.
 
-**Qué debe traer:** identificación oficial con foto (pasaporte o identificación del gobierno), su tarjeta o historial de vacunas, cualquier registro médico relevante y su forma de pago.
+Los requisitos de vacunación dependen de su edad, historial de vacunación documentado, evidencia de inmunidad, contraindicaciones médicas y la época del año. Es posible que no necesite todas las vacunas enumeradas por los CDC. Traiga todos los registros escritos de vacunación que tenga para que podamos determinar qué vacunas, si alguna, aún se requieren. Los CDC requieren al menos una dosis de cada vacuna aplicable y apropiada para la edad cuando el solicitante no está al día, a menos que se aplique una razón de exención adecuada.
 
-Nuestro equipo bilingüe lo guiará paso a paso por todo el proceso. **No necesita saber inglés** para completar su examen de inmigración con nosotros.`,
+Una vez que se completen el examen y todos los elementos de seguimiento requeridos, el cirujano civil le entregará el Formulario I-693 completo en un sobre sellado para presentarlo a USCIS. No abra el sobre sellado. También recibirá una copia para sus registros.
+
+La cobertura de seguro varía. Los exámenes médicos de inmigración generalmente son de pago propio. Los análisis de laboratorio, las vacunas y las imágenes pueden implicar cargos adicionales.
+
+Comuníquese con la clínica antes de su visita si sus registros de vacunación están en un idioma distinto del inglés, ya que puede requerirse una traducción confiable al inglés.`,
     metaDescription:
-      'USCIS civil surgeon immigration medical exam (I-693) in Oklahoma City, OK. Green Card physicals done fast. Se habla Español. Call (405) 949-1552.',
+      'Immigration medical exams and Form I-693 completion in Oklahoma City by a USCIS-designated civil surgeon. Spanish-speaking staff. Call (405) 949-1552.',
     metaDescriptionEs:
-      'Examen médico de inmigración I-693 en Oklahoma City, OK. Cirujano civil designado por USCIS para Green Card. Se habla español. Llame (405) 949-1552.',
+      'Exámenes médicos de inmigración y Formulario I-693 en Oklahoma City con un cirujano civil designado por USCIS. Se habla español. Llame (405) 949-1552.',
     heroKeyword: 'USCIS I-693 civil surgeon Oklahoma City',
     heroKeywordEs: 'examen médico de inmigración Oklahoma City',
     icon: ICONS.documentText,
-    highlights: ['Complete physical exam', 'Required immunizations', 'Form I-693 completed quickly and accurately'],
-    highlightsEs: ['Examen físico completo', 'Vacunas requeridas por USCIS', 'Formulario I-693 completado y sellado con precisión'],
+    highlights: [
+      'Complete immigration medical examination',
+      'Required laboratory testing and TB screening',
+      'Review of age-appropriate vaccination requirements',
+      'Accurate completion of Form I-693',
+    ],
+    highlightsEs: [
+      'Examen médico de inmigración completo',
+      'Análisis de laboratorio requeridos y pruebas de TB',
+      'Revisión de requisitos de vacunación apropiados para la edad',
+      'Llenado preciso del Formulario I-693',
+    ],
+    serviceItemsHeading: 'What to bring',
+    serviceItemsHeadingEs: 'Qué debe traer',
+    serviceItems: [
+      'Government-issued photo identification',
+      'All available vaccination records',
+      'Relevant medical records, including records of previous tuberculosis testing or treatment',
+      'A list of current medications',
+      'Any immigration documents requested by the clinic',
+      'Payment for the examination and any additional services',
+    ],
+    serviceItemsEs: [
+      'Identificación oficial con foto',
+      'Todos los registros de vacunación disponibles',
+      'Registros médicos relevantes, incluidos los registros de pruebas o tratamiento previos de tuberculosis',
+      'Una lista de los medicamentos actuales',
+      'Cualquier documento de inmigración solicitado por la clínica',
+      'Pago por el examen y cualquier servicio adicional',
+    ],
+    whyPoints: [
+      'USCIS-designated civil surgeon',
+      'Same-day appointments frequently available',
+      'Experienced assistance with the I-693 process',
+      'English- and Spanish-speaking staff',
+      'Convenient Oklahoma City location',
+      'Vaccinations available when medically appropriate',
+    ],
+    whyPointsEs: [
+      'Cirujano civil designado por USCIS',
+      'Con frecuencia hay citas disponibles el mismo día',
+      'Asistencia con experiencia en el proceso del I-693',
+      'Personal que habla inglés y español',
+      'Ubicación conveniente en Oklahoma City',
+      'Vacunas disponibles cuando sean médicamente apropiadas',
+    ],
     faqs: [
       {
         q: 'What is Form I-693?',
-        a: 'Form I-693 is the Report of Immigration Medical Examination and Vaccination Record required by USCIS for most Green Card (permanent residency) applicants. It must be completed by a USCIS-designated civil surgeon like Health Watch Medical Clinic.',
+        a: 'Form I-693 is the Report of Immigration Medical Examination and Vaccination Record. It is used to document the required medical examination for certain applicants seeking adjustment of status to lawful permanent residence. It must be completed and signed by a USCIS-designated civil surgeon.',
+      },
+      {
+        q: 'Is Form I-693 required for a citizenship application?',
+        a: 'Form I-693 is generally associated with adjustment of status to lawful permanent residence and is not routinely required for naturalization or citizenship applications.',
       },
       {
         q: 'How long does the immigration medical exam take?',
-        a: 'The exam typically takes 45–90 minutes depending on required vaccinations and any follow-up tests needed. We work efficiently to minimize your wait time.',
+        a: 'The initial appointment usually takes approximately 45–90 minutes. However, the form may not be completed during the first visit because the clinic must receive required laboratory results. Additional time may also be needed if you require vaccinations, a chest X-ray, medical records, treatment, or another evaluation.',
       },
       {
         q: 'What vaccinations are required for the immigration medical exam?',
-        a: 'Required vaccinations vary by age and vaccination history, but generally include MMR, Varicella, Hepatitis A and B, Tdap, flu, and others per CDC requirements. Bring your existing vaccination records to help avoid unnecessary re-vaccination.',
+        a: 'Requirements depend on your age, vaccination history, documented immunity, medical circumstances, and the season. Vaccines may include Tdap or Td, polio, MMR, hepatitis B, varicella, influenza, and other age-appropriate vaccines listed in the CDC Technical Instructions. Hepatitis A, for example, is generally an immigration requirement only through age 18—not for every adult applicant.',
+        source: {
+          label: 'CDC civil-surgeon vaccination guidance',
+          href: 'https://www.cdc.gov/immigrant-refugee-health/hcp/civil-surgeons/vaccination.html',
+        },
+      },
+      {
+        q: 'Do I need to complete an entire vaccine series before my I-693 can be signed?',
+        a: 'Usually not. If a required vaccine series cannot be completed during the examination period, the civil surgeon may administer the dose currently due and document the appropriate reason why the remaining doses were not given.',
+      },
+      {
+        q: 'What if my tuberculosis blood test is positive?',
+        a: 'A positive TB blood test does not automatically mean you have active tuberculosis. A chest X-ray and, in some cases, additional testing will be required before the examination can be completed.',
+        source: {
+          label: 'CDC TB instructions for civil surgeons',
+          href: 'https://www.cdc.gov/immigrant-refugee-health/hcp/civil-surgeons/tuberculosis.html',
+        },
       },
       {
         q: 'Do you have Spanish-speaking staff for immigration exams?',
-        a: 'Yes. We are a fully bilingual clinic (English/Spanish) and our staff is experienced in guiding immigration applicants through the I-693 process step by step.',
+        a: 'Yes. Spanish-speaking staff are available to help applicants understand the clinic’s examination process and required follow-up steps.',
       },
       {
         q: 'When do I submit the I-693 to USCIS?',
-        a: "As of 2024, USCIS requires applicants to submit the completed I-693 in a sealed envelope together with their Form I-485 adjustment of status application — not at the interview. Your civil surgeon will seal the envelope after completing the exam. Don't open it.",
+        a: 'USCIS requires certain applicants filing Form I-485 to include Form I-693 with their application; otherwise, the Form I-485 may be rejected. Filing requirements can depend on the applicant’s circumstances, so applicants should follow the current USCIS form instructions or advice from their authorized immigration representative.',
+        source: {
+          label: 'Current USCIS Form I-485 instructions',
+          href: 'https://www.uscis.gov/i-485',
+        },
       },
     ],
     faqsEs: [
       {
         q: '¿Qué es el Formulario I-693?',
-        a: 'El Formulario I-693 es el Informe de Examen Médico de Inmigración y Registro de Vacunación que USCIS requiere para la mayoría de los solicitantes de la Green Card (residencia permanente). Debe ser completado por un cirujano civil designado por USCIS, como Health Watch Medical Clinic.',
+        a: 'El Formulario I-693 es el Informe de Examen Médico de Inmigración y Registro de Vacunación. Se usa para documentar el examen médico requerido para ciertos solicitantes que buscan ajuste de estatus a residencia permanente legal. Debe ser completado y firmado por un cirujano civil designado por USCIS.',
+      },
+      {
+        q: '¿Se requiere el Formulario I-693 para una solicitud de ciudadanía?',
+        a: 'El Formulario I-693 generalmente se relaciona con el ajuste de estatus a residencia permanente legal y no se requiere habitualmente para solicitudes de naturalización o ciudadanía.',
       },
       {
         q: '¿Cuánto tiempo dura el examen médico de inmigración?',
-        a: 'El examen normalmente dura entre 45 y 90 minutos, según las vacunas que necesite y si se requieren pruebas adicionales. Trabajamos con eficiencia para reducir su tiempo de espera.',
+        a: 'La cita inicial generalmente toma aproximadamente 45–90 minutos. Sin embargo, es posible que el formulario no se complete durante la primera visita porque la clínica debe recibir los resultados de laboratorio requeridos. También puede necesitarse más tiempo si requiere vacunas, una radiografía de tórax, registros médicos, tratamiento u otra evaluación.',
       },
       {
         q: '¿Qué vacunas se requieren para el examen de inmigración?',
-        a: 'Las vacunas requeridas varían según su edad y su historial, pero generalmente incluyen MMR (sarampión, paperas y rubéola), varicela, hepatitis A y B, Tdap, influenza y otras según los CDC. Traiga su tarjeta de vacunas para evitar repetir vacunas innecesariamente.',
+        a: 'Los requisitos dependen de su edad, historial de vacunación, inmunidad documentada, circunstancias médicas y la temporada. Las vacunas pueden incluir Tdap o Td, polio, MMR, hepatitis B, varicela, influenza y otras vacunas apropiadas para la edad incluidas en las Instrucciones Técnicas de los CDC. La hepatitis A, por ejemplo, generalmente es un requisito de inmigración solo hasta los 18 años, no para todos los solicitantes adultos.',
+        source: {
+          label: 'Guía de vacunación de los CDC para cirujanos civiles',
+          href: 'https://www.cdc.gov/immigrant-refugee-health/hcp/civil-surgeons/vaccination.html',
+        },
+      },
+      {
+        q: '¿Debo completar una serie completa de vacunas antes de que puedan firmar mi I-693?',
+        a: 'Por lo general, no. Si una serie de vacunas requerida no puede completarse durante el período del examen, el cirujano civil puede administrar la dosis que corresponde en ese momento y documentar la razón apropiada por la que no se administraron las dosis restantes.',
+      },
+      {
+        q: '¿Qué sucede si mi análisis de sangre para tuberculosis da positivo?',
+        a: 'Un análisis de sangre positivo para TB no significa automáticamente que tenga tuberculosis activa. Se requerirá una radiografía de tórax y, en algunos casos, pruebas adicionales antes de que pueda completarse el examen.',
+        source: {
+          label: 'Instrucciones de los CDC sobre TB para cirujanos civiles',
+          href: 'https://www.cdc.gov/immigrant-refugee-health/hcp/civil-surgeons/tuberculosis.html',
+        },
       },
       {
         q: '¿Necesito hablar inglés para hacer mi examen?',
-        a: 'No. Nuestra clínica es completamente bilingüe y nuestro personal tiene experiencia guiando a solicitantes de inmigración paso a paso por todo el proceso del I-693 en español.',
+        a: 'No. Hay personal que habla español disponible para ayudar a los solicitantes a entender el proceso de examen de la clínica y los pasos de seguimiento requeridos.',
       },
       {
         q: '¿Cuándo debo entregar el I-693 a USCIS?',
-        a: 'Desde 2024, USCIS requiere que entregue el I-693 completado en un sobre sellado junto con su Formulario I-485 de ajuste de estatus — no en la entrevista. Su cirujano civil sellará el sobre al terminar el examen. No lo abra.',
-      },
-      {
-        q: '¿El examen de inmigración lo cubre el seguro médico?',
-        a: 'Generalmente los seguros no cubren el examen de inmigración porque USCIS lo requiere como parte de un trámite migratorio, no como atención médica. Llámenos al (405) 949-1552 para conocer el costo y las formas de pago.',
+        a: 'USCIS requiere que ciertos solicitantes que presentan el Formulario I-485 incluyan el Formulario I-693 con su solicitud; de lo contrario, el Formulario I-485 puede ser rechazado. Los requisitos de presentación pueden depender de las circunstancias del solicitante, por lo que debe seguir las instrucciones vigentes de los formularios de USCIS o el consejo de su representante de inmigración autorizado.',
+        source: {
+          label: 'Instrucciones vigentes de USCIS para el Formulario I-485',
+          href: 'https://www.uscis.gov/i-485',
+        },
       },
     ],
     relatedSlugs: ['vaccines-immunizations', 'annual-sports-physicals', 'mental-health-screening'],
@@ -365,38 +554,38 @@ Nuestro equipo bilingüe lo guiará paso a paso por todo el proceso. **No necesi
     title: 'Mental Health Screening',
     titleEs: 'Evaluación de Salud Mental',
     shortDescription:
-      'Evaluation and treatment for depression, anxiety, and other mental health concerns. Referrals to specialists when needed.',
+      'Screening for depression, anxiety, and other behavioral health concerns, with referrals when additional evaluation or treatment is needed.',
     shortDescriptionEs:
-      'Evaluación y tratamiento de depresión, ansiedad y otros problemas de salud mental. Referidos a especialistas.',
-    description: `Mental health is just as important as physical health, yet it is often under-addressed in primary care settings. At Health Watch Medical Clinic in Oklahoma City, we integrate mental health screening and basic treatment into our family medicine practice so that patients don't fall through the gaps.
+      'Detección de depresión, ansiedad y otros problemas de salud conductual, con referencias cuando se necesite evaluación o tratamiento adicional.',
+    description: `Mental health is an important part of overall health. At Health Watch Medical Clinic in Oklahoma City, we screen for depression, anxiety, and other behavioral health concerns and provide referrals when additional evaluation or treatment is needed.
 
-Our providers screen for depression, anxiety, and other common mental health conditions using validated tools such as the PHQ-9 and GAD-7. If screening reveals a concern, we work with you to develop a care plan that may include counseling referrals, medication management, lifestyle modifications, and follow-up visits.
+Our providers use screening tools such as the PHQ-9 and GAD-7. If screening identifies a concern, we can help connect you with appropriate additional evaluation or treatment.
 
-We understand that seeking mental health care can feel difficult. Our compassionate, bilingual team creates a safe and non-judgmental environment where patients feel comfortable discussing their emotional wellbeing.`,
-    descriptionEs: `La salud mental es tan importante como la salud física, pero muchas veces no se atiende en la consulta médica general. En Health Watch Medical Clinic integramos la evaluación y el tratamiento inicial de salud mental dentro de nuestra práctica de medicina familiar en Oklahoma City, para que ningún paciente quede sin apoyo.
+We understand that seeking mental health care can feel difficult. Spanish-speaking staff are available to help patients communicate during their visit.`,
+    descriptionEs: `La salud mental es una parte importante de la salud general. En Health Watch Medical Clinic detectamos depresión, ansiedad y otros problemas de salud conductual, y ofrecemos referencias cuando se necesite evaluación o tratamiento adicional.
 
-Nuestros proveedores evalúan depresión, ansiedad y otras condiciones comunes usando herramientas validadas como el PHQ-9 y el GAD-7. Si la evaluación muestra un problema, creamos junto con usted un plan de atención que puede incluir referencias a consejería, manejo de medicamentos, cambios de hábitos y visitas de seguimiento.
+Nuestros proveedores usan herramientas de detección como el PHQ-9 y el GAD-7. Si la detección identifica una preocupación, podemos ayudarle a conectarse con evaluación o tratamiento adicional apropiado.
 
-Entendemos que pedir ayuda para la salud mental puede ser difícil, y que en muchas familias todavía es un tema del que no se habla. Nuestro equipo bilingüe ofrece un espacio seguro, confidencial y sin juicios donde usted puede hablar de cómo se siente en su propio idioma.
+Entendemos que pedir ayuda para la salud mental puede ser difícil. Hay personal que habla español disponible para ayudarle a comunicarse durante su visita.
 
 **Si está en crisis,** llame al **988** (Línea de Prevención del Suicidio y Crisis, disponible en español) o acuda a la sala de emergencias más cercana. Nuestra clínica atiende situaciones que no son de emergencia.`,
     metaDescription:
-      'Mental health screening in Oklahoma City, OK. Depression & anxiety evaluation, treatment & referrals. Medicaid accepted. Bilingual staff. (405) 949-1552.',
+      'Mental health screening in Oklahoma City, OK. Screening for depression and anxiety with referrals when needed. (405) 949-1552.',
     metaDescriptionEs:
-      'Evaluación de salud mental en Oklahoma City, OK. Depresión y ansiedad: diagnóstico, tratamiento y referidos. Personal bilingüe. Llame (405) 949-1552.',
+      'Detección de salud mental en Oklahoma City, OK. Detección de depresión y ansiedad con referencias cuando se necesiten. Llame al (405) 949-1552.',
     heroKeyword: 'mental health screening Oklahoma City',
     heroKeywordEs: 'salud mental en español Oklahoma City',
     icon: ICONS.brain,
-    highlights: ['Confidential depression & anxiety screening', 'Medication management when appropriate', 'Referrals to specialists when needed'],
-    highlightsEs: ['Evaluación confidencial de depresión y ansiedad', 'Manejo de medicamentos cuando es apropiado', 'Referidos a especialistas cuando se necesita'],
+    highlights: ['Depression & anxiety screening', 'Behavioral-health concern screening', 'Referrals when additional care is needed'],
+    highlightsEs: ['Detección de depresión y ansiedad', 'Detección de problemas de salud conductual', 'Referencias cuando se necesita atención adicional'],
     faqs: [
       {
-        q: 'Do you treat depression and anxiety?',
-        a: 'We provide initial evaluation and treatment for mild to moderate depression and anxiety, including medication management and referrals to licensed counselors and psychiatrists when specialized care is needed.',
+        q: 'Do you provide mental health treatment?',
+        a: 'We screen for depression, anxiety, and other behavioral health concerns and provide referrals when additional evaluation or treatment is needed.',
       },
       {
         q: 'Is mental health screening covered by SoonerCare?',
-        a: 'Yes. Mental health screenings and related services are generally covered by SoonerCare (Oklahoma Medicaid), Medicare, and most private insurance plans.',
+        a: 'Coverage varies by plan. Call to confirm whether the clinic participates with your specific plan and contact your insurer to confirm coverage.',
       },
       {
         q: 'Do I need a referral to see a mental health specialist?',
@@ -409,12 +598,12 @@ Entendemos que pedir ayuda para la salud mental puede ser difícil, y que en muc
     ],
     faqsEs: [
       {
-        q: '¿Tratan la depresión y la ansiedad?',
-        a: 'Ofrecemos evaluación y tratamiento inicial para depresión y ansiedad leve a moderada, incluyendo manejo de medicamentos y referidos a consejeros y psiquiatras con licencia cuando se necesita atención especializada.',
+        q: '¿Ofrecen tratamiento de salud mental?',
+        a: 'Detectamos depresión, ansiedad y otros problemas de salud conductual, y ofrecemos referencias cuando se necesite evaluación o tratamiento adicional.',
       },
       {
         q: '¿SoonerCare cubre la evaluación de salud mental?',
-        a: 'Sí. Las evaluaciones de salud mental y los servicios relacionados generalmente están cubiertos por SoonerCare (Medicaid de Oklahoma), Medicare y la mayoría de los seguros privados.',
+        a: 'La cobertura varía según el plan. Llame para confirmar si la clínica participa con su plan específico y contacte a su aseguradora para confirmar la cobertura.',
       },
       {
         q: '¿Necesito un referido para ver a un especialista?',
@@ -437,21 +626,21 @@ Entendemos que pedir ayuda para la salud mental puede ser difícil, y que en muc
     title: 'Child Health Exams & Immunizations',
     titleEs: 'Exámenes Infantiles e Inmunizaciones',
     shortDescription:
-      'Well-child checkups, developmental screenings, and vaccinations for infants, children, and teenagers.',
+      'Well-child checkups, developmental screenings, and age-appropriate immunizations, subject to availability.',
     shortDescriptionEs:
-      'Revisiones pediátricas, evaluaciones del desarrollo e inmunizaciones para bebés, niños y adolescentes.',
-    description: `Keeping your child healthy starts with regular well-child visits. At Health Watch Medical Clinic, we provide comprehensive pediatric care for infants, children, and teenagers in Oklahoma City, including well-child exams, developmental milestone screenings, and immunizations on the CDC recommended schedule.
+      'Revisiones pediátricas, evaluaciones del desarrollo e inmunizaciones apropiadas para la edad, sujetas a disponibilidad.',
+    description: `Keeping your child healthy starts with regular well-child visits. At Health Watch Medical Clinic, we provide pediatric care for infants, children, and teenagers in Oklahoma City, including well-child exams, developmental milestone screenings, and review of the CDC recommended immunization schedule.
 
 Our well-child visits include a head-to-toe physical exam, height and weight tracking, blood pressure screening, vision and hearing checks, and age-appropriate developmental screenings. We also discuss nutrition, safety, behavioral concerns, and answer your questions as a parent.
 
-Vaccines are one of the most effective ways to protect your child's health. We administer all recommended childhood immunizations and can also review your child's vaccination history to ensure they are up to date.`,
+Vaccines are one way to protect your child's health. Age-appropriate immunizations are subject to availability, and we can review your child's vaccination history.`,
     descriptionEs: `La salud de su hijo empieza con las revisiones periódicas. En Health Watch Medical Clinic ofrecemos atención pediátrica completa para bebés, niños y adolescentes en Oklahoma City: exámenes de niño sano, evaluaciones del desarrollo e inmunizaciones según el calendario recomendado por los CDC.
 
 Cada visita de niño sano incluye examen físico de cabeza a pies, control de estatura y peso, revisión de presión arterial, pruebas de visión y audición, y evaluaciones del desarrollo según la edad. También hablamos de alimentación, seguridad y comportamiento, y respondemos sus preguntas como padre o madre.
 
-Las vacunas son una de las formas más efectivas de proteger la salud de su hijo. Aplicamos todas las inmunizaciones infantiles recomendadas y revisamos su historial de vacunación para asegurar que esté al día.
+Las vacunas son una forma de proteger la salud de su hijo. Las inmunizaciones apropiadas para la edad están sujetas a disponibilidad, y podemos revisar su historial de vacunación.
 
-**Vacunas requeridas para la escuela en Oklahoma:** DTaP, polio, MMR, varicela, hepatitis B y, para entrar a 7.º grado, la vacuna meningocócica. Si su hijo necesita el registro de vacunas para inscribirse en la escuela, podemos revisarlo y aplicar las que falten. Aceptamos SoonerCare.`,
+Los requisitos de vacunación de la escuela pueden cambiar. Podemos revisar el registro de su hijo y hablar sobre las vacunas que pueden estar disponibles. La cobertura y la responsabilidad del paciente varían según el plan.`,
     metaDescription:
       'Child health exams & immunizations in Oklahoma City, OK. Well-child checkups and vaccines for kids of all ages. SoonerCare accepted. (405) 949-1552.',
     metaDescriptionEs:
@@ -459,8 +648,8 @@ Las vacunas son una de las formas más efectivas de proteger la salud de su hijo
     heroKeyword: 'child health exam immunizations Oklahoma City',
     heroKeywordEs: 'pediatra y vacunas para niños Oklahoma City',
     icon: ICONS.child,
-    highlights: ['Well-child visits & developmental screenings', 'School & sports physicals', 'On-schedule immunizations'],
-    highlightsEs: ['Visitas de niño sano y evaluación del desarrollo', 'Exámenes físicos para la escuela y el deporte', 'Vacunas al día según el calendario'],
+    highlights: ['Well-child visits & developmental screenings', 'School & sports physicals', 'Immunizations subject to availability'],
+    highlightsEs: ['Visitas de niño sano y evaluación del desarrollo', 'Exámenes físicos para la escuela y el deporte', 'Inmunizaciones sujetas a disponibilidad'],
     faqs: [
       {
         q: 'How often does my child need a well-child visit?',
@@ -468,15 +657,15 @@ Las vacunas son una de las formas más efectivas de proteger la salud de su hijo
       },
       {
         q: 'Do you accept SoonerCare for children\'s visits?',
-        a: 'Yes. SoonerCare (Oklahoma Medicaid) covers well-child exams and immunizations for eligible children. We accept SoonerCare and most other insurance plans.',
+        a: 'SoonerCare coverage for eligible children depends on the service and plan. Call to confirm participation and contact your insurer to confirm coverage.',
       },
       {
         q: 'Do you offer sports physicals for school athletics?',
-        a: 'Yes. We provide pre-participation sports physicals required for school athletic programs. Same-day appointments are often available.',
+        a: 'We provide pre-participation sports physicals for school athletic programs. Same-day appointments may be available; call to confirm.',
       },
       {
         q: 'What vaccines does my child need for school?',
-        a: 'Oklahoma requires certain vaccinations for school enrollment including DTaP, polio, MMR, varicella, hepatitis B, and meningococcal vaccines. We can review your child\'s records and administer any missing vaccines.',
+        a: 'School vaccination requirements can change. Confirm current requirements with your school or the appropriate state resource; we can review your child\'s records and discuss vaccines that may be available.',
       },
     ],
     faqsEs: [
@@ -486,15 +675,15 @@ Las vacunas son una de las formas más efectivas de proteger la salud de su hijo
       },
       {
         q: '¿Aceptan SoonerCare para las visitas de niños?',
-        a: 'Sí. SoonerCare (Medicaid de Oklahoma) cubre los exámenes de niño sano y las vacunas para los niños que califican. Aceptamos SoonerCare y la mayoría de los seguros.',
+        a: 'La cobertura de SoonerCare para niños elegibles depende del servicio y del plan. Llame para confirmar participación y contacte a su aseguradora para confirmar cobertura.',
       },
       {
         q: '¿Hacen exámenes físicos para deportes escolares?',
-        a: 'Sí. Realizamos los exámenes físicos previos a la participación que exigen los programas deportivos escolares. Con frecuencia hay citas disponibles el mismo día.',
+        a: 'Realizamos exámenes físicos previos a la participación para programas deportivos escolares. Es posible que haya citas el mismo día; llame para confirmar.',
       },
       {
         q: '¿Qué vacunas necesita mi hijo para la escuela?',
-        a: 'Oklahoma exige DTaP, polio, MMR, varicela y hepatitis B para inscribirse en la escuela, además de la vacuna meningocócica para entrar a 7.º grado. Podemos revisar el registro de su hijo y aplicar las que falten.',
+        a: 'Los requisitos de vacunación escolar pueden cambiar. Confirme los requisitos vigentes con la escuela o el recurso estatal correspondiente; podemos revisar el registro de su hijo y hablar sobre las vacunas que pueden estar disponibles.',
       },
       {
         q: '¿Necesito seguro o número de seguro social para llevar a mi hijo?',
@@ -509,67 +698,79 @@ Las vacunas son una de las formas más efectivas de proteger la salud de su hijo
     title: 'Weight Loss & Metabolic Services',
     titleEs: 'Pérdida de Peso y Servicios Metabólicos',
     shortDescription:
-      'Medical weight loss programs with provider-guided nutrition counseling, metabolic testing, and treatment plans.',
+      'Provider-guided weight-management services that may include nutrition and physical-activity counseling, medical evaluation, laboratory testing, and individualized treatment when appropriate.',
     shortDescriptionEs:
-      'Programas médicos de pérdida de peso con asesoramiento nutricional, pruebas metabólicas y planes de tratamiento.',
-    description: `Achieving and maintaining a healthy weight is one of the most impactful things you can do for your overall health. Excess weight is a major risk factor for type 2 diabetes, hypertension, heart disease, sleep apnea, joint pain, and many cancers. At Health Watch Medical Clinic, we offer medically supervised weight loss and metabolic services that go beyond generic dieting advice.
+      'Servicios de control de peso guiados por proveedores que pueden incluir asesoramiento sobre nutrición y actividad física, evaluación médica, pruebas de laboratorio y tratamiento individualizado cuando sea apropiado.',
+    description: `Excess weight may increase the risk of conditions such as type 2 diabetes, high blood pressure, heart disease, sleep apnea, joint problems, and certain cancers.
 
-Our approach begins with a comprehensive metabolic evaluation, including bloodwork to assess thyroid function, blood sugar, cholesterol, and other markers that influence weight. Based on your results, we create a personalized plan that may include dietary modifications, physical activity guidance, behavioral strategies, and, when appropriate, prescription weight loss medications.
+A metabolic evaluation may include a review of your medical history, medications, weight-related risk factors, and laboratory testing such as blood glucose, A1C, cholesterol, thyroid testing, or other studies when medically indicated.
 
-We treat weight as a medical issue, not a willpower issue — with the same evidence-based care and compassion we bring to all conditions.`,
-    descriptionEs: `Alcanzar y mantener un peso saludable es una de las decisiones que más impacto tiene en su salud. El sobrepeso es un factor de riesgo importante para la diabetes tipo 2, la presión alta, las enfermedades del corazón, la apnea del sueño, el dolor en las articulaciones y varios tipos de cáncer. En Health Watch Medical Clinic ofrecemos un programa de pérdida de peso supervisado por un proveedor médico, no una dieta genérica.
+When clinically appropriate, a provider may discuss FDA-approved weight-management medications as one part of a comprehensive treatment plan. Prescribing decisions are based on the patient's medical history, examination, treatment goals, contraindications, and applicable clinical criteria. Medication availability and insurance coverage are not guaranteed.
 
-Comenzamos con una **evaluación metabólica completa**, que incluye análisis de sangre para revisar la función de la tiroides, el azúcar, el colesterol y otros marcadores que influyen en el peso. Con esos resultados creamos un plan personalizado que puede incluir cambios en la alimentación, orientación sobre actividad física, estrategias de hábitos y, cuando es apropiado, medicamentos recetados para bajar de peso.
+Individual results vary. Weight-management treatment recommendations and eligibility for prescription medication are determined after a clinical evaluation.`,
+    descriptionEs: `El exceso de peso puede aumentar el riesgo de condiciones como diabetes tipo 2, presión arterial alta, enfermedades del corazón, apnea del sueño, problemas en las articulaciones y ciertos tipos de cáncer.
 
-Tratamos el peso como una condición médica, no como una falta de voluntad. Muchas personas suben de peso por razones hormonales o metabólicas que solo se detectan con análisis de laboratorio.
+Una evaluación metabólica puede incluir la revisión de su historial médico, medicamentos, factores de riesgo relacionados con el peso y pruebas de laboratorio como glucosa en sangre, A1C, colesterol, pruebas de tiroides u otros estudios cuando sean médicamente indicados.
 
-Le atendemos con el mismo cuidado, respeto y evidencia médica que aplicamos a cualquier otra condición.`,
+Cuando sea clínicamente apropiado, un proveedor puede hablar sobre medicamentos para el control de peso aprobados por la FDA como una parte de un plan integral de tratamiento. Las decisiones de prescripción se basan en el historial médico, la evaluación, los objetivos de tratamiento, las contraindicaciones y los criterios clínicos aplicables. La disponibilidad de medicamentos y la cobertura del seguro no están garantizadas.
+
+Los resultados individuales varían. Las recomendaciones de tratamiento para el control de peso y la elegibilidad para medicamentos recetados se determinan después de una evaluación clínica.`,
     metaDescription:
-      'Medical weight loss clinic in Oklahoma City, OK. Metabolic testing, provider-guided programs & prescription options. Medicaid accepted. (405) 949-1552.',
+      'Medical weight management in Oklahoma City. Provider-guided evaluation, laboratory testing, and individualized treatment when appropriate. Call (405) 949-1552.',
     metaDescriptionEs:
-      'Clínica médica para bajar de peso en Oklahoma City, OK. Pruebas metabólicas, plan personalizado y opciones con receta. Se habla español. (405) 949-1552.',
+      'Control médico de peso en Oklahoma City. Evaluación guiada por proveedores, pruebas de laboratorio y tratamiento individualizado cuando sea apropiado. Llame al (405) 949-1552.',
+    seoTitle: 'Medical Weight Management in Oklahoma City | Health Watch Medical Clinic',
+    seoTitleEs: 'Control Médico de Peso en Oklahoma City | Health Watch Medical Clinic',
     heroKeyword: 'weight loss clinic Oklahoma City',
     heroKeywordEs: 'clínica para bajar de peso Oklahoma City',
     icon: ICONS.scale,
-    highlights: ['Comprehensive metabolic evaluation', 'Medically guided treatment plans', 'Ongoing progress check-ins'],
-    highlightsEs: ['Evaluación metabólica completa con análisis de sangre', 'Plan de tratamiento guiado por un proveedor médico', 'Seguimiento continuo de su progreso'],
+    highlights: ['Medical evaluation and testing when indicated', 'Individualized treatment when appropriate', 'Ongoing progress support'],
+    highlightsEs: ['Evaluación médica y pruebas cuando se indiquen', 'Tratamiento individualizado cuando sea apropiado', 'Apoyo continuo para el progreso'],
     faqs: [
       {
         q: 'Is medical weight loss covered by insurance?',
-        a: 'Coverage varies by plan. Medicaid, SoonerCare, and many private insurers cover obesity-related evaluations and treatment. We can help verify your benefits before your visit.',
+        a: 'Coverage for weight-management services, laboratory testing, and medications varies by insurance plan. Please contact your insurance company to confirm your benefits. Our staff can also assist with benefit verification when available.',
       },
       {
         q: 'Do you prescribe weight loss medications?',
-        a: 'When appropriate, our providers may prescribe FDA-approved weight loss medications as part of a comprehensive treatment plan. These are used alongside dietary and lifestyle changes, not as a standalone solution.',
+        a: 'When clinically appropriate, a provider may discuss FDA-approved weight-management medications as one part of a comprehensive treatment plan. Prescribing decisions are based on the patient\'s medical history, examination, treatment goals, contraindications, and applicable clinical criteria. Insurance coverage and availability of weight-loss medications vary. Prior authorization may be required, and coverage is not guaranteed.',
       },
       {
         q: 'How is medical weight loss different from a diet program?',
-        a: 'Medical weight loss is supervised by a licensed provider who can identify metabolic or hormonal factors affecting your weight, order and interpret lab work, adjust your plan based on medical data, and prescribe medications when needed.',
+        a: 'Weight-management services may include a medical evaluation, counseling about nutrition and physical activity, laboratory testing when indicated, and individualized treatment recommendations. Medication is considered only when clinically appropriate.',
       },
       {
         q: 'What is a metabolic evaluation?',
-        a: 'A metabolic evaluation includes bloodwork to measure thyroid hormones, fasting glucose, insulin, cholesterol, and other markers. This helps identify any underlying medical conditions contributing to weight gain.',
+        a: 'A metabolic evaluation may include a review of your medical history, medications, weight-related risk factors, and laboratory testing such as blood glucose, A1C, cholesterol, thyroid testing, or other studies when medically indicated.',
       },
     ],
     faqsEs: [
       {
         q: '¿El seguro cubre el programa médico de pérdida de peso?',
-        a: 'La cobertura varía según el plan. Medicaid, SoonerCare y muchos seguros privados cubren la evaluación y el tratamiento relacionados con la obesidad. Podemos verificar sus beneficios antes de su visita.',
+        a: 'La cobertura de los servicios de control de peso, las pruebas de laboratorio y los medicamentos varía según el plan de seguro. Comuníquese con su compañía de seguros para confirmar sus beneficios. Nuestro personal también puede ayudar con la verificación de beneficios cuando esté disponible.',
       },
       {
         q: '¿Recetan medicamentos para bajar de peso?',
-        a: 'Cuando es apropiado, nuestros proveedores pueden recetar medicamentos aprobados por la FDA como parte de un plan integral. Se usan junto con cambios en la alimentación y el estilo de vida, no como solución única.',
+        a: 'Cuando sea clínicamente apropiado, un proveedor puede hablar sobre medicamentos para el control de peso aprobados por la FDA como parte de un plan integral de tratamiento. Las decisiones de prescripción se basan en el historial médico, la evaluación, los objetivos de tratamiento, las contraindicaciones y los criterios clínicos aplicables. La cobertura y disponibilidad de los medicamentos para bajar de peso varían. Es posible que se requiera autorización previa y la cobertura no está garantizada.',
       },
       {
         q: '¿En qué se diferencia de una dieta comercial?',
-        a: 'El programa está supervisado por un proveedor con licencia que puede identificar factores metabólicos u hormonales que afectan su peso, ordenar e interpretar análisis de laboratorio, ajustar su plan con datos médicos y recetar medicamentos cuando se necesitan.',
+        a: 'Los servicios de control de peso pueden incluir una evaluación médica, orientación sobre nutrición y actividad física, pruebas de laboratorio cuando se indiquen y recomendaciones de tratamiento individualizadas. Los medicamentos se consideran solo cuando son clínicamente apropiados.',
       },
       {
         q: '¿Qué es una evaluación metabólica?',
-        a: 'Es un análisis de sangre que mide las hormonas de la tiroides, la glucosa en ayunas, la insulina, el colesterol y otros marcadores. Ayuda a identificar condiciones médicas que estén contribuyendo al aumento de peso.',
+        a: 'Una evaluación metabólica puede incluir la revisión de su historial médico, medicamentos, factores de riesgo relacionados con el peso y pruebas de laboratorio como glucosa en sangre, A1C, colesterol, pruebas de tiroides u otros estudios cuando sean médicamente indicados.',
       },
     ],
     relatedSlugs: ['diabetes-management', 'blood-pressure-management', 'annual-sports-physicals'],
+    appointmentCta: {
+      label: 'Request an Appointment',
+      labelEs: 'Solicitar una cita',
+      helper: 'Tell our staff you are requesting a Weight Loss & Metabolic Services visit.',
+      helperEs: 'Dígale a nuestro personal que está solicitando una visita de Pérdida de Peso y Servicios Metabólicos.',
+      confirmationNotice: 'Submitting this request does not confirm your appointment. Our staff will contact you to finalize scheduling.',
+      confirmationNoticeEs: 'Enviar una solicitud no confirma su cita. Nuestro personal se comunicará con usted para finalizar la programación.',
+    },
   },
   {
     slug: 'annual-sports-physicals',
@@ -586,14 +787,14 @@ At Health Watch Medical Clinic in Oklahoma City, we provide comprehensive annual
 
 We also perform pre-participation sports physicals (PPE) required for school athletic programs and recreational sports leagues. These exams evaluate cardiovascular fitness, musculoskeletal health, and any conditions that may affect safe participation in sports.
 
-Same-day and walk-in appointments are frequently available, making it easy to fit your physical into your schedule.`,
+Same-day appointments may be available for appropriate physicals. Walk-ins are welcome during regular business hours; call to confirm availability.`,
     descriptionEs: `El examen físico anual es la base del cuidado preventivo. Las revisiones periódicas permiten a su proveedor seguir los cambios en su salud con el tiempo, detectar condiciones a tiempo —cuando son más fáciles de tratar— y mantener su expediente médico al día.
 
 En Health Watch Medical Clinic realizamos exámenes físicos anuales completos para adultos y niños en edad escolar en Oklahoma City: examen físico integral, signos vitales, revisión de presión arterial, análisis de laboratorio y orientación de salud personalizada.
 
 También hacemos los **exámenes físicos previos a la participación deportiva** que exigen los programas escolares y las ligas recreativas. Estos exámenes evalúan la condición cardiovascular, la salud musculoesquelética y cualquier condición que pueda afectar la participación segura en el deporte.
 
-Con frecuencia tenemos disponibilidad el mismo día y atendemos sin cita previa, para que sea fácil hacerse su examen sin faltar al trabajo.`,
+Es posible que haya citas el mismo día para exámenes apropiados. Los pacientes sin cita son bienvenidos durante el horario regular; llame para confirmar disponibilidad.`,
     metaDescription:
       'Annual & sports physicals in Oklahoma City, OK. School, work and wellness exams. Walk-ins welcome, SoonerCare accepted. Call (405) 949-1552.',
     metaDescriptionEs:
@@ -606,7 +807,7 @@ Con frecuencia tenemos disponibilidad el mismo día y atendemos sin cita previa,
     faqs: [
       {
         q: 'Do you offer same-day sports physicals?',
-        a: 'Yes. We frequently have same-day availability for sports physicals. Walk-ins are welcome, and you can also call ahead to check availability.',
+        a: 'Same-day appointments may be available for sports physicals. Walk-ins are welcome during regular business hours; call to confirm availability.',
       },
       {
         q: 'What does an annual physical include?',
@@ -624,7 +825,7 @@ Con frecuencia tenemos disponibilidad el mismo día y atendemos sin cita previa,
     faqsEs: [
       {
         q: '¿Hacen exámenes deportivos el mismo día?',
-        a: 'Sí. Con frecuencia tenemos disponibilidad el mismo día para exámenes físicos deportivos. Atendemos sin cita, y también puede llamarnos antes para confirmar disponibilidad.',
+        a: 'Es posible que haya citas el mismo día para exámenes físicos deportivos. Los pacientes sin cita son bienvenidos durante el horario regular; llame para confirmar disponibilidad.',
       },
       {
         q: '¿Qué incluye un examen físico anual?',
@@ -647,68 +848,66 @@ Con frecuencia tenemos disponibilidad el mismo día y atendemos sin cita previa,
     title: 'Vaccines & Immunizations',
     titleEs: 'Vacunas e Inmunizaciones',
     shortDescription:
-      'Adult and childhood vaccines including flu shots, travel vaccines, COVID-19, shingles, and school-required immunizations.',
+      'Adult and childhood immunization services; vaccine type and availability should be confirmed before your visit.',
     shortDescriptionEs:
-      'Vacunas para adultos y niños: influenza, viajes, COVID-19, culebrilla e inmunizaciones requeridas por la escuela.',
-    description: `Vaccines are one of the most effective tools in preventive medicine. At Health Watch Medical Clinic, we administer vaccines for both children and adults according to the latest CDC and ACIP recommendations.
+      'Servicios de inmunización para adultos y niños; confirme el tipo de vacuna y la disponibilidad antes de su visita.',
+    description: `Vaccines are an important part of preventive care. Health Watch Medical Clinic can review immunization records and discuss vaccines that may be appropriate for children and adults.
 
-Whether you need your annual flu shot, a catch-up vaccine you missed, travel immunizations, or school-required vaccines, our team can review your records and ensure you are up to date.
+Vaccine type, supply, age eligibility, and clinical appropriateness vary. Call before your visit to confirm availability, including for seasonal, travel, or school-related needs.
 
-Our adult vaccine offerings include influenza (flu), COVID-19, pneumococcal, shingles (Zoster), Tdap/Td, hepatitis A and B, MMR, varicella, and HPV. For travelers, we can advise on destination-specific vaccines.
+The clinic can review the CDC-recommended schedule with you. School and travel requirements can change, so confirm current requirements with the school, destination authority, or appropriate public-health resource.
 
-Children's vaccines follow the CDC recommended immunization schedule, from birth through the teen years.`,
-    descriptionEs: `Las vacunas son una de las herramientas más efectivas de la medicina preventiva. En Health Watch Medical Clinic aplicamos vacunas para niños y adultos siguiendo las recomendaciones más recientes de los CDC y el ACIP.
+Coverage and patient responsibility vary by plan. Contact your insurer to confirm coverage.`,
+    descriptionEs: `Las vacunas son una parte importante del cuidado preventivo. Health Watch Medical Clinic puede revisar los registros de inmunización y hablar sobre las vacunas que pueden ser apropiadas para niños y adultos.
 
-Ya sea que necesite su vacuna anual contra la influenza, ponerse al día con una vacuna que le faltó, vacunas para viajar o las inmunizaciones que pide la escuela, nuestro equipo puede revisar su historial y asegurarse de que esté al día.
+El tipo de vacuna, el suministro, la elegibilidad por edad y la conveniencia clínica varían. Llame antes de su visita para confirmar la disponibilidad, incluso para necesidades estacionales, de viaje o escolares.
 
-**Vacunas para adultos:** influenza, COVID-19, neumococo, culebrilla (herpes zóster), Tdap/Td, hepatitis A y B, MMR, varicela y VPH. Para quienes viajan, le orientamos sobre las vacunas según su destino.
+La clínica puede revisar con usted el calendario recomendado por los CDC. Los requisitos escolares y de viaje pueden cambiar; confirme los requisitos vigentes con la escuela, la autoridad del destino o el recurso de salud pública correspondiente.
 
-**Vacunas para niños:** seguimos el calendario de inmunización recomendado por los CDC, desde el nacimiento hasta la adolescencia.
-
-La mayoría de las vacunas no tienen costo para pacientes con seguro. SoonerCare, Medicaid y Medicare también cubren las vacunas recomendadas.`,
+La cobertura y la responsabilidad del paciente varían según el plan. Contacte a su aseguradora para confirmar la cobertura.`,
     metaDescription:
-      'Vaccines & immunizations in Oklahoma City, OK. Flu shots, COVID-19, shingles, travel vaccines & school immunizations. Walk-ins welcome. (405) 949-1552.',
+      'Adult and child immunization services in Oklahoma City. Call to confirm vaccine type, availability, and coverage. (405) 949-1552.',
     metaDescriptionEs:
-      'Vacunas e inmunizaciones en Oklahoma City, OK. Influenza, COVID-19, culebrilla, viajes y vacunas escolares. Sin cita previa. Llame (405) 949-1552.',
+      'Servicios de inmunización para adultos y niños en Oklahoma City. Llame para confirmar el tipo de vacuna, disponibilidad y cobertura. (405) 949-1552.',
     heroKeyword: 'immunizations Oklahoma City adults children',
     heroKeywordEs: 'vacunas Oklahoma City adultos y niños',
     icon: ICONS.beaker,
-    highlights: ['Adult & childhood vaccines', 'Flu shots & travel immunizations', 'School-required immunization records'],
-    highlightsEs: ['Vacunas para adultos y niños', 'Vacuna contra la influenza y vacunas para viajar', 'Registro de vacunas requerido por la escuela'],
+    highlights: ['Adult & childhood immunization services', 'Record review and vaccine discussion', 'Availability confirmed before your visit'],
+    highlightsEs: ['Servicios de inmunización para adultos y niños', 'Revisión de registros y conversación sobre vacunas', 'Disponibilidad confirmada antes de su visita'],
     faqs: [
       {
         q: 'Do you offer flu shots?',
-        a: 'Yes. We offer annual flu shots for adults and children starting at 6 months of age. No appointment needed — walk-ins are welcome during flu season.',
+        a: 'Call to confirm the current availability and age eligibility of seasonal flu vaccines before your visit.',
       },
       {
         q: 'Are vaccines covered by my insurance?',
-        a: 'Most vaccines are covered at no cost under the Affordable Care Act for patients with insurance. Medicaid, SoonerCare, and Medicare also cover recommended vaccines. We can verify your coverage before administering.',
+        a: 'Coverage and patient responsibility vary by plan. Contact your insurer to confirm coverage and call to confirm vaccine availability.',
       },
       {
         q: 'What vaccines do adults need?',
-        a: 'Adults should receive an annual flu shot, stay current on Tdap (every 10 years), consider COVID-19 and pneumococcal vaccines based on age/risk, and ask about hepatitis, shingles, and MMR vaccines based on their history.',
+        a: 'The vaccines appropriate for an adult depend on age, health history, travel plans, and current public-health guidance. A provider can review your records and discuss appropriate options.',
       },
       {
         q: 'What vaccines are required for Oklahoma schools?',
-        a: 'Oklahoma requires DTaP/DTP, polio, MMR, Hepatitis B, and varicella vaccines for school-aged children. Meningococcal vaccine is required for 7th grade entry.',
+        a: 'School immunization requirements can change. Confirm current requirements with your school or the appropriate state resource before your visit.',
       },
     ],
     faqsEs: [
       {
         q: '¿Aplican la vacuna contra la influenza?',
-        a: 'Sí. Aplicamos la vacuna anual contra la influenza para adultos y para niños desde los 6 meses de edad. No necesita cita — puede llegar directamente durante la temporada de influenza.',
+        a: 'Llame para confirmar la disponibilidad actual y la elegibilidad por edad de las vacunas estacionales contra la influenza antes de su visita.',
       },
       {
         q: '¿Mi seguro cubre las vacunas?',
-        a: 'La mayoría de las vacunas se cubren sin costo bajo la Ley de Cuidado de Salud Asequible para pacientes con seguro. Medicaid, SoonerCare y Medicare también cubren las vacunas recomendadas. Podemos verificar su cobertura antes de aplicarlas.',
+        a: 'La cobertura y la responsabilidad del paciente varían según el plan. Contacte a su aseguradora para confirmar cobertura y llame para confirmar la disponibilidad de vacunas.',
       },
       {
         q: '¿Qué vacunas necesitan los adultos?',
-        a: 'Los adultos deben ponerse la vacuna anual contra la influenza, mantener al día la Tdap (cada 10 años), considerar las vacunas contra COVID-19 y neumococo según su edad y riesgo, y preguntar por las de hepatitis, culebrilla y MMR según su historial.',
+        a: 'Las vacunas apropiadas para un adulto dependen de su edad, historial de salud, planes de viaje y la guía de salud pública vigente. Un proveedor puede revisar sus registros y hablar sobre opciones apropiadas.',
       },
       {
         q: '¿Qué vacunas exigen las escuelas de Oklahoma?',
-        a: 'Oklahoma exige DTaP/DTP, polio, MMR, hepatitis B y varicela para los niños en edad escolar. La vacuna meningocócica se requiere para entrar a 7.º grado.',
+        a: 'Los requisitos de inmunización escolar pueden cambiar. Confirme los requisitos vigentes con la escuela o el recurso estatal correspondiente antes de su visita.',
       },
       {
         q: '¿Necesito traer mi tarjeta de vacunas?',
@@ -723,40 +922,40 @@ La mayoría de las vacunas no tienen costo para pacientes con seguro. SoonerCare
     title: 'Telemedicine in Oklahoma City',
     titleEs: 'Telemedicina en Oklahoma City',
     shortDescription:
-      'Convenient video visits with our providers from home. Available for follow-ups, prescription refills, and many common conditions.',
+      'Video visits may be available for follow-ups and other appropriate care when an in-person examination is not clinically necessary.',
     shortDescriptionEs:
-      'Consultas por video desde casa. Disponibles para seguimientos, renovación de recetas y condiciones comunes.',
-    description: `Health Watch Medical Clinic offers secure, HIPAA-compliant telemedicine visits so you can see a provider from the comfort of your home or office. Our telemedicine service is available to patients in Oklahoma City and throughout Oklahoma.
+      'Las consultas por video pueden estar disponibles para seguimientos y otra atención apropiada cuando no sea clínicamente necesario un examen en persona.',
+    description: `Video visits may be available for established and other appropriate care when clinically appropriate.
 
-Telemedicine is ideal for follow-up appointments, prescription refills, management of chronic conditions like diabetes and hypertension, minor illness evaluation (colds, infections, rashes), mental health check-ins, and lab result reviews.
+Telemedicine availability depends on the patient’s location, medical condition, and whether an in-person examination is clinically necessary. A provider will determine whether a video visit is appropriate.
 
-Video visits are conducted through a secure online platform. You will receive a link before your appointment. All you need is a smartphone, tablet, or computer with a camera and microphone.
+If a video visit is appropriate and confirmed by the clinic, you will receive instructions before the visit. A smartphone, tablet, or computer with a camera and microphone may be needed.
 
-To schedule a telemedicine appointment, call us at (405) 949-1552 or use the patient portal. Same-day video visits may be available for many conditions.`,
-    descriptionEs: `Health Watch Medical Clinic ofrece consultas de telemedicina seguras y protegidas bajo HIPAA, para que pueda ver a un proveedor desde la comodidad de su casa o su trabajo. Nuestro servicio está disponible para pacientes en Oklahoma City y en todo el estado de Oklahoma.
+To request a telemedicine appointment, call us at (405) 949-1552.`,
+    descriptionEs: `Las consultas por video pueden estar disponibles para atención establecida y otra atención apropiada cuando sean clínicamente adecuadas.
 
-La telemedicina es ideal para citas de seguimiento, renovación de recetas, control de condiciones crónicas como la diabetes y la presión alta, evaluación de enfermedades leves (resfriados, infecciones, salpullido), consultas de salud mental y revisión de resultados de laboratorio.
+La disponibilidad de telemedicina depende de la ubicación del paciente, su condición médica y de si es clínicamente necesario un examen en persona. Un proveedor determinará si una consulta por video es apropiada.
 
-Las consultas por video se hacen a través de una plataforma segura en línea. Recibirá un enlace antes de su cita. Solo necesita un teléfono, una tableta o una computadora con cámara y micrófono.
+Si una consulta por video es apropiada y la clínica la confirma, recibirá instrucciones antes de la visita. Es posible que necesite un teléfono, una tableta o una computadora con cámara y micrófono.
 
-Para agendar una consulta de telemedicina, llámenos al **(405) 949-1552** o use el portal del paciente. Con frecuencia hay consultas por video disponibles el mismo día. También puede recibir su consulta en español.`,
+Para solicitar una consulta de telemedicina, llámenos al **(405) 949-1552**. La disponibilidad depende de su ubicación, condición médica y de si es clínicamente necesario un examen en persona. Hay personal que habla español disponible para ayudarle a comunicarse durante su consulta.`,
     metaDescription:
-      'Telemedicine doctor in Oklahoma City, OK. Video visits for follow-ups, prescriptions & chronic care. SoonerCare & Medicaid accepted. (405) 949-1552.',
+      'Telemedicine availability in Oklahoma City, OK. Video visits may be available when clinically appropriate. Call (405) 949-1552.',
     metaDescriptionEs:
-      'Telemedicina en Oklahoma City, OK. Consultas por video para seguimientos, recetas y control de enfermedades crónicas. En español. (405) 949-1552.',
+      'Disponibilidad de telemedicina en Oklahoma City, OK. Las consultas por video pueden estar disponibles cuando sean clínicamente apropiadas. Llame al (405) 949-1552.',
     heroKeyword: 'telemedicine doctor Oklahoma City',
     heroKeywordEs: 'consulta médica por video en español Oklahoma City',
     icon: ICONS.video,
-    highlights: ['Secure HIPAA-compliant video visits', 'Prescription refills & follow-ups', 'Often same-day availability'],
-    highlightsEs: ['Consultas por video seguras y protegidas bajo HIPAA', 'Renovación de recetas y citas de seguimiento', 'Con frecuencia disponible el mismo día'],
+    highlights: ['Secure video visits when appropriate', 'Follow-up care when clinically appropriate', 'Availability depends on your location and condition'],
+    highlightsEs: ['Consultas por video seguras cuando sean apropiadas', 'Atención de seguimiento cuando sea clínicamente apropiada', 'La disponibilidad depende de su ubicación y condición'],
     faqs: [
       {
         q: 'What conditions can be treated via telemedicine?',
-        a: 'Telemedicine is appropriate for many conditions including chronic disease management (diabetes, hypertension), prescription refills, minor illnesses (cold, flu, UTI, rash), mental health check-ins, and lab result reviews. Conditions requiring a physical exam or in-person procedures require an in-office visit.',
+        a: 'Telemedicine availability depends on your location, medical condition, and whether an in-person examination is clinically necessary. A provider will determine whether a video visit is appropriate.',
       },
       {
         q: 'Does insurance cover telemedicine?',
-        a: 'Yes. Most insurance plans, including SoonerCare (Oklahoma Medicaid) and Medicare, cover telemedicine visits at the same rate as in-person visits. Check with your insurance company for specific coverage details.',
+        a: 'Coverage varies by plan. Contact your insurer to confirm telemedicine coverage and call to confirm whether the clinic participates with your specific plan.',
       },
       {
         q: 'What do I need for a telemedicine appointment?',
@@ -764,17 +963,17 @@ Para agendar una consulta de telemedicina, llámenos al **(405) 949-1552** o use
       },
       {
         q: 'How do I schedule a telemedicine visit?',
-        a: 'Call us at (405) 949-1552 to schedule a telemedicine appointment. You can also request one through the patient portal. Same-day availability may be possible.',
+        a: 'Call us at (405) 949-1552 to request a telemedicine appointment. A provider will determine whether a video visit is appropriate.',
       },
     ],
     faqsEs: [
       {
         q: '¿Qué condiciones se pueden atender por telemedicina?',
-        a: 'La telemedicina sirve para muchas condiciones: control de enfermedades crónicas (diabetes, presión alta), renovación de recetas, enfermedades leves (resfriado, gripe, infección urinaria, salpullido), consultas de salud mental y revisión de resultados de laboratorio. Las condiciones que requieren examen físico o procedimientos necesitan una visita en persona.',
+        a: 'La disponibilidad de telemedicina depende de su ubicación, condición médica y de si es clínicamente necesario un examen en persona. Un proveedor determinará si una consulta por video es apropiada.',
       },
       {
         q: '¿El seguro cubre la telemedicina?',
-        a: 'Sí. La mayoría de los seguros, incluyendo SoonerCare (Medicaid de Oklahoma) y Medicare, cubren las consultas de telemedicina al mismo costo que las visitas en persona. Consulte con su aseguradora los detalles de su cobertura.',
+        a: 'La cobertura varía según el plan. Contacte a su aseguradora para confirmar la cobertura de telemedicina y llame para confirmar si la clínica participa con su plan específico.',
       },
       {
         q: '¿Qué necesito para mi cita de telemedicina?',
@@ -782,11 +981,11 @@ Para agendar una consulta de telemedicina, llámenos al **(405) 949-1552** o use
       },
       {
         q: '¿Cómo agendo una consulta por video?',
-        a: 'Llámenos al (405) 949-1552 para agendar su consulta de telemedicina. También puede solicitarla por el portal del paciente. Con frecuencia hay disponibilidad el mismo día.',
+        a: 'Llámenos al (405) 949-1552 para solicitar una consulta de telemedicina. Un proveedor determinará si una consulta por video es apropiada.',
       },
       {
         q: '¿Puedo tener la consulta en español?',
-        a: 'Sí. Nuestro equipo es bilingüe y puede atenderle completamente en español durante su consulta por video.',
+        a: 'Hay personal que habla español disponible para ayudarle a comunicarse durante su consulta.',
       },
     ],
     // Each language has a standalone landing page for this keyword. Pointing the

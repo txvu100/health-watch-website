@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { CLINIC } from '../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${CLINIC.siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: 'Accessibility', item: `${CLINIC.siteUrl}/accessibility/` },
+  ],
+}
+---
+
+<BaseLayout
+  title="Accessibility | Health Watch Medical Clinic"
+  description="Accessibility statement for the Health Watch Medical Clinic website."
+  canonical={`${CLINIC.siteUrl}/accessibility/`}
+  esPath="/accesibilidad"
+  schemas={[breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-5 text-[13px] font-bold text-[#9089B8]">
+        <a href="/" class="hover:text-primary">Home</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">Accessibility</span>
+      </nav>
+      <h1 class="mb-3 text-[32px] font-display font-extrabold tracking-[-1px] text-neutral-900 lg:text-[42px]">Accessibility Statement</h1>
+      <p class="text-lg font-medium leading-[1.7] text-neutral-600">Our commitment to an accessible website</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <div class="prose prose-neutral max-w-none space-y-4 text-neutral-600 leading-relaxed">
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Our commitment</h2>
+        <p>Health Watch Medical Clinic is working to make this website usable by people with disabilities. We aim to use clear content, meaningful alternative text, keyboard-accessible controls, visible focus indicators, and readable color contrast as we improve the site.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Need help or found a barrier?</h2>
+        <p>If you have trouble using any part of this website or need information in another format, please call <a href={`tel:${CLINIC.phoneE164}`} class="font-medium text-primary hover:underline">{CLINIC.phone}</a> or email <a href={`mailto:${CLINIC.email}`} class="font-medium text-primary hover:underline">{CLINIC.email}</a>. Please tell us which page or task was difficult so we can help and consider improvements.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Third-party services</h2>
+        <p>Some features, including the secure patient portal, maps, and social-media links, are provided by third parties. Their accessibility is managed by those providers, but we welcome feedback when an external link creates a barrier to accessing clinic information or services.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

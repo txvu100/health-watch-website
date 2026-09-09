@@ -35,7 +35,7 @@ const HOURS_SCHEMA = HOURS.filter((h) => h.opens24 && h.closes24).map((h) => ({
 
 export const CLINIC = {
   name: 'Health Watch Medical Clinic',
-  shortName: 'Health Watch',
+  shortName: 'Health Watch Medical Clinic',
   tagline: 'Your Health, Our Priority',
   taglineEs: 'Tu Salud, Nuestra Prioridad',
 
@@ -74,17 +74,6 @@ export const CLINIC = {
     // from a share action, not a stable link — those expire and add nothing.
     instagram: 'https://www.instagram.com/healthwatchclinic/',
   },
-
-  insurance: [
-    'SoonerCare',
-    'Medicaid',
-    'Medicare',
-    'Blue Cross Blue Shield',
-    'United Healthcare',
-    'Aetna',
-    'Cigna',
-    'Self-Pay / Cash',
-  ],
 
   languages: ['English', 'Spanish'],
 

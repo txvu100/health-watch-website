@@ -1,0 +1,48 @@
+---
+import SpanishLayout from '../../layouts/SpanishLayout.astro'
+import { CLINIC } from '../../data/clinic'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${CLINIC.siteUrl}/es/` },
+    { '@type': 'ListItem', position: 2, name: 'Accesibilidad', item: `${CLINIC.siteUrl}/es/accesibilidad/` },
+  ],
+}
+---
+
+<SpanishLayout
+  title="Accesibilidad | Health Watch Medical Clinic"
+  description="Declaración de accesibilidad del sitio web de Health Watch Medical Clinic."
+  canonical={`${CLINIC.siteUrl}/es/accesibilidad/`}
+  enPath="/accessibility"
+  schemas={[breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg,#FFFFFF 0%,#F3F0FB 100%)">
+    <div class="container max-w-2xl py-14 lg:py-20">
+      <nav aria-label="Ruta de navegación" class="mb-5 text-[13px] font-bold text-[#9089B8]">
+        <a href="/es/" class="hover:text-primary">Inicio</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">Accesibilidad</span>
+      </nav>
+      <h1 class="mb-3 text-[32px] font-display font-extrabold tracking-[-1px] text-neutral-900 lg:text-[42px]">Declaración de Accesibilidad</h1>
+      <p class="text-lg font-medium leading-[1.7] text-neutral-600">Nuestro compromiso con un sitio web accesible</p>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-3xl">
+      <div class="prose prose-neutral max-w-none space-y-4 text-neutral-600 leading-relaxed">
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Nuestro compromiso</h2>
+        <p>Health Watch Medical Clinic trabaja para que este sitio web sea utilizable por personas con discapacidades. Buscamos usar contenido claro, texto alternativo significativo, controles accesibles con teclado, indicadores de enfoque visibles y contraste de color legible mientras mejoramos el sitio.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">¿Necesita ayuda o encontró una barrera?</h2>
+        <p>Si tiene dificultades para usar alguna parte de este sitio web o necesita información en otro formato, llame al <a href={`tel:${CLINIC.phoneE164}`} class="font-medium text-primary hover:underline">{CLINIC.phone}</a> o escriba a <a href={`mailto:${CLINIC.email}`} class="font-medium text-primary hover:underline">{CLINIC.email}</a>. Indíquenos qué página o tarea fue difícil para que podamos ayudarle y considerar mejoras.</p>
+
+        <h2 class="text-xl font-display font-extrabold text-neutral-900">Servicios de terceros</h2>
+        <p>Algunas funciones, incluido el portal seguro del paciente, los mapas y los enlaces a redes sociales, son proporcionadas por terceros. Su accesibilidad es administrada por esos proveedores, pero agradecemos sus comentarios cuando un enlace externo crea una barrera para acceder a información o servicios de la clínica.</p>
+      </div>
+    </div>
+  </section>
+</SpanishLayout>

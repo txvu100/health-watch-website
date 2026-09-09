@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:rendered": "npm run build && node scripts/check-rendered-html.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",

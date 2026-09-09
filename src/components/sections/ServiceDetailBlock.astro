@@ -13,12 +13,32 @@ const { service, lang = 'en' } = Astro.props
 const title = serviceTitle(service, lang)
 const description = serviceSummary(service, lang)
 const highlights = lang === 'es' ? service.highlightsEs : service.highlights
+const appointment = service.appointmentCta
+const appointmentLabel = appointment
+  ? lang === 'es'
+    ? appointment.labelEs
+    : appointment.label
+  : lang === 'es'
+    ? 'Solicitar una cita'
+    : 'Request an Appointment'
+const appointmentHelper = appointment
+  ? lang === 'es'
+    ? appointment.helperEs
+    : appointment.helper
+  : undefined
+const confirmationNotice = appointment
+  ? lang === 'es'
+    ? appointment.confirmationNoticeEs
+    : appointment.confirmationNotice
+  : lang === 'es'
+    ? 'Enviar una solicitud no confirma su cita. Nuestro personal se comunicará con usted para finalizar la programación.'
+    : 'Submitting this request does not confirm your appointment. Our staff will contact you to finalize scheduling.'
 ---
 
 <div class="grid lg:grid-cols-2 gap-12 items-center">
   <div class="flex flex-col gap-4">
     <span class="w-[58px] h-[58px] rounded-2xl bg-lavender flex items-center justify-center">
-      <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
         <path d={service.icon} />
       </svg>
     </span>
@@ -30,7 +50,7 @@ const highlights = lang === 'es' ? service.highlightsEs : service.highlights
       {highlights.map((item) => (
         <li class="flex items-center gap-[11px] text-[15px] font-semibold text-[#3A3A5C]">
           <span class="w-6 h-6 rounded-full bg-rose-tint flex items-center justify-center shrink-0">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F0444D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F0444D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <path d="M5 13l4 4L19 7" />
             </svg>
           </span>
@@ -39,9 +59,18 @@ const highlights = lang === 'es' ? service.highlightsEs : service.highlights
       ))}
     </ul>
 
-    <div class="flex flex-wrap gap-3.5 mt-2">
-      <a href={route('contact', lang)} class="inline-flex items-center gap-2 bg-secondary hover:bg-secondary-dark text-white font-bold px-7 py-[13px] rounded-full transition-colors shadow-cta">{lang === 'es' ? 'Agendar este servicio' : 'Book this service'}</a>
+    <div class="mt-2">
+      <div class="flex flex-wrap gap-3.5">
+        <a
+          href={route('contact', lang)}
+          class="inline-flex items-center gap-2 bg-secondary hover:bg-secondary-dark text-white font-bold px-7 py-[13px] rounded-full transition-colors shadow-cta"
+        >
+          {appointmentLabel}
+        </a>
       <a href={`tel:${CLINIC.phoneE164}`} class="inline-flex items-center gap-2 bg-white hover:bg-lavender text-primary font-bold px-6 py-[13px] rounded-full border-[1.6px] border-[#DAD4EC] transition-colors">{lang === 'es' ? 'Llamar' : 'Call'} {CLINIC.phone}</a>
+      </div>
+      {appointmentHelper && <p class="mt-3 max-w-xl text-sm leading-relaxed text-neutral-600">{appointmentHelper}</p>}
+      {confirmationNotice && <p class="mt-2 max-w-xl text-sm font-medium leading-relaxed text-neutral-700">{confirmationNotice}</p>}
     </div>
   </div>
 

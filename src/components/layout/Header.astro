@@ -71,6 +71,13 @@ const homeHref = route('home', lang)
             {t.nav.bookAppointment}
           </a>
 
+          <a
+            href={route('contact', lang)}
+            class="lg:hidden inline-flex items-center rounded-full bg-secondary px-3.5 py-2 text-xs font-bold text-white shadow-cta transition-colors hover:bg-secondary-dark"
+          >
+            {t.nav.bookAppointment}
+          </a>
+
           <MobileMenu client:load lang={lang} />
         </div>
       </div>

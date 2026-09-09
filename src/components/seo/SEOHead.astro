@@ -91,7 +91,7 @@ const clinicSchema = {
   },
   openingHoursSpecification: CLINIC.hoursSchema,
   availableLanguage: CLINIC.languages,
-  paymentAccepted: CLINIC.insurance.join(', '),
+  paymentAccepted: 'Insurance and self-pay',
   priceRange: '$',
   sameAs: [CLINIC.social.facebook, CLINIC.social.instagram],
   image: `${CLINIC.siteUrl}/og-default.jpg`,

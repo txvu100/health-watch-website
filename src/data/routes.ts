@@ -13,6 +13,10 @@ export const ROUTE_PAIRS = {
   telemedicine: { en: '/telemedicine/', es: '/es/telemedicina/' },
   contact: { en: '/contact/', es: '/es/contacto/' },
   privacy: { en: '/privacy/', es: '/es/privacidad/' },
+  noticeOfPrivacyPractices: { en: '/notice-of-privacy-practices/', es: '/es/aviso-de-practicas-de-privacidad/' },
+  terms: { en: '/terms/', es: '/es/terminos/' },
+  accessibility: { en: '/accessibility/', es: '/es/accesibilidad/' },
+  nondiscrimination: { en: '/nondiscrimination/', es: '/es/no-discriminacion/' },
 } as const
 
 export type RouteKey = keyof typeof ROUTE_PAIRS
