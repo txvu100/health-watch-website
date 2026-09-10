@@ -2,12 +2,12 @@ services:
   - type: web
     name: healthwatch-website
     runtime: static
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci && npm run check:release
     staticPublishPath: dist
     envVars:
       # Pinned so `npm ci` resolves the same way it does locally.
       - key: NODE_VERSION
-        value: 22.11.0
+        value: 22.12.0
     headers:
       # ORDER MATTERS: Render applies the LAST matching rule, so the broad
       # default goes first and the specific overrides follow it. Verified
@@ -29,6 +29,23 @@ services:
       - path: /sitemap-*.xml
         name: Cache-Control
         value: public, max-age=86400
+      # Baseline browser hardening. CSP remains out of scope until it can be
+      # tested against the Google Maps embed and the site's inline styling.
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=31536000
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: "camera=(), geolocation=(), microphone=(), payment=(), usb=()"
     routes:
       # The hand-written Spanish immigration page moved under /es/servicios/ when
       # Spanish service pages became data-generated. Both spellings are listed
@@ -39,3 +56,70 @@ services:
       - type: redirect
         source: /es/examen-medico-inmigracion/
         destination: /es/servicios/examen-medico-inmigracion/
+      # Patient-facing WordPress routes retained during the static-site migration.
+      - type: redirect
+        source: /services-2
+        destination: /services/
+      - type: redirect
+        source: /services-2/
+        destination: /services/
+      - type: redirect
+        source: /blood-pressure-management-and-checkup-in-oklahoma-city
+        destination: /services/blood-pressure-management/
+      - type: redirect
+        source: /blood-pressure-management-and-checkup-in-oklahoma-city/
+        destination: /services/blood-pressure-management/
+      - type: redirect
+        source: /telemedicine-in-okc-oklahoma
+        destination: /telemedicine/
+      - type: redirect
+        source: /telemedicine-in-okc-oklahoma/
+        destination: /telemedicine/
+      - type: redirect
+        source: /immigration-medical-exam-in-oklahoma
+        destination: /services/immigration-medical-exam/
+      - type: redirect
+        source: /immigration-medical-exam-in-oklahoma/
+        destination: /services/immigration-medical-exam/
+      - type: redirect
+        source: /diabetes-management-and-checkup-in-oklahoma-city-okc
+        destination: /services/diabetes-management/
+      - type: redirect
+        source: /diabetes-management-and-checkup-in-oklahoma-city-okc/
+        destination: /services/diabetes-management/
+      - type: redirect
+        source: /mental-health-screening-in-oklahoma-okc-mental-health-clinic
+        destination: /services/mental-health-screening/
+      - type: redirect
+        source: /mental-health-screening-in-oklahoma-okc-mental-health-clinic/
+        destination: /services/mental-health-screening/
+      - type: redirect
+        source: /child-health-exams-immunizations-in-okc
+        destination: /services/child-health-exams-immunizations/
+      - type: redirect
+        source: /child-health-exams-immunizations-in-okc/
+        destination: /services/child-health-exams-immunizations/
+      - type: redirect
+        source: /womens-primary-health-care
+        destination: /services/womens-primary-health/
+      - type: redirect
+        source: /womens-primary-health-care/
+        destination: /services/womens-primary-health/
+      - type: redirect
+        source: /weight-loss-clinics-in-oklahoma-city
+        destination: /services/weight-loss-metabolic-services/
+      - type: redirect
+        source: /weight-loss-clinics-in-oklahoma-city/
+        destination: /services/weight-loss-metabolic-services/
+      - type: redirect
+        source: /flu-shots
+        destination: /services/vaccines-immunizations/
+      - type: redirect
+        source: /flu-shots/
+        destination: /services/vaccines-immunizations/
+      - type: redirect
+        source: /family-practice-clinic-comprehensive-health-care-for-your-family
+        destination: /
+      - type: redirect
+        source: /family-practice-clinic-comprehensive-health-care-for-your-family/
+        destination: /

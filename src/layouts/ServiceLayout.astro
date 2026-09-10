@@ -23,10 +23,13 @@ const metaDescription = lang === 'es' ? service.metaDescriptionEs : service.meta
 const faqs = lang === 'es' ? service.faqsEs : service.faqs
 const whyPoints = lang === 'es' ? service.whyPointsEs ?? t.why.points : service.whyPoints ?? t.why.points
 const whyHeading = lang === 'es' ? service.whyHeadingEs ?? t.why.heading : service.whyHeading ?? t.why.heading
+// Most service titles omit the city, but a small number already include it.
+// Avoid producing titles such as "Telemedicine in Oklahoma City in Oklahoma City".
+const titleIncludesLocation = /oklahoma city/i.test(title)
 const seoTitle =
   lang === 'es'
-    ? service.seoTitleEs ?? `${title} en Oklahoma City | Health Watch Medical Clinic`
-    : service.seoTitle ?? `${title} in Oklahoma City | Health Watch Medical Clinic`
+    ? service.seoTitleEs ?? `${title}${titleIncludesLocation ? '' : ' en Oklahoma City'} | Health Watch Medical Clinic`
+    : service.seoTitle ?? `${title}${titleIncludesLocation ? '' : ' in Oklahoma City'} | Health Watch Medical Clinic`
 
 const selfUrl = `${CLINIC.siteUrl}${serviceHref(service, lang)}`
 // A standalone landing page may own this keyword (see /telemedicine); when it

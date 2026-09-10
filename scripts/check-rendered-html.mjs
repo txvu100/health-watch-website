@@ -100,6 +100,7 @@ const staleClaims = [
 ]
 
 const allFiles = await htmlFiles(outputDir)
+if (allFiles.length !== 44) throw new Error(`Expected 44 rendered pages, found ${allFiles.length}`)
 const relativeFiles = new Set(allFiles.map((file) => path.relative(outputDir, file)))
 for (const page of requiredPages) if (!relativeFiles.has(page)) throw new Error(`Missing expected page: ${page}`)
 
@@ -110,12 +111,43 @@ for (const file of allFiles) {
   if (/<text\b/i.test(visibleMarkup)) throw new Error(`Found SVG text in rendered HTML for ${path.relative(outputDir, file)}`)
   for (const claim of staleClaims) if (claim.test(visibleMarkup)) throw new Error(`Found stale claim ${claim} in ${path.relative(outputDir, file)}`)
   if (!html.includes("svg[aria-hidden=\"true\"]")) throw new Error(`Missing decorative SVG focus normalization in ${path.relative(outputDir, file)}`)
+  for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let schema
+    try {
+      schema = JSON.parse(match[1])
+    } catch {
+      throw new Error(`Invalid JSON-LD in ${path.relative(outputDir, file)}`)
+    }
+    if (!schema['@context'] || !schema['@type']) {
+      throw new Error(`Incomplete JSON-LD in ${path.relative(outputDir, file)}`)
+    }
+  }
   await requireInternalLinks(html, file)
   requireAccessibleIconsAndRequestCtas(html, file)
 }
 
+const sitemap = await readFile(path.join(outputDir, 'sitemap-0.xml'), 'utf8')
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
+if (sitemapUrls.length !== 40) throw new Error(`Expected 40 sitemap URLs, found ${sitemapUrls.length}`)
+for (const url of sitemapUrls) {
+  const pathname = new URL(url).pathname
+  const target = pathname === '/'
+    ? path.join(outputDir, 'index.html')
+    : path.join(outputDir, pathname, 'index.html')
+  try {
+    await access(target)
+  } catch {
+    throw new Error(`Sitemap URL has no rendered page: ${url}`)
+  }
+}
+
 const home = await readFile(path.join(outputDir, 'index.html'), 'utf8')
 const spanishHome = await readFile(path.join(outputDir, 'es/index.html'), 'utf8')
+for (const page of ['services/telemedicine/index.html', 'es/servicios/telemedicina/index.html']) {
+  const file = path.join(outputDir, page)
+  const html = await readFile(file, 'utf8')
+  rejectText(html, /(?:Telemedicine in Oklahoma City in Oklahoma City|Telemedicina en Oklahoma City en Oklahoma City)/i, file)
+}
 requireLinkDestination(home, 'Patient Portal – Sign In', '/patient-portal/', path.join(outputDir, 'index.html'))
 requireLinkDestination(spanishHome, 'Portal del Paciente – Iniciar sesión', '/patient-portal/', path.join(outputDir, 'es/index.html'))
 for (const [html, expected] of [

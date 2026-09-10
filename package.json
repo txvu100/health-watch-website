@@ -8,15 +8,18 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:rendered": "npm run build && node scripts/check-rendered-html.mjs"
+    "check:rendered": "npm run build && node scripts/check-rendered-html.mjs",
+    "check:security": "npm audit --omit=dev --audit-level=high",
+    "check:deploy-config": "node scripts/check-deploy-config.mjs",
+    "check:release": "npm run check:security && npm run check:deploy-config && npm run check:rendered"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",
-    "@astrojs/vue": "^5.0.0",
+    "@astrojs/vue": "^7.0.2",
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "@tailwindcss/vite": "^4.1.0",
-    "astro": "^5.7.0",
+    "astro": "^7.3.2",
     "tailwindcss": "^4.1.0",
-    "vue": "^3.5.0"
+    "vue": "^3.5.24"
   }
 }
