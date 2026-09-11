@@ -4,6 +4,7 @@ import { SERVICES, serviceHref, serviceTitle } from '../../data/services'
 import { NAV_KEYS, route } from '../../data/routes'
 import { useTranslations, type Lang } from '../../data/translations'
 import Logo from '../ui/Logo.astro'
+import ThreeAmLabLogo from '../../assets/images/3am-lab-logo.png'
 
 interface Props {
   lang?: Lang
@@ -135,7 +136,19 @@ const year = new Date().getFullYear()
   <!-- Bottom bar -->
   <div class="border-t border-white/12">
     <div class="container py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-white/45">
-      <p>© {year} {CLINIC.name}. {t.footer.rights}</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+        <p>© {year} {CLINIC.name}. {t.footer.rights}</p>
+        <a
+          href="https://3amlab.io"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-[11px] font-medium text-white/35 transition-colors hover:text-white/65"
+        >
+          <span>Powered by</span>
+          <img src={ThreeAmLabLogo.src} width="16" height="16" alt="" class="rounded-[4px] brightness-0 invert opacity-55" />
+          <span class="font-semibold">3AM LAB</span>
+        </a>
+      </div>
       <div class="flex flex-wrap items-center justify-center gap-x-[18px] gap-y-2">
         <a href={route('privacy', lang)} class="hover:text-white/80 transition-colors">{t.footer.privacy}</a>
         <a href={route('noticeOfPrivacyPractices', lang)} class="hover:text-white/80 transition-colors">{t.footer.noticeOfPrivacyPractices}</a>
