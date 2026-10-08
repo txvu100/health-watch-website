@@ -148,8 +148,8 @@ for (const page of ['services/telemedicine/index.html', 'es/servicios/telemedici
   const html = await readFile(file, 'utf8')
   rejectText(html, /(?:Telemedicine in Oklahoma City in Oklahoma City|Telemedicina en Oklahoma City en Oklahoma City)/i, file)
 }
-requireLinkDestination(home, 'Patient Portal – Sign In', '/patient-portal/', path.join(outputDir, 'index.html'))
-requireLinkDestination(spanishHome, 'Portal del Paciente – Iniciar sesión', '/patient-portal/', path.join(outputDir, 'es/index.html'))
+requireLinkDestination(home, 'Patient Portal – Sign In', 'https://mycw28.eclinicalweb.com/portal2846/jsp/100mp/login_otp.jsp', path.join(outputDir, 'index.html'))
+requireLinkDestination(spanishHome, 'Portal del Paciente – Iniciar sesión', 'https://mycw28.eclinicalweb.com/portal2846/jsp/100mp/login_otp.jsp', path.join(outputDir, 'es/index.html'))
 for (const [html, expected] of [
   [home, ['Request an Appointment', 'href="/contact/"', 'Submitting this request does not confirm your appointment.']],
   [spanishHome, ['Solicitar una cita', 'href="/es/contacto/"', 'Enviar una solicitud no confirma su cita.']],

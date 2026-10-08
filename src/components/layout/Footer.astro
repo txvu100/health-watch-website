@@ -155,7 +155,7 @@ const year = new Date().getFullYear()
         <a href={route('terms', lang)} class="hover:text-white/80 transition-colors">{t.footer.terms}</a>
         <a href={route('accessibility', lang)} class="hover:text-white/80 transition-colors">{t.footer.accessibility}</a>
         <a href={route('nondiscrimination', lang)} class="hover:text-white/80 transition-colors">{t.footer.nondiscrimination}</a>
-        <a href="/patient-portal/" class="hover:text-white/80 transition-colors">{t.nav.patientPortal}</a>
+        <a href={CLINIC.patientPortalUrl} class="hover:text-white/80 transition-colors">{t.nav.patientPortal}</a>
         <a href={route('contact', lang)} class="hover:text-white/80 transition-colors">{t.nav.contact}</a>
       </div>
     </div>

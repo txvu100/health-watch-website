@@ -137,7 +137,7 @@ onBeforeUnmount(() => {
             {{ t.nav.bookAppointment }}
           </a>
           <a
-            href="/patient-portal/"
+            :href="CLINIC.patientPortalUrl"
             @click="close"
             class="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-base font-bold text-white shadow-card-hover transition-colors hover:bg-primary-dark"
           >
