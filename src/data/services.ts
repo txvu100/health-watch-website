@@ -183,26 +183,26 @@ Participamos con SoonerCare y Medicare, aceptamos muchos planes comerciales y at
     shortDescription:
       'Personalized diabetes care with A1C testing, blood sugar monitoring, medication management, and practical lifestyle support.',
     shortDescriptionEs:
-      'Atención personalizada para adultos con diabetes tipo 2, con pruebas de A1C, monitoreo de azúcar en la sangre, manejo de medicamentos y apoyo práctico para el estilo de vida.',
+      'Atención personalizada para adultos con diabetes mellitus, con pruebas de A1C, monitoreo de azúcar en la sangre, manejo de medicamentos y apoyo práctico para el estilo de vida.',
     description: `Diabetes is a chronic condition that can affect many parts of the body. Without appropriate treatment and monitoring, it can increase the risk of heart disease, kidney disease, vision problems, nerve damage, and other serious complications.
 
-At Health Watch Medical Clinic, we provide personalized diabetes care for adults with Type 2 diabetes. We work with each patient to develop realistic treatment goals based on their health, medications, lifestyle, and risk of complications.
+At Health Watch Medical Clinic, we provide personalized diabetes care for adults with Diabetes Mellitus. We work with each patient to develop realistic treatment goals based on their health, medications, lifestyle, and risk of complications.
 
 Our diabetes services may include:`,
     descriptionEs: `La diabetes es una condición crónica que puede afectar muchas partes del cuerpo. Sin el tratamiento y monitoreo adecuados, puede aumentar el riesgo de enfermedad cardíaca, enfermedad renal, problemas de visión, daño a los nervios y otras complicaciones graves.
 
-En Health Watch Medical Clinic brindamos atención personalizada para adultos con diabetes tipo 2. Trabajamos con cada paciente para establecer metas realistas de tratamiento según su salud, medicamentos, estilo de vida y riesgo de complicaciones.
+En Health Watch Medical Clinic brindamos atención personalizada para adultos con diabetes mellitus. Trabajamos con cada paciente para establecer metas realistas de tratamiento según su salud, medicamentos, estilo de vida y riesgo de complicaciones.
 
 Nuestros servicios para la diabetes pueden incluir:`,
     metaDescription:
-      'Type 2 diabetes care in Oklahoma City with A1C testing, blood sugar monitoring, medication management, and lifestyle support. Call (405) 949-1552.',
+      'Diabetes Mellitus care in Oklahoma City with A1C testing, blood sugar monitoring, medication management, and lifestyle support. Call (405) 949-1552.',
     metaDescriptionEs:
-      'Atención para diabetes tipo 2 en Oklahoma City: prueba de A1C, monitoreo de glucosa, manejo de medicamentos y apoyo para el estilo de vida. Llame al (405) 949-1552.',
+      'Atención para diabetes mellitus en Oklahoma City: prueba de A1C, monitoreo de glucosa, manejo de medicamentos y apoyo para el estilo de vida. Llame al (405) 949-1552.',
     heroKeyword: 'diabetes management clinic Oklahoma City',
     heroKeywordEs: 'clínica de diabetes Oklahoma City',
     icon: ICONS.chartBar,
-    highlights: ['A1C testing and blood sugar monitoring', 'Type 2 diabetes management', 'Medication and lifestyle support'],
-    highlightsEs: ['Prueba de A1C y monitoreo de azúcar en la sangre', 'Manejo de la diabetes tipo 2', 'Apoyo con medicamentos y estilo de vida'],
+    highlights: ['A1C testing and blood sugar monitoring', 'Diabetes Mellitus management', 'Medication and lifestyle support'],
+    highlightsEs: ['Prueba de A1C y monitoreo de azúcar en la sangre', 'Manejo de la diabetes mellitus', 'Apoyo con medicamentos y estilo de vida'],
     serviceItems: [
       'A1C and blood glucose monitoring',
       'Review and adjustment of diabetes medications',
@@ -1004,14 +1004,14 @@ Ya sea que necesite una vacuna estacional contra la influenza, un refuerzo de ru
 
 Telemedicine availability depends on the patient’s location, medical condition, and whether an in-person examination is clinically necessary. A provider will determine whether a video visit is appropriate.
 
-If a video visit is appropriate and confirmed by the clinic, you will receive instructions before the visit. A smartphone, tablet, or computer with a camera and microphone may be needed.
+Once the clinic confirms your appointment, you can join through the Healow app or Patient Portal. The clinic must provide Patient Portal access before you can use it. For step-by-step instructions, see our [Telemedicine page](/telemedicine/). A smartphone, tablet, or computer with a camera and microphone may be needed.
 
 To request a telemedicine appointment, call us at (405) 949-1552.`,
     descriptionEs: `Las consultas por video pueden estar disponibles para atención establecida y otra atención apropiada cuando sean clínicamente adecuadas.
 
 La disponibilidad de telemedicina depende de la ubicación del paciente, su condición médica y de si es clínicamente necesario un examen en persona. Un proveedor determinará si una consulta por video es apropiada.
 
-Si una consulta por video es apropiada y la clínica la confirma, recibirá instrucciones antes de la visita. Es posible que necesite un teléfono, una tableta o una computadora con cámara y micrófono.
+Una vez que la clínica confirme su cita, puede conectarse mediante la aplicación Healow o el Portal del Paciente. La clínica debe proporcionarle acceso al portal antes de que pueda usarlo. Consulte las instrucciones en nuestra [página de Telemedicina](/es/telemedicina/). Es posible que necesite un teléfono, una tableta o una computadora con cámara y micrófono.
 
 Para solicitar una consulta de telemedicina, llámenos al **(405) 949-1552**. La disponibilidad depende de su ubicación, condición médica y de si es clínicamente necesario un examen en persona. Hay personal que habla español disponible para ayudarle a comunicarse durante su consulta.`,
     metaDescription:
@@ -1034,7 +1034,7 @@ Para solicitar una consulta de telemedicina, llámenos al **(405) 949-1552**. La
       },
       {
         q: 'What do I need for a telemedicine appointment?',
-        a: 'You need a smartphone, tablet, or computer with a working camera and microphone, a stable internet connection, and a quiet private space. We will send you a secure link before your appointment.',
+        a: 'You need a smartphone, tablet, or computer with a working camera and microphone, a stable internet connection, and a quiet private space. You can join through the Healow app or Patient Portal. Call the clinic before your appointment if you need portal access or help signing in.',
       },
       {
         q: 'How do I schedule a telemedicine visit?',
@@ -1052,7 +1052,7 @@ Para solicitar una consulta de telemedicina, llámenos al **(405) 949-1552**. La
       },
       {
         q: '¿Qué necesito para mi cita de telemedicina?',
-        a: 'Necesita un teléfono, tableta o computadora con cámara y micrófono que funcionen, una conexión de internet estable y un lugar privado y tranquilo. Le enviaremos un enlace seguro antes de su cita.',
+        a: 'Necesita un teléfono, tableta o computadora con cámara y micrófono que funcionen, una conexión de internet estable y un lugar privado y tranquilo. Puede conectarse mediante la aplicación Healow o el Portal del Paciente. Llame a la clínica antes de su cita si necesita acceso al portal o ayuda para iniciar sesión.',
       },
       {
         q: '¿Cómo agendo una consulta por video?',

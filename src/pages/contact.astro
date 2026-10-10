@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import HoursTable from '../components/ui/HoursTable.astro'
+import ClinicMap from '../components/ui/ClinicMap.astro'
 import { CLINIC } from '../data/clinic'
 
 const breadcrumbSchema = {
@@ -112,6 +113,7 @@ const breadcrumbSchema = {
               <a href={CLINIC.mapsDirectionsUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-secondary font-bold text-[13.5px] mt-1.5 hover:text-secondary-dark">
                 Get directions →
               </a>
+              <div class="mt-4"><ClinicMap /></div>
             </div>
           </div>
 

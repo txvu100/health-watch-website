@@ -1,5 +1,6 @@
 ---
 import SpanishLayout from '../../layouts/SpanishLayout.astro'
+import InsuranceLogos from '../../components/sections/InsuranceLogos.astro'
 import CallToAction from '../../components/sections/CallToAction.astro'
 import { CLINIC } from '../../data/clinic'
 
@@ -37,18 +38,7 @@ const breadcrumbSchema = {
         <h2 class="text-2xl font-display font-extrabold text-neutral-900">Confirme su cobertura antes de su visita</h2>
         <p>Llame para confirmar si participamos con su plan de seguro específico. La cobertura y la responsabilidad del paciente varían según el plan. Su aseguradora también puede confirmar sus beneficios.</p>
 
-        <div class="grid sm:grid-cols-3 gap-4 not-prose">
-          {[
-            ['SoonerCare', 'Llame para confirmar elegibilidad y servicios cubiertos.'],
-            ['Medicare', 'Llame para confirmar participación y servicios cubiertos.'],
-            ['Planes comerciales y pago propio', 'Es posible que haya opciones para muchos planes comerciales y pago propio.'],
-          ].map(([title, text]) => (
-            <div class="bg-white border border-neutral-200 rounded-xl p-5 shadow-card">
-              <h3 class="font-display font-extrabold text-neutral-900 mb-2">{title}</h3>
-              <p class="text-sm leading-relaxed text-neutral-600">{text}</p>
-            </div>
-          ))}
-        </div>
+        <InsuranceLogos lang="es" />
 
         <h2 class="text-xl font-display font-extrabold text-neutral-900">Pacientes de pago propio</h2>
         <p>Los pacientes de pago propio son bienvenidos. Llame a la clínica para preguntar sobre los precios actuales antes de su visita.</p>

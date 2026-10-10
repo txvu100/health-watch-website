@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CallToAction from '../components/sections/CallToAction.astro'
+import TelemedicineGuide from '../components/sections/TelemedicineGuide.astro'
 import FAQ from '../components/sections/FAQ.astro'
 import PhotoPlaceholderPanel from '../components/ui/PhotoPlaceholderPanel.astro'
 import NoticeCard from '../components/ui/NoticeCard.astro'
@@ -28,12 +29,6 @@ const breadcrumbSchema = {
   ],
 }
 
-const steps = [
-  { title: 'Request your visit', text: 'Call us to request a video visit. A provider will determine whether telemedicine is appropriate.' },
-  { title: 'Receive visit instructions', text: "If the clinic confirms a video visit, you'll receive instructions before the appointment." },
-  { title: 'Meet your provider', text: 'Join using the device and connection specified in your visit instructions.' },
-]
-
 const useCases = [
   'Cold, flu & minor illness',
   'Follow-up care when appropriate',
@@ -47,7 +42,7 @@ const needs = [
   { text: 'A smartphone, tablet, or computer with a camera' },
   { text: 'A stable internet connection' },
   { text: 'A quiet, private space' },
-  { text: 'Your patient portal login' },
+  { text: 'Your Healow or Patient Portal access' },
 ]
 ---
 
@@ -82,30 +77,7 @@ const needs = [
     </div>
   </section>
 
-  <!-- How telemedicine works -->
-  <section class="py-16 lg:py-24">
-    <div class="container">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-3xl lg:text-4xl font-display font-extrabold tracking-[-0.7px] text-neutral-900">How telemedicine works</h2>
-      </div>
-      <div class="grid sm:grid-cols-3 gap-6">
-        {steps.map((step, i) => (
-          <div class="bg-white border border-neutral-200 rounded-[22px] p-[30px_26px] shadow-card">
-            <div class="flex items-start justify-between mb-4">
-              <span class="w-[54px] h-[54px] rounded-[15px] bg-lavender flex items-center justify-center">
-                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                  <path d={['M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z', 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', 'M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z'][i]} />
-                </svg>
-              </span>
-              <span class="text-[34px] font-display font-extrabold text-lavender leading-none">{`0${i + 1}`}</span>
-            </div>
-            <h3 class="text-[19px] font-display font-extrabold text-neutral-900 mb-1.5">{step.title}</h3>
-            <p class="text-sm leading-[1.65] text-neutral-600">{step.text}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <TelemedicineGuide />
 
   <!-- What you can use it for -->
   <section class="py-16 lg:py-24 bg-lavender">

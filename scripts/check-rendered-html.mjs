@@ -96,7 +96,7 @@ const requiredPages = [
 const staleClaims = [
   /Book an appointment/i, /Book online in minutes/i, /USCIS-certified/i,
   /Form I-693 completed quickly/i, /Walk-ins Always Welcome/i,
-  /minimal wait times/i, /Blue Cross Blue Shield/i, /United Healthcare/i, /Aetna/i, /Cigna/i,
+  /minimal wait times/i,
 ]
 
 const allFiles = await htmlFiles(outputDir)
@@ -110,6 +110,7 @@ for (const file of allFiles) {
   if (/>\s*svg\s*</i.test(visibleMarkup)) throw new Error(`Found visible literal "svg" text in ${path.relative(outputDir, file)}`)
   if (/<text\b/i.test(visibleMarkup)) throw new Error(`Found SVG text in rendered HTML for ${path.relative(outputDir, file)}`)
   for (const claim of staleClaims) if (claim.test(visibleMarkup)) throw new Error(`Found stale claim ${claim} in ${path.relative(outputDir, file)}`)
+  requireText(html, 'src="https://www.google.com/maps?q=1924+N+Portland+Ave,+Oklahoma+City,+OK+73107&amp;output=embed"', file)
   if (!html.includes("svg[aria-hidden=\"true\"]")) throw new Error(`Missing decorative SVG focus normalization in ${path.relative(outputDir, file)}`)
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     let schema
@@ -165,7 +166,7 @@ const diabetesPages = [
   {
     page: 'services/diabetes-management/index.html',
     required: [
-      'Type 2 diabetes management',
+      'Diabetes Mellitus management',
       'Kidney-function and urine protein testing',
       'Diabetic foot examinations',
       'Referrals for diabetic eye examinations',
@@ -187,7 +188,7 @@ const diabetesPages = [
   {
     page: 'es/servicios/manejo-diabetes/index.html',
     required: [
-      'Manejo de la diabetes tipo 2',
+      'Manejo de la diabetes mellitus',
       'Pruebas de función renal y proteína en la orina',
       'Exámenes de los pies relacionados con la diabetes',
       'Referencias para exámenes de la vista relacionados con la diabetes',

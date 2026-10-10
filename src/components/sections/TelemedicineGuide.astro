@@ -1,0 +1,96 @@
+---
+import { CLINIC } from '../../data/clinic'
+interface Props { lang?: 'en' | 'es' }
+const { lang = 'en' } = Astro.props
+const es = lang === 'es'
+const content = es ? {
+  heading: 'Cómo programar y acceder a su consulta por video',
+  schedule: '1. Solicite su cita',
+  scheduling: [
+    `Llame al ${CLINIC.phone} y solicite una cita de telemedicina.`,
+    'Nuestro equipo confirmará si una consulta por video es apropiada y le indicará la fecha, la hora y cómo conectarse. Su solicitud no confirma una cita.',
+    'Antes de la cita, compruebe su acceso a Healow o al Portal del Paciente. Prepare un dispositivo con cámara y micrófono, conexión a internet y un lugar privado.',
+  ],
+  access: '2. Elija cómo conectarse',
+  intro: 'Puede acceder a su cita confirmada mediante la aplicación Healow o el Portal del Paciente. Conéctese unos 15 minutos antes y siga las instrucciones de la clínica.',
+  app: 'Mediante la aplicación Healow',
+  appSteps: [
+    'Descargue la aplicación Healow de App Store o Google Play y vincúlela con Health Watch Medical Clinic. Si necesita ayuda con la configuración o el código de la clínica, llámenos.',
+    'Inicie sesión, abra «Appointments» (Citas) y seleccione su cita por video.',
+    'Pulse «Start TeleVisit» (Iniciar televisita), complete la información solicitada y permita el acceso a la cámara y al micrófono.',
+    'Permanezca en la sala de espera virtual hasta que se conecte su proveedor.',
+  ],
+  portal: 'Mediante el Portal del Paciente',
+  portalSteps: [
+    'Abra el Portal del Paciente con el botón de abajo e inicie sesión usando el acceso proporcionado por la clínica.',
+    'Busque su cita y seleccione la opción de telemedicina o televisita.',
+    'Complete la información solicitada y permita el acceso a la cámara y al micrófono.',
+    'Entre a la sala de espera virtual y espere a su proveedor.',
+  ],
+  portalButton: 'Abrir el Portal del Paciente →',
+  help: '3. ¿Todavía no tiene acceso al portal?',
+  helpText: 'La clínica debe proporcionarle acceso al Portal del Paciente antes de que pueda usarlo. Llame antes de su cita para solicitar acceso o ayuda con su cuenta. Nuestro equipo también puede ayudarle a configurar Healow.',
+  trouble: 'Si no aparece su cita, no puede iniciar sesión o tiene problemas con el video o el audio, llame a la clínica. Los nombres de los botones pueden variar según la versión de la aplicación o del portal.',
+  call: 'Llame al',
+} : {
+  heading: 'How to schedule and join your video visit',
+  schedule: '1. Request your appointment',
+  scheduling: [
+    `Call ${CLINIC.phone} and ask for a telemedicine appointment.`,
+    'Our team will confirm whether a video visit is appropriate and provide your appointment date, time, and connection instructions. Your request does not confirm an appointment.',
+    'Before your appointment, check that you can sign in to Healow or the Patient Portal. Have a device with a camera and microphone, internet access, and a private space ready.',
+  ],
+  access: '2. Choose how to join',
+  intro: 'You can access your confirmed appointment through the Healow app or the Patient Portal. Sign in about 15 minutes early and follow the clinic’s visit instructions.',
+  app: 'Through the Healow app',
+  appSteps: [
+    'Download the Healow app from the App Store or Google Play and connect it to Health Watch Medical Clinic. Call us if you need help setting it up or finding the clinic’s practice code.',
+    'Sign in, open “Appointments,” and select your video appointment.',
+    'Tap “Start TeleVisit,” complete the requested information, and allow access to your camera and microphone.',
+    'Stay in the virtual waiting room until your provider joins.',
+  ],
+  portal: 'Through the Patient Portal',
+  portalSteps: [
+    'Open the Patient Portal using the button below and sign in with the access provided by the clinic.',
+    'Find your appointment and select the telemedicine or televisit option.',
+    'Complete the requested information and allow access to your camera and microphone.',
+    'Enter the virtual waiting room and wait for your provider.',
+  ],
+  portalButton: 'Open Patient Portal →',
+  help: '3. Don’t have Patient Portal access yet?',
+  helpText: 'The clinic must provide Patient Portal access before you can use it. Call before your appointment to request access or get help with your account. Our team can also help you set up Healow.',
+  trouble: 'If your appointment is missing, you cannot sign in, or your video or audio is not working, call the clinic. Button names may vary with the app or portal version.',
+  call: 'Call',
+}
+---
+<section class="py-16 lg:py-24" aria-labelledby="telemedicine-guide">
+  <div class="container max-w-5xl">
+    <h2 id="telemedicine-guide" class="text-3xl lg:text-4xl font-display font-extrabold tracking-[-0.7px] text-neutral-900 mb-10">{content.heading}</h2>
+    <div class="bg-lavender border border-[#E4DEF2] rounded-[22px] p-6 sm:p-8 mb-10">
+      <h3 class="text-xl font-display font-extrabold text-neutral-900 mb-4">{content.schedule}</h3>
+      <ol class="list-decimal pl-6 space-y-3 text-neutral-600 leading-relaxed">
+        {content.scheduling.map(step => <li class="pl-1">{step}</li>)}
+      </ol>
+      <a href={`tel:${CLINIC.phoneE164}`} class="inline-flex mt-5 bg-primary hover:bg-primary-dark text-white font-bold px-6 py-3 rounded-full transition-colors">{content.call} {CLINIC.phone}</a>
+    </div>
+    <h3 class="text-2xl font-display font-extrabold text-neutral-900 mb-3">{content.access}</h3>
+    <p class="text-neutral-600 leading-relaxed mb-6">{content.intro}</p>
+    <div class="grid md:grid-cols-2 gap-6">
+      {[{ title: content.app, steps: content.appSteps }, { title: content.portal, steps: content.portalSteps }].map((method, index) => (
+        <div class="bg-white border border-neutral-200 rounded-[22px] p-6 sm:p-8 shadow-card">
+          <h4 class="text-xl font-display font-extrabold text-neutral-900 mb-5">{method.title}</h4>
+          <ol class="list-decimal pl-6 space-y-4 text-neutral-600 leading-relaxed">
+            {method.steps.map(step => <li class="pl-1">{step}</li>)}
+          </ol>
+          {index === 1 && <a href={CLINIC.patientPortalUrl} target="_blank" rel="noopener noreferrer" class="inline-flex mt-6 text-primary font-bold hover:underline">{content.portalButton}</a>}
+        </div>
+      ))}
+    </div>
+    <div class="mt-8 bg-lavender border border-[#E4DEF2] rounded-[22px] p-6 sm:p-8">
+      <h3 class="text-xl font-display font-extrabold text-neutral-900 mb-3">{content.help}</h3>
+      <p class="text-neutral-600 leading-relaxed mb-4">{content.helpText}</p>
+      <a href={`tel:${CLINIC.phoneE164}`} class="text-primary font-bold hover:underline">{content.call} {CLINIC.phone}</a>
+    </div>
+    <p class="mt-6 text-sm text-neutral-600 leading-relaxed">{content.trouble}</p>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+---
+import { CLINIC } from '../../data/clinic'
+interface Props { lang?: 'en' | 'es' }
+const { lang = 'en' } = Astro.props
+---
+<div class="w-full rounded-xl overflow-hidden border border-neutral-200 bg-white">
+  <iframe
+    title={lang === 'es' ? 'Mapa de ubicación de Health Watch Medical Clinic' : 'Health Watch Medical Clinic location map'}
+    src={CLINIC.mapsEmbedUrl}
+    width="100%"
+    height="180"
+    style="border:0; display:block;"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
