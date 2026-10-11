@@ -25,14 +25,13 @@ const callLabel = lang === 'es' ? 'Llamar' : 'Call'
     <h2 class="relative text-3xl lg:text-[40px] font-display font-extrabold tracking-[-0.8px] text-white max-w-xl text-balance">{heading}</h2>
     <p class="relative text-lg leading-[1.65] font-medium text-[#D6D3EE] max-w-lg">{subheading}</p>
 
-    <div class="relative flex flex-wrap items-center justify-center gap-3.5 mt-1">
+    <div class="relative flex flex-col sm:flex-row items-center justify-center gap-3.5 mt-1">
       <a
         href={route('contact', lang)}
         class="inline-flex items-center gap-2.5 bg-secondary hover:bg-secondary-dark text-white font-bold px-7 py-[15px] rounded-full transition-colors text-base shadow-[0_12px_28px_rgba(240,68,77,0.4)]"
       >
         {bookLabel}
       </a>
-      <p class="basis-full max-w-xl text-center text-sm leading-relaxed text-white/85">{lang === 'es' ? 'Enviar una solicitud no confirma su cita. Nuestro personal se comunicará con usted para finalizar la programación.' : 'Submitting this request does not confirm your appointment. Our staff will contact you to finalize scheduling.'}</p>
       <a
         href={`tel:${CLINIC.phoneE164}`}
         class="inline-flex items-center gap-2.5 bg-white/12 hover:bg-white/20 border-[1.5px] border-white/35 text-white font-bold px-[26px] py-[15px] rounded-full transition-colors text-base"
@@ -43,5 +42,6 @@ const callLabel = lang === 'es' ? 'Llamar' : 'Call'
         {callLabel} {CLINIC.phone}
       </a>
     </div>
+    <p class="relative max-w-xl text-center text-sm leading-relaxed text-white/85">{lang === 'es' ? 'Enviar una solicitud no confirma su cita. Nuestro personal se comunicará con usted para finalizar la programación.' : 'Submitting this request does not confirm your appointment. Our staff will contact you to finalize scheduling.'}</p>
   </div>
 </section>
